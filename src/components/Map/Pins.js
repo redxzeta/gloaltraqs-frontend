@@ -17,7 +17,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const divStyle = {
   height: "720px",
-  width: "1080px"
+  width: window.innerWidth
 };
 
 export const defaultPointerIcon = new L.Icon({
