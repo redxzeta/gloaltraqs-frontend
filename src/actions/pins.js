@@ -12,7 +12,7 @@ import {
 //GET PINS
 export const getPins = () => dispatch => {
   axios
-    .get("/http://127.0.0.1:8000/api/pins/")
+    .get("http://127.0.0.1:8000/api/pins/")
     .then(res => {
       dispatch({
         type: GET_PINS,
@@ -24,7 +24,7 @@ export const getPins = () => dispatch => {
 
 export const deletePins = id => dispatch => {
   axios
-    .delete(`/http://127.0.0.1:8000/api/pins/${id}/`)
+    .delete(`http://127.0.0.1:8000/api/pins/${id}/`)
     .then(res => {
       dispatch({
         type: DELETE_PINS,
@@ -36,7 +36,7 @@ export const deletePins = id => dispatch => {
 
 export const addPin = pin => dispatch => {
   axios
-    .post("/http://127.0.0.1:8000/api/pins/", pin)
+    .post("http://127.0.0.1:8000/api/pins/", pin)
     .then(res => {
       dispatch({
         type: ADD_PIN,
@@ -51,7 +51,7 @@ export const addPin = pin => dispatch => {
 export const editPin = (pin, id) => dispatch => {
   console.log(id + " " + pin.title);
   axios
-    .patch(`/http://127.0.0.1:8000/api/pins/${id}/`, pin)
+    .patch(`http://127.0.0.1:8000/api/pins/${id}/`, pin)
     .then(res => {
       dispatch({
         type: EDIT_PIN,

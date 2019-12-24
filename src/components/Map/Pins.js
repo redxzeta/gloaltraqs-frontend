@@ -16,8 +16,8 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 //import LocateControl from "react-leaflet-locate-control";
 
 const divStyle = {
-  height: "100%",
-  width: "100%"
+  height: "720px",
+  width: "1080px"
 };
 
 export const defaultPointerIcon = new L.Icon({
