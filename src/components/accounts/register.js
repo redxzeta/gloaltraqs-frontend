@@ -29,7 +29,7 @@ export class Register extends Component {
     email: "",
     password: "",
     password2: "",
-    captchaIsVerified: false,
+    captchaIsVerified: true,
     inputs: {},
     errors: {}
   };

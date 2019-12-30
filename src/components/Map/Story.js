@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -14,7 +14,7 @@ import {
   personalIcon
 } from "./Pins";
 import { getPins } from "../../actions/pins";
-import L from "leaflet";
+
 import default_marker from "./images/default.png";
 import community from "./images/community.png";
 import historical from "./images/historical.png";
@@ -100,22 +100,22 @@ export class Story extends Component {
     this.state.upVoter = userid;
     console.log("the user id is: " + id);
     axios
-      .get(`api/pins/${id}`)
+      .get(`http://127.0.0.1:8000/api/pins/${id}`)
       .then(response => {
-        if(response.data.owner != null) {
-          console.log("not null")
+        if (response.data.owner != null) {
+          console.log("not null");
           this.getAuthor(response.data.owner);
         }
         console.log(response.data);
         console.log("is the data");
         const flaggedData = response.data.flaggerstory.filter(
-          b => b.flagger == userid
+          b => b.flagger === userid
         )[0]; //gets the first value of the filter even tho its the only one
         const userFlaggedBefore = flaggedData ? true : false;
         console.log("has the user flag " + userFlaggedBefore);
 
-        const upvotedData = response.data.upvoters.filter(
-          c => c.upVoter == userid
+        const upvotedData = response.data.updotes.filter(
+          c => c.upVoter === userid
         )[0];
 
         const userUpvotedBefore = upvotedData ? true : false;
@@ -145,7 +145,7 @@ export class Story extends Component {
     const { flagged, pinId, flagger } = this.state;
     const upVoteStoryPin = { flagged, pinId, flagger };
     axios
-      .post("/api/flagStory/", upVoteStoryPin)
+      .post("http://127.0.0.1:8000/api/flagStory/", upVoteStoryPin)
       .then(res => {
         console.log(res.data);
       })
@@ -158,7 +158,10 @@ export class Story extends Component {
   changeUpvote(upVoteStoryPin) {
     console.log("the voite id is: " + this.state.upVoteId);
     axios
-      .put(`/api/upVoteStory/${this.state.upVoteId}/`, upVoteStoryPin)
+      .put(
+        `http://127.0.0.1:8000/api/upVoteStory/${this.state.upVoteId}/`,
+        upVoteStoryPin
+      )
       .then(res => {
         console.log(res.data);
         this.getData();
@@ -168,7 +171,7 @@ export class Story extends Component {
 
   newUpvote(upVoteStoryPin) {
     axios
-      .post("/api/upVoteStory/", upVoteStoryPin)
+      .post("http://127.0.0.1:8000/api/upVoteStory/", upVoteStoryPin)
       .then(res => {
         console.log("new");
         console.log(res.data);
@@ -206,7 +209,7 @@ export class Story extends Component {
   };
   getData() {
     axios
-      .get(`api/pins/${this.state.pinId}`)
+      .get(`http://127.0.0.1:8000/api/pins/${this.state.pinId}`)
       .then(response => {
         console.log("number: " + response.data.numOfUpvotes);
         this.setState({
@@ -222,7 +225,7 @@ export class Story extends Component {
 
   updateStoryId = id => {
     axios
-      .get(`api/pins/${id}`)
+      .get(`http://127.0.0.1:8000/api/pins/${id}`)
       .then(response => {
         this.setState({
           userStory: response.data,
@@ -251,7 +254,7 @@ export class Story extends Component {
   onUpdate = v => {
     console.log(v.title + "title from onujpdate");
     axios
-      .get(`api/pins/${this.state.pinId}`)
+      .get(`http://127.0.0.1:8000/api/pins/${this.state.pinId}`)
       .then(response => {
         this.setState({
           userStory: response.data
@@ -265,30 +268,34 @@ export class Story extends Component {
   render() {
     const { id } = this.props.match.params;
     console.log(id);
-    if (!this.state.userStory || this.state.userStory == undefined) {
+    if (!this.state.userStory || this.state.userStory === undefined) {
       return null; //You can change here to put a customized loading spinner
     }
     let isAdminOrModerator = false;
     let adminModeratorEditStory = "";
     const { isAuthenticated, user } = this.props.auth;
-    console.log(user)
-    console.log("is the user")
+    console.log(user);
+    console.log("is the user");
     if (isAuthenticated) {
       console.log("user is authenticated!");
-        if (user.is_administrator || user.is_moderator || this.state.userStory.owner == user.id) {
-          isAdminOrModerator = true;
-          console.log("user is admin or moderator! let them edit!");
-          adminModeratorEditStory = (
-              <div className="admin-moderator-edit">
-                <button
-                    onClick={this.editStory}
-                    className="btn btn-success admin-moderator-edit"
-                >
-                  {this.state.editButtonValue}
-                </button>
-              </div>
-          );
-        }
+      if (
+        user.is_administrator ||
+        user.is_moderator ||
+        this.state.userStory.owner === user.id
+      ) {
+        isAdminOrModerator = true;
+        console.log("user is admin or moderator! let them edit!");
+        adminModeratorEditStory = (
+          <div className="admin-moderator-edit">
+            <button
+              onClick={this.editStory}
+              className="btn btn-success admin-moderator-edit"
+            >
+              {this.state.editButtonValue}
+            </button>
+          </div>
+        );
+      }
     }
     let authorName = "Anonymous";
     if (this.state.userStory.owner != null) {
@@ -332,47 +339,39 @@ export class Story extends Component {
             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
           />
 
-        <MarkerClusterGroup>
-          {this.props.pins.map((marker, index) => {
-            let post = [marker.latitude, marker.longitude];
-            let categoryIcon = "";
-            if (marker.category == 1) {
-              categoryIcon = personalIcon;
-            } else if (marker.category == 2) {
-              categoryIcon = communityIcon;
-            } else {
-              categoryIcon = historicalIcon;
-            }
-            const id = marker.id;
+          <MarkerClusterGroup>
+            {this.props.pins.map((marker, index) => {
+              let post = [marker.latitude, marker.longitude];
+              let categoryIcon = "";
+              if (marker.category === 1) {
+                categoryIcon = personalIcon;
+              } else if (marker.category === 2) {
+                categoryIcon = communityIcon;
+              } else {
+                categoryIcon = historicalIcon;
+              }
+              const id = marker.id;
 
-            return (
-
-              <Marker key={index} position={post} icon={categoryIcon}>
-                <Popup>
-                  <strong>{marker.title}</strong> <br />{" "}
-                  {marker.description.substring(0, 200)}
-                  <br />
-                  <br />
-                  {/*              <button
-                    onClick={() => this.updateStoryId(id)}
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                  >
-                    View Story
-                  </button> */}
-                  <Link to={`${marker.id}`}>
-                    <button
-                      type="button"
-                      className="btn btn-primary btn-sm"
-                      onClick={() => this.updateStoryId(marker.id)}
-                    >
-                      View Story
-                    </button>
-                  </Link>
-                </Popup>
-              </Marker>
-            );
-          })}
+              return (
+                <Marker key={index} position={post} icon={categoryIcon}>
+                  <Popup>
+                    <strong>{marker.title}</strong> <br />{" "}
+                    {marker.description.substring(0, 200)}
+                    <br />
+                    <br />
+                    <Link to={`${marker.id}`}>
+                      <button
+                        type="button"
+                        className="btn btn-primary btn-sm"
+                        onClick={() => this.updateStoryId(marker.id)}
+                      >
+                        View Story
+                      </button>
+                    </Link>
+                  </Popup>
+                </Marker>
+              );
+            })}
           </MarkerClusterGroup>
         </Map>
         <div className="container-fluid" style={storyBody}>

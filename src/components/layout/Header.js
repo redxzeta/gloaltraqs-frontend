@@ -71,9 +71,9 @@ export class Header extends Component {
     );
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a className="navbar-brand" href="google.com">
+        <Link to="/" className="navbar-brand">
           GlobaltraQs
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -89,9 +89,9 @@ export class Header extends Component {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="google.com">
+              <Link to="/" className="nav-link">
                 Home <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <Link to="/faq" className="nav-link">
