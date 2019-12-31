@@ -1,10 +1,10 @@
 import axios from "axios";
 import { GET_USERS } from "./types";
 import { DELETE_USER } from "./types";
-
+import { LINK } from "../link/link";
 export const getUsers = () => dispatch => {
   axios
-    .get("/api/auth/users/")
+    .get(LINK + "auth/users/")
     .then(res => {
       dispatch({
         type: GET_USERS,
@@ -16,7 +16,7 @@ export const getUsers = () => dispatch => {
 
 export const deleteUser = id => dispatch => {
   axios
-    .delete(`http://127.0.0.1:8000/api/auth/users/${id}/`)
+    .delete(LINK + `auth/users/${id}/`)
     .then(res => {
       dispatch({
         type: DELETE_USER,

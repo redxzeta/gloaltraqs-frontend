@@ -7,6 +7,7 @@ import { getUser } from "../../actions/users";
 import { GET_USER } from "../../actions/types";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
+import { LINK } from "../../link/link";
 import {
   communityIcon,
   defaultPointerIcon,
@@ -100,11 +101,11 @@ export class Story extends Component {
     this.state.upVoter = userid;
     console.log("the user id is: " + id);
     axios
-      .get(`http://127.0.0.1:8000/api/pins/${id}`)
+      .get(LINK + `pins/${id}`)
       .then(response => {
         if (response.data.owner != null) {
           console.log("not null");
-          this.getAuthor(response.data.owner);
+          //this.getAuthor(response.data.owner);
         }
         console.log(response.data);
         console.log("is the data");
@@ -145,7 +146,7 @@ export class Story extends Component {
     const { flagged, pinId, flagger } = this.state;
     const upVoteStoryPin = { flagged, pinId, flagger };
     axios
-      .post("http://127.0.0.1:8000/api/flagStory/", upVoteStoryPin)
+      .post(LINK + "flagStory/", upVoteStoryPin)
       .then(res => {
         console.log(res.data);
       })
@@ -158,10 +159,7 @@ export class Story extends Component {
   changeUpvote(upVoteStoryPin) {
     console.log("the voite id is: " + this.state.upVoteId);
     axios
-      .put(
-        `http://127.0.0.1:8000/api/upVoteStory/${this.state.upVoteId}/`,
-        upVoteStoryPin
-      )
+      .put(LINK + `upVoteStory/${this.state.upVoteId}/`, upVoteStoryPin)
       .then(res => {
         console.log(res.data);
         this.getData();
@@ -171,7 +169,7 @@ export class Story extends Component {
 
   newUpvote(upVoteStoryPin) {
     axios
-      .post("http://127.0.0.1:8000/api/upVoteStory/", upVoteStoryPin)
+      .post(LINK + "upVoteStory/", upVoteStoryPin)
       .then(res => {
         console.log("new");
         console.log(res.data);
@@ -209,7 +207,7 @@ export class Story extends Component {
   };
   getData() {
     axios
-      .get(`http://127.0.0.1:8000/api/pins/${this.state.pinId}`)
+      .get(LINK + `pins/${this.state.pinId}`)
       .then(response => {
         console.log("number: " + response.data.numOfUpvotes);
         this.setState({
@@ -225,7 +223,7 @@ export class Story extends Component {
 
   updateStoryId = id => {
     axios
-      .get(`http://127.0.0.1:8000/api/pins/${id}`)
+      .get(LINK + `pins/${id}`)
       .then(response => {
         this.setState({
           userStory: response.data,
@@ -254,7 +252,7 @@ export class Story extends Component {
   onUpdate = v => {
     console.log(v.title + "title from onujpdate");
     axios
-      .get(`http://127.0.0.1:8000/api/pins/${this.state.pinId}`)
+      .get(LINK + `pins/${this.state.pinId}`)
       .then(response => {
         this.setState({
           userStory: response.data
