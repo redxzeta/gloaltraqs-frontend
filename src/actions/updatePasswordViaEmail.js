@@ -1,9 +1,9 @@
 import User from "../sequelize";
 import bcrypt from "bcrypt";
-
+import { LINK } from "../link/link";
 const BYCRPT_SALT_ROUNDS = 12;
 module.exports = app => {
-  app.put("http://127.0.0.1:8000/api/auth/users/", (req, res, next) => {
+  app.put(LINK + "auth/users/", (req, res, next) => {
     User.findOne({
       where: {
         username: req.body.username

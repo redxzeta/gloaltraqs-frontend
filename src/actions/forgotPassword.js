@@ -1,11 +1,11 @@
 import User from "../sequelize";
 import crypto from "crypto";
 require("dotenv").config();
-
+import { LINK } from "../link/link";
 const nodemailer = require("nodemailer");
 
 module.exports = app => {
-  app.post("http://127.0.0.1:8000/api/auth/users/", (req, res, next) => {
+  app.post(LINK + "auth/users/", (req, res, next) => {
     if (req.body.email === "") {
       res.json("email required");
     }
