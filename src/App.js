@@ -5,7 +5,7 @@ import About from "./components/AboutPage/About";
 import FAQ from "./components/AboutPage/FAQ";
 import test from "./components/AboutPage/test";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect
@@ -28,6 +28,7 @@ import EditStory from "./components/Map/EditStory";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import AddComment from "./components/Map/AddComment";
 import Pins from "./components/Map/Pins";
+import MainStory from "./components/Map/Story/MainStory";
 
 const divStyle = {
   position: "relative"
@@ -58,6 +59,10 @@ export class App extends Component {
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/manage" component={Manage} />
                 <Route path="/Story/:id/edit" exact component={EditStory} />
+                <Route exact path="/map">
+                  {" "}
+                  <MainStory />{" "}
+                </Route>
                 <Route path="/forgotPassword" component={ForgotPassword} />
                 {/* <Route path="/resetPassword" componenet={resetPassword} /> */}
 
