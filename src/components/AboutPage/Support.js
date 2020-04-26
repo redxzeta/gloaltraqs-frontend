@@ -63,7 +63,7 @@ export default function Support() {
             type="value"
             className="form-control"
             name="amount"
-            onChange={e => setAmount(e.target.value)}
+            onChange={(e) => setAmount(e.target.value)}
             value={amount}
           />
           <br></br>
@@ -72,33 +72,31 @@ export default function Support() {
             onSuccess={(details, data) => {
               const config = {
                 headers: {
-                  "Content-Type": "application/json"
-                }
+                  "Content-Type": "application/json",
+                },
               };
-              const paypalEmail = details.payer.emails.filter(email => {
+              const paypalEmail = details.payer.emails.filter((email) => {
                 if (email.primary === true) {
                   return email.value;
                 }
               });
               let info = JSON.stringify({
                 email: paypalEmail,
-                name: details.payer.name.given_name
+                name: details.payer.name.given_name,
               });
               axios
                 .post("api/contactUs/support", info, config)
-                .then(response => {
-                  console.log(response);
-                });
+                .then((response) => {});
               alert(
                 "Transaction completed by " + details.payer.name.given_name
               );
             }}
-            onCancel={data => {
+            onCancel={(data) => {
               alert("Transaction was cancelled...");
             }}
             style={{
               layout: "vertical",
-              shape: "rect"
+              shape: "rect",
             }}
           />
         </div>

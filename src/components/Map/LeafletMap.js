@@ -191,7 +191,6 @@ const LeafletMap = (props) => {
           <button
             className={"btn btn-primary add-story-button"}
             onClick={() => {
-              console.log("add address");
               props.setAddAddress(true);
 
               if (mapInstance) {

@@ -79,7 +79,6 @@ function CommentStory(props) {
 export default CommentStory;
 
 const FlagButton = (props) => {
-  console.log(props.id);
   const dispatch = useDispatch();
   const flagCommentCheck = props.user.flaggerComment.some(
     (userFlagComment) => userFlagComment.comment === props.id

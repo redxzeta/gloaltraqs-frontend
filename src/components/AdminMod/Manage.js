@@ -18,7 +18,7 @@ import { RoutedTabs, NavTab } from "react-router-tabs";
 import "./styles/react-router-tabs.css";
 export default function Manage() {
   let { path, url } = useRouteMatch();
-  console.log("the path is " + path + " and the url is " + url);
+
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user } = auth;

@@ -68,7 +68,6 @@ export const login = (username, password) => (dispatch) => {
         type: LOGIN_FAIL,
         payload: err.response.data,
       });
-      console.log("login failed");
     });
 };
 
@@ -91,7 +90,6 @@ export const register = ({ username, password, email }) => (dispatch) => {
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
-      console.log(res.data);
     })
     .catch((err) => {
       //dispatch(returnErrors(err.data, err.status));
@@ -99,7 +97,7 @@ export const register = ({ username, password, email }) => (dispatch) => {
         type: REGISTER_FAIL,
         payload: err.response.data,
       });
-      console.log(err.response.data);
+
       //alert("Username/Email already exists");
     });
 };
@@ -172,7 +170,6 @@ export const delFlagComment = (id) => (dispatch) => {
   axios
     .delete(`${LINK}/flagcomment/${id}/`)
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: REMOVE_FLAG_COMMENT,
         payload: id,
@@ -188,7 +185,6 @@ export const updateProfilePic = (url) => (dispatch, getState) => {
   axios
     .patch(`${LINK}/auth/user`, profilepic, tokenConfig(getState))
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: UPDATE_PROFILE_PIC,
         payload: res.data,

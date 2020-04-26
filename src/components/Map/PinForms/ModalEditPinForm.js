@@ -24,7 +24,7 @@ const labelStyle = {
 function ModalEditPinForm(props) {
   const validateEditForm = (e) => {
     e.preventDefault();
-    // console.log("validating edit pin...");
+
     if (props.userForm.title && props.userForm.description) {
       props.onSubmit();
     }
