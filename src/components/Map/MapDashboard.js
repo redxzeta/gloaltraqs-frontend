@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from "react";
 
 import {
   getPin,
-  editPin,
   deletePins,
   addComment,
   deleteComment,
@@ -29,20 +28,20 @@ import SearchSidebar from "../layout/SearchSidebar";
 import Story from "./Story/Story";
 import StorySidebar from "../layout/StorySidebar";
 import ConfirmationModal from "../profile/ConfirmationModal";
-const sidebarStyle = {
-  position: "absolute",
-  top: "0",
-  height: "100%",
-  zIndex: "1000",
-  overflow: "hidden",
-  right: "0px",
-  // z-index: 1000;
-  // position: absolute;
-  // height: 100%;
-  // overflow: hidden;
-  // width: 100%;
-  // top: 0;
-};
+// const sidebarStyle = {
+//   position: "absolute",
+//   top: "0",
+//   height: "100%",
+//   zIndex: "1000",
+//   overflow: "hidden",
+//   right: "0px",
+//   z-index: 1000;
+//   position: absolute;
+//   height: 100%;
+//   overflow: hidden;
+//   width: 100%;
+//   top: 0;
+// };
 
 export default function MapDashboard() {
   let { path, url } = useRouteMatch();
