@@ -5,8 +5,8 @@ import {
   getNextFlaggedPins,
   deletePins,
 } from "../../actions/pins";
-import { Link, Redirect } from "react-router-dom";
-import { Alert } from "reactstrap";
+import { Link } from "react-router-dom";
+
 function ManageFlag() {
   const [showReport, setshowReport] = useState("");
   const flaggedPins = useSelector((state) => state.pins.flaggedPins);

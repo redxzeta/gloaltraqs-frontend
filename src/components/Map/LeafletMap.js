@@ -57,7 +57,7 @@ export const personalIcon = new L.Icon({
   shadowAnchor: [20, 92],
 });
 const LeafletMap = (props) => {
-  let { path, url } = useRouteMatch();
+  // let { path, url } = useRouteMatch();
   const history = useHistory();
   // need to enter props.placement directly - if not used directly, when placement is updated the marker does not center on proper coordinates
   // EsriProvider allows for zip code search - nominatum (OSM) does not
@@ -88,7 +88,7 @@ const LeafletMap = (props) => {
   useEffect(() => {
     props.setSidebarOpen(false);
     props.setStorySidebarOpen(false);
-  }, []);
+  }, [props]);
 
   const updatePin = (marker) => {
     let start = null;
