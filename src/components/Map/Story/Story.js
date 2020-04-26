@@ -17,7 +17,7 @@ import Markup from "interweave";
 import FlagReportModal from "./FlagReportModal";
 import { Row, Col } from "react-bootstrap";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-
+import BookMark from "../../images/Bookmark_Outline_Icon.png";
 const storyBody = {
   paddingTop: "50px",
   paddingLeft: "50px",
@@ -34,7 +34,7 @@ function Story(props) {
     <Link className="login-link favorite-story-btn" to="/login">
       <img
         className="story-favorites-icon"
-        src={"./static/frontend/images/Bookmark_Outline_Icon.png"}
+        src={BookMark}
         alt={"favorite this story icon"}
       />
     </Link>
