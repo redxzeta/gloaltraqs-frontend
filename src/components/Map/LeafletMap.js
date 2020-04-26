@@ -15,7 +15,6 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import AddCommentIcon from "@material-ui/icons/AddComment";
 import { GeoSearchControl } from "leaflet-geosearch";
 import { EsriProvider } from "leaflet-geosearch";
-import { useDispatch } from "react-redux";
 
 export const defaultPointerIcon = new L.Icon({
   iconUrl: default_marker,

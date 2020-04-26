@@ -4,7 +4,7 @@ import { PayPalButton } from "react-paypal-button-v2";
 import { Row, Col } from "react-bootstrap";
 
 export default function Support() {
-  const [isEnabled, setIsEnabled] = useState(false);
+  // const [isEnabled, setIsEnabled] = useState(false);
   const [amount, setAmount] = useState("0.00");
 
   return (
