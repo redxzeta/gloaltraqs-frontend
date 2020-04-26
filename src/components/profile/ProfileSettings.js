@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { editUser, getUserProfile } from "../../actions/users";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import { userSelfDelete } from "../../actions/auth";
 import Switch from "react-switch";
@@ -57,7 +57,7 @@ export default function Settings(props) {
   useEffect(() => {
     dispatch(getUserProfile(name));
     console.log("getting user profile");
-  }, []);
+  }, [dispatch, name]);
 
   useEffect(() => {
     if (userProfile) {
@@ -67,9 +67,9 @@ export default function Settings(props) {
       setChecked(userProfile.accessibility_mode_active);
       setProfileVisibilityChecked(userProfile.is_profile_private);
     }
-  }, []);
+  }, [userProfile]);
 
-  const { isAuthenticated, user } = auth;
+  const { user } = auth;
 
   if (accountDeleted) {
     return <Redirect to="/" />;

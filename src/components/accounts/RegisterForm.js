@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../actions/auth";
-import { createMessage } from "../../actions/messages";
+//import { createMessage } from "../../actions/messages";
 import Recaptcha from "react-recaptcha";
 import * as EmailValidator from "email-validator";
-import { REGISTER_FAIL } from "../../actions/types";
+
 import Tooltip from "@material-ui/core/Tooltip";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
@@ -45,7 +45,7 @@ export default function RegisterForm() {
     } else {
       setFailed(false);
     }
-  }, [registerFail]);
+  }, [registerFail, submitted]);
 
   const verifyCallback = (response) => {
     if (response) {

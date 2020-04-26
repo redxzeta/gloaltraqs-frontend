@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { logout } from "../../actions/auth";
-import { useSelector, useDispatch, useStore } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { editUser } from "../../actions/users";
 import IdleTimer from "react-idle-timer";
 import Image from "react-bootstrap/Image";

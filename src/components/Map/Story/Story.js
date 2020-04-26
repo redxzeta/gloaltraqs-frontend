@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommentStory from "./CommentStory";
-import { getPin } from "../../../actions/pins";
-import {
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+//import { getPin } from "../../../actions/pins";
+import { Link, Redirect } from "react-router-dom";
 import Upvote from "./Upvote";
 import Flag from "./Flag";
 import Moment from "react-moment";
@@ -25,9 +18,8 @@ const storyBody = {
 };
 function Story(props) {
   const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
 
-  const { isAuthenticated, user, userFavoritePinState } = auth;
+  const { isAuthenticated, user } = auth;
   const [fixedArrow, setFixedArrow] = useState(false);
 
   const upvoteButoon = (
@@ -46,7 +38,7 @@ function Story(props) {
     return () => {
       window.removeEventListener("scroll", handleScroll, false);
     };
-  }, []);
+  }, [handleScroll]);
 
   if (props.pinDeleted) {
     props.setPinDeleted(false);
