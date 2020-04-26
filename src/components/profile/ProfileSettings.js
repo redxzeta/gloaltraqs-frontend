@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  deleteUser,
-  editUser,
-  getUser,
-  getUserProfile,
-} from "../../actions/users";
+import { editUser, getUserProfile } from "../../actions/users";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import { logout, userSelfDelete } from "../../actions/auth";

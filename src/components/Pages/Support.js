@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { PayPalButton } from "react-paypal-button-v2";
 
 import { Row, Col } from "react-bootstrap";
-
+import Bubble from "../images/Purple_Chat_Bubble.png";
+import GreenBubble from "../images/Green_Chat_Bubble.png";
+import RedBubble from "../images/Red_Chat_Bubble.png";
+import IG from "../images/instagram_icon.JPG";
+import TW from "../images/twitter_icon.JPG";
+import FB from "../images/facebook_icon.JPG";
 export default function Support() {
-  const [isEnabled, setIsEnabled] = useState(false);
+  // const [isEnabled, setIsEnabled] = useState(false);
   const [amount, setAmount] = useState("0.00");
 
   return (
@@ -17,7 +22,7 @@ export default function Support() {
               <Col md={4}>
                 <div className="support-us-image-div">
                   <img
-                    src="./static/frontend/images/Purple_Chat_Bubble.png"
+                    src={Bubble}
                     alt="post your stories"
                     className="support-us-images"
                   />
@@ -30,7 +35,7 @@ export default function Support() {
               <Col md={4}>
                 <div className="support-us-image-div">
                   <img
-                    src="./static/frontend/images/Green_Chat_Bubble.png"
+                    src={GreenBubble}
                     alt="post your stories"
                     className="support-us-images"
                   />
@@ -43,7 +48,7 @@ export default function Support() {
               <Col md={4}>
                 <div className="support-us-image-div">
                   <img
-                    src="./static/frontend/images/Red_Chat_Bubble.png"
+                    src={RedBubble}
                     alt="post your stories"
                     className="support-us-images"
                   />
@@ -111,17 +116,17 @@ export default function Support() {
           <div>
             <Col md={{ size: 2, offset: 5 }} className="col-md-2 offset-sm-4">
               <img
-                src="../images/instagram_icon.JPG"
+                src={IG}
                 alt="instagram link"
                 className="social-media-images"
               />
               <img
-                src="../images/twitter_icon.JPG"
+                src={TW}
                 alt="twitter link"
                 className="social-media-images"
               />
               <img
-                src="../images/facebook_icon.JPG"
+                src={FB}
                 alt="facebook link"
                 className="social-media-images"
               />

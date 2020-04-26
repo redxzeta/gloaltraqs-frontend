@@ -236,7 +236,7 @@ function Header() {
   return (
     <nav className="site-header fixed-top navbar navbar-expand-lg navbar-dark header-nav">
       <a className="navbar-brand" href="#">
-        <Link to="/faq" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           <Image src={Logo} height={"108px"} />
         </Link>
       </a>
