@@ -82,11 +82,11 @@ const LeafletMap = (props) => {
     autoClose: true,
     keepResult: true,
   });
-
+  const { setSidebarOpen, setStorySidebarOpen } = props;
   useEffect(() => {
     props.setSidebarOpen(false);
     props.setStorySidebarOpen(false);
-  }, [props]);
+  }, [setSidebarOpen, setStorySidebarOpen]);
 
   const updatePin = (marker) => {
     let start = null;
