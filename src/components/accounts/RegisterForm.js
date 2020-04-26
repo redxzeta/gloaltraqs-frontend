@@ -9,7 +9,7 @@ import { REGISTER_FAIL } from "../../actions/types";
 import Tooltip from "@material-ui/core/Tooltip";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
-export default function Register() {
+export default function RegisterForm() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { isAuthenticated, registerFail } = auth;
