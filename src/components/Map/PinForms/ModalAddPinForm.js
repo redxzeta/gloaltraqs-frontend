@@ -14,7 +14,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import "react-datepicker/dist/react-datepicker.css";
 import TinyMCE from "react-tinymce";
 import DatePicker from "react-date-picker";
-import { addPin } from "../../../actions/pins";
+
 // import
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 
@@ -28,7 +28,6 @@ const labelStyle = {
   marginRight: "10px",
 };
 function ModalAddPinForm(props) {
-  var today = new Date();
   const validateAddPinForm = async (e) => {
     e.preventDefault();
 

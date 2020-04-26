@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import queryString from "query-string";
+
 import { LINK } from "../../link/link";
 
 export default function ResetPassword() {
-  const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const { isAuthenticated, user } = auth;
   const [passwordForm, setpasswordForm] = useState({
     password: "",
     password2: "",

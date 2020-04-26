@@ -5,7 +5,6 @@ import {
   EDIT_PIN,
   GET_PIN,
   SEARCH_PINS,
-  GET_UPVOTE,
   ADD_COMMENT,
   DELETE_COMMENT,
   GET_PINS_BY_OWNER,
@@ -153,8 +152,6 @@ export default function (state = initialState, action) {
         pin: userFirstUpvote,
       };
     case USER_UPVOTE:
-      const userupvotes = 0;
-
       const userUp = {
         ...state.pin,
         updotes: [state.pin.updotes.filter((x) => x.id !== action.payload.id)],

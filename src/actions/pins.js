@@ -6,13 +6,11 @@ import {
   ADD_PIN,
   EDIT_PIN,
   GET_PIN,
-  GET_USER,
   SEARCH_PINS,
   GET_UPVOTE,
   ADD_COMMENT,
   DELETE_COMMENT,
   GET_PINS_BY_OWNER,
-  GET_PIN_BY_ID,
   USER_FLAG_PIN,
   USER_FIRST_UPVOTE,
   USER_UPVOTE,
@@ -21,9 +19,8 @@ import {
   GET_NEXT_FLAGGED_PINS,
   GET_MAX_PIN,
   GET_MIN_PIN,
-  USER_FAVORITE_STATE_PIN,
 } from "./types";
-import ActionButton from "antd/lib/modal/ActionButton";
+
 import { LINK } from "../link/link";
 //GET PINS
 export const getPins = () => (dispatch) => {
@@ -135,35 +132,6 @@ export const editPin = (pin, id, userid) => (dispatch) => {
   axios
     .patch(`${LINK}/pins/${id}/`, pin)
     .then((res) => {
-      let validUser = false;
-      let flagstateofuser = false;
-      let userFlaggedBefore = false;
-      let upvotedBefore = false;
-      let userCurrentUpvote = false;
-      if (userid) {
-        userFlaggedBefore = res.data.flaggerstory.some(
-          (a) => a.flagger === userid
-        );
-        upvotedBefore = res.data.updotes.some((b) => b.upVoter === userid);
-        if (upvotedBefore)
-          userCurrentUpvote = res.data.updotes.filter(
-            (b) => b.upVoter === userid
-          )[0].upvote;
-        if (userFlaggedBefore)
-          flagstateofuser = res.data.flaggerstory.filter(
-            (a) => a.flagger === userid
-          )[0].flagged;
-        validUser = true;
-      }
-      const payload = {
-        ...res.data,
-        userCurrentUpvote: userCurrentUpvote,
-        upvotedBefore: upvotedBefore,
-        validUser: validUser,
-        flagState: flagstateofuser,
-        userFlaggedBefore: userFlaggedBefore,
-      };
-
       dispatch({
         type: EDIT_PIN,
         payload: res.data,

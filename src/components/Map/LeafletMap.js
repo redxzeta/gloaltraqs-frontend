@@ -5,7 +5,7 @@ import community from "./images/community.png"; // Tell Webpack this JS file use
 import historical from "./images/historical.png";
 import personal from "./images/personal.png";
 import default_marker from "./images/default.png";
-import { useRouteMatch, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Control from "react-leaflet-control";
 import ModalEditPinForm from "./PinForms/ModalEditPinForm";
 import MarkerClusterGroup from "react-leaflet-markercluster";
@@ -57,14 +57,13 @@ export const personalIcon = new L.Icon({
   shadowAnchor: [20, 92],
 });
 const LeafletMap = (props) => {
-  let { path, url } = useRouteMatch();
+  // let { path, url } = useRouteMatch();
   const history = useHistory();
   // need to enter props.placement directly - if not used directly, when placement is updated the marker does not center on proper coordinates
   // EsriProvider allows for zip code search - nominatum (OSM) does not
   // others include bing and google
-  const [provider, setProvider] = useState(new EsriProvider()); // new OpenStreetMapProvider();
+  const provider = new EsriProvider(); // new OpenStreetMapProvider();
   // can change provider to preference
-  const dispatch = useDispatch();
 
   const [mapInstance, setMapInstance] = useState();
   const [
@@ -88,7 +87,7 @@ const LeafletMap = (props) => {
   useEffect(() => {
     props.setSidebarOpen(false);
     props.setStorySidebarOpen(false);
-  }, []);
+  }, [props]);
 
   const updatePin = (marker) => {
     let start = null;
