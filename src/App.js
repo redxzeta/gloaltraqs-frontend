@@ -20,9 +20,9 @@ import Manage from "./components/AdminMod/Manage";
 
 import Settings from "./components/profile/ProfileSettings";
 
-import ForgotPassword from "./components/accounts/ForgotPassword";
+import ForgotPasswordForm from "./components/accounts/ForgotPasswordForm";
 import Support from "./components/Pages/Support";
-import ResetPassword from "./components/accounts/ResetPassword";
+import ResetPasswordForm from "./components/accounts/ResetPasswordForm";
 import ContactUs from "./components/Pages/ContactUs";
 import ProfileDashboard from "./components/profile/ProfileDashboard";
 import NotFoundPage from "./components/Pages/NotFoundPage";
@@ -56,8 +56,8 @@ export default function App() {
               <PrivateRoute exact path="/manage/comments" component={Manage} />
               <PrivateRoute exact path="/manage/category" component={Manage} />
               {/*<Route path="/Story/:id/edit" exact component={EditStory} />*/}
-              <Route path="/forgotPassword" component={ForgotPassword} />
-              <Route path="/resetPassword" component={ResetPassword} />
+              <Route path="/forgotPassword" component={ForgotPasswordForm} />
+              <Route path="/resetPassword" component={ResetPasswordForm} />
               <Route path="/Support" component={Support} />
               <Route path="/ContactUs" component={ContactUs} />
               <Route component={NotFoundPage} />

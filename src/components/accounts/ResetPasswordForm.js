@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { LINK } from "../../link/link";
 
-export default function ResetPassword() {
+export default function ResetPasswordForm() {
   const [passwordForm, setpasswordForm] = useState({
     password: "",
     password2: "",

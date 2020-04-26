@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { LINK } from "../../link/link";
-export default function ForgotPassword() {
+export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
   const [messageFromServer, setMessageFromServer] = useState("");
