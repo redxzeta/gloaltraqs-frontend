@@ -229,7 +229,7 @@ function DisplayFaq(props) {
                     onClick={() => props.toggleImgSrc(faq.id)}
                   >
                     <img
-                      src={props.imageStates[faq.id] ? Plus : Minus}
+                      src={props.imageStates[faq.id] ? Minus : Plus}
                       className={
                         props.imageStates[faq.id]
                           ? "faq-minus-btn"

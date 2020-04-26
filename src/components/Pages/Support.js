@@ -14,11 +14,11 @@ export default function Support() {
 
   return (
     <div className="main-content-div support-us-div">
-      <Row style={{ width: "100%", minHeight: "100%", height: "auto" }}>
+      <Row style={{ width: "100%", minHeight: "100%", height: "auto", marginRight: "0px", marginLeft: "0px" }}>
         <Col md={9} className="support-us-main-content-col">
           <div className="support-us-main-content-div">
             <h3 className="support-us-title">How you can help</h3>
-            <Row>
+            <Row style={{ paddingTop: "50px" }}>
               <Col md={4}>
                 <div className="support-us-image-div">
                   <img
@@ -114,22 +114,30 @@ export default function Support() {
             <h3 className="support-us-side-title">follow us</h3>
           </div>
           <div>
-            <Col md={{ size: 2, offset: 5 }} className="col-md-2 offset-sm-4">
-              <img
-                src={IG}
-                alt="instagram link"
-                className="social-media-images"
-              />
-              <img
-                src={TW}
-                alt="twitter link"
-                className="social-media-images"
-              />
-              <img
-                src={FB}
-                alt="facebook link"
-                className="social-media-images"
-              />
+            <Col className="col-md-3 offset-md-5 col-md-2 col-8 offset-3">
+              <div>
+                <a href={"https://www.instagram.com/the.arqive/?fbclid=IwAR3q0KyoS1eNKmXVbiAqvq31J2hlAh-PmHoRwlUU4orUGM79nP_YYueGSws"}>
+                  <img
+                    src={IG}
+                    alt="instagram link"
+                    className="social-media-images"
+                  />
+                </a>
+                <a href={"https://twitter.com/thearqive"}>
+                <img
+                  src={TW}
+                  alt="twitter link"
+                  className="social-media-images"
+                />
+                </a>
+                <a href={"https://www.facebook.com/pg/thearqive/about/?ref=page_internal"}>
+                <img
+                  src={FB}
+                  alt="facebook link"
+                  className="social-media-images"
+                />
+                </a>
+              </div>
             </Col>
           </div>
         </Col>

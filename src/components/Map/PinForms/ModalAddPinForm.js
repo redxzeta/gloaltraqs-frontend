@@ -27,6 +27,11 @@ const buttonStyle = {
 const labelStyle = {
   marginRight: "10px",
 };
+const dateStyle = {
+  marginRight: "10px",
+  marginTop: "auto",
+  marginBottom: "auto"
+};
 function ModalAddPinForm(props) {
   const validateAddPinForm = async (e) => {
     e.preventDefault();
@@ -77,8 +82,8 @@ function ModalAddPinForm(props) {
         centered
       >
         <ModalHeader toggle={props.toggle}> Add a story </ModalHeader>
-        <ModalBody>
           <Form onSubmit={validateAddPinForm}>
+            <ModalBody>
             {props.addAddress ? (
               <>
                 <FormGroup>
@@ -163,7 +168,7 @@ function ModalAddPinForm(props) {
             <FormGroup>
               <Label for="title">Title</Label>
               {!props.addPinValues.title ? (
-                <p className="text-danger">*Please enter a story title</p>
+                <p className="story-form-alerts">*Please enter a story title</p>
               ) : null}
               <Input
                 className="form-control"
@@ -200,12 +205,12 @@ function ModalAddPinForm(props) {
             <FormGroup>
               <Label for="description">
                 Description
-                {!props.addPinValues.description ? (
-                  <p className="text-danger">
+              </Label>
+                 {!props.addPinValues.description ? (
+                  <p className="story-form-alerts">
                     *Please enter a story description
                   </p>
                 ) : null}
-              </Label>
               <TinyMCE
                 content={props.addPinValues.description}
                 config={{
@@ -244,7 +249,7 @@ function ModalAddPinForm(props) {
               </select>
             </FormGroup>
             <InputGroup>
-              <Label style={labelStyle} for="startDate">
+              <Label style={dateStyle} for="startDate">
                 Start Date
               </Label>
               <DatePicker
@@ -258,7 +263,7 @@ function ModalAddPinForm(props) {
                   })
                 }
               />
-              <Label style={labelStyle} for="endDate">
+              <Label style={dateStyle} for="endDate">
                 &nbsp;&nbsp;&nbsp;End Date
               </Label>
               <DatePicker
@@ -273,19 +278,17 @@ function ModalAddPinForm(props) {
                 }
               />
             </InputGroup>
-            <Button style={buttonStyle} color="success">
+          </ModalBody>
+
+          <ModalFooter>
+            <Button className="default-btn-purple" style={{ marginRight: "20px" }} onClick={props.toggle}>
+              Cancel
+            </Button>
+            <Button className="default-btn-purple">
               Save
             </Button>
+          </ModalFooter>
           </Form>
-        </ModalBody>
-        <ModalFooter>
-          {/*<Button color="primary" onClick={props.toggle}>*/}
-          {/*  Do Something*/}
-          {/*</Button>{" "}*/}
-          <Button color="secondary" onClick={props.toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
       </Modal>
     </>
   );

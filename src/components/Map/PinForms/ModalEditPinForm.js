@@ -18,6 +18,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const buttonStyle = {
   float: "right",
 };
+
 const labelStyle = {
   marginRight: "10px",
 };

@@ -26,8 +26,8 @@ import { searchUsers, getNextPreviousUsers } from "../../actions/users";
 
 const options = [
   { value: "1", label: "Personal" },
-  { value: "2", label: "Community" },
-  { value: "3", label: "Historical" },
+  { value: "2", label: "Historical" },
+  { value: "3", label: "Resources" },
 ];
 
 const labelStyle = {

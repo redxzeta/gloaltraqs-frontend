@@ -218,10 +218,7 @@ b, strong {
 
 .aboutHeader   
 {
-    padding-left: 100px;
-    padding-top: 100px;
     padding-bottom: 10px;
-    padding-right: 300px;
     float: left;
     font-size: 64px; /* should use rem or em for responsiveness */
     color: #ffffff;
@@ -232,8 +229,7 @@ b, strong {
 
 .aboutDesc
 {
-    padding: 40px;
-    padding-left: 100px;
+    margin-top: 40px;
     float: right;
     font-size: 20px;
     color: #ffffff;
@@ -266,6 +262,7 @@ b, strong {
     height: 100%;
     width: 100%;
     transition: all .75s ease-out;
+    margin-top: 11px;
 }
 
 .column {
@@ -309,7 +306,7 @@ b, strong {
 .default-btn-purple {
     border-radius: 8px !important;
     background: rgb(77, 65, 133) !important;
-    color: white;
+    color: white !important;
     font-family: "Eina", "Arial" !important;
     text-transform: lowercase !important;
 }
@@ -1063,9 +1060,7 @@ button {
 .moveimage
 {
     padding-right: 10px;
-    padding-top: 150px;
-    width: 80%;
-    float: right;
+    width: 100%;
 }
 
 .con
@@ -1090,7 +1085,7 @@ button {
 
     border-radius: 40px 40px 40px 40px;
 }
-.threeButton3{
+.threeButton3 {
     text-align: center;
     width: 80%;
     border-color: #448CBC;
@@ -1099,12 +1094,10 @@ button {
 }
 .aboutHeader
 {
-    padding-top: 150px;
-
     float: left;
-    font-size: 48;
+    font-size: 2.5rem;
     color: #ffffff;
-    font: Eina;
+    font-family: Eina, Arial !important;
 }
 
 .aboutDesc
@@ -1307,8 +1300,7 @@ button {
 {
     padding-right: 10px;
     padding-top: 30px;
-    width: 80%;
-    float: right;
+    width: 100%;
     font-size: 12px;
     color: #98999b;
 }
@@ -1379,4 +1371,43 @@ button {
     font-weight: 600 !important;
     color: #98999b !important;
     text-transform: none !important;
+}
+
+.modal-content {
+    border-radius: 24px;
+}
+
+.modal-title {
+    font-family: "Eina", "Arial" !important;
+    text-transform: lowercase !important;
+}
+
+.model-body-text {
+    font-family: "Eina", "Arial" !important;
+    text-transform: lowercase !important;
+}
+
+label {
+    font-family: Eina, Arial !important;
+    text-transform: lowercase !important;
+    color: black !important;
+    font-size: 1.2em !important;
+}
+
+select {
+    font-family: Eina, Arial !important;
+    text-transform: lowercase !important;
+    color: black !important;
+    font-size: 1em !important;
+}
+
+.react-date-picker {
+    font-family: Eina, Arial !important;
+    color: black !important;
+}
+
+.story-form-alerts {
+    text-transform: lowercase !important;
+    font-family: Eina, Arial !important;
+    color: #e63f52 !important;
 }

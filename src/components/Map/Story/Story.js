@@ -97,6 +97,7 @@ function Story(props) {
               ) : (
                 "No Start Date"
               )}
+              {" - "}
               {props.pin.endDate ? (
                 <Moment format="MM/DD/YYYY">{props.pin.endDate}</Moment>
               ) : (
