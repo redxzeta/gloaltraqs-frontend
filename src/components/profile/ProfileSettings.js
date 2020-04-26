@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { editUser, getUserProfile } from "../../actions/users";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
-import { logout, userSelfDelete } from "../../actions/auth";
+import { userSelfDelete } from "../../actions/auth";
 import Switch from "react-switch";
 import ConfirmationModal from "./ConfirmationModal";
 import useRemovalConfirm from "./CustomHooks/useRemovalConfirm";
@@ -13,7 +13,7 @@ import { Row, Col } from "react-bootstrap";
 export default function Settings(props) {
   const [accountDeleted, setAccountDeleted] = useState(false);
   const [redirectToProfile, setRedirectToProfile] = useState(false);
-  const [userImage, setUserImage] = useState("");
+
   let { name } = useParams();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -23,7 +23,7 @@ export default function Settings(props) {
   const [profileVisibilityChecked, setProfileVisibilityChecked] = useState(
     false
   );
-  const history = useHistory();
+  // const history = useHistory();
 
   const updateAccessibility = () => {
     setChecked(!checked);
@@ -57,7 +57,7 @@ export default function Settings(props) {
   useEffect(() => {
     dispatch(getUserProfile(name));
     console.log("getting user profile");
-  }, [name]);
+  }, []);
 
   useEffect(() => {
     if (userProfile) {
@@ -81,7 +81,7 @@ export default function Settings(props) {
   let userCanEdit = "";
 
   if (userProfile && user) {
-    if (userProfile.id == user.id || user.is_administrator) {
+    if (userProfile.id === user.id || user.is_administrator) {
       userCanEdit = (
         <form
           onSubmit={onSubmit}

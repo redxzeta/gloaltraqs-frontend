@@ -5,7 +5,7 @@ import About from "./components/Pages/About";
 import FAQ from "./components/Pages/FAQ";
 import Resources from "./components/Pages/Resources";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Register from "./components/accounts/Register";
+import RegisterForm from "./components/accounts/RegisterForm";
 // if deployed to apache, mess with congig htt file
 // import { Provider as AlertProvider } from "react-alert";
 // import AlertTemplate from "react-alert-template-basic";
@@ -46,7 +46,7 @@ export default function App() {
               {/*<Route path="/Story/:id" exact component={Story} />*/}
               <Route exact path="/faq" component={FAQ} />
               <Route exact path="/login" component={login} />
-              <Route exact path="/register" component={Register} />
+              <Route exact path="/register" component={RegisterForm} />
               <Route exact path="/users/:name" component={ProfileDashboard} />
               <Route exact path="/users/:name/settings" component={Settings} />
               <Route exact path="/users" component={ProfileDashboard} />
