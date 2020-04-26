@@ -4,25 +4,20 @@ import MapDashboard from "./components/Map/MapDashboard";
 import About from "./components/Pages/About";
 import FAQ from "./components/Pages/FAQ";
 import Resources from "./components/Pages/Resources";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import register from "./components/accounts/Register";
 // if deployed to apache, mess with congig htt file
 // import { Provider as AlertProvider } from "react-alert";
 // import AlertTemplate from "react-alert-template-basic";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import store from "./store";
 import login from "./components/accounts/Login";
-import PrivateUserRoute from "./components/common/PrivateUserRoute";
+
 import PrivateRoute from "./components/common/PrivateRoute";
 import { loadUser } from "./actions/auth";
 
 import Manage from "./components/AdminMod/Manage";
-import ProfilePage from "./components/profile/ProfilePage";
+
 import Settings from "./components/profile/ProfileSettings";
 
 import ForgotPassword from "./components/accounts/ForgotPassword";
@@ -31,10 +26,6 @@ import ResetPassword from "./components/accounts/ResetPassword";
 import ContactUs from "./components/Pages/ContactUs";
 import ProfileDashboard from "./components/profile/ProfileDashboard";
 import NotFoundPage from "./components/Pages/NotFoundPage";
-
-const divStyle = {
-  position: "relative",
-};
 
 export default function App() {
   useEffect(() => store.dispatch(loadUser()), []);

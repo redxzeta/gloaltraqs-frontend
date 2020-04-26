@@ -152,8 +152,6 @@ export default function (state = initialState, action) {
         pin: userFirstUpvote,
       };
     case USER_UPVOTE:
-      const userupvotes = 0;
-
       const userUp = {
         ...state.pin,
         updotes: [state.pin.updotes.filter((x) => x.id !== action.payload.id)],

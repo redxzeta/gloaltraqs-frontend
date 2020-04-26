@@ -6,7 +6,7 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
   const [messageFromServer, setMessageFromServer] = useState("");
-
+  console.log(showError + " " + messageFromServer);
   const sendEmail = (e) => {
     e.preventDefault();
     if (email === "") {

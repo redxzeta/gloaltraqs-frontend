@@ -4,7 +4,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Sidebar from "react-sidebar";
 import { IconButton } from "@material-ui/core";
 import { getPinsWithBounds, searchPins } from "../../actions/pins";
-import { getPins } from "../../actions/pins";
+
 import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -17,7 +17,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Slider from "@material-ui/core/Slider";
 import { Label } from "reactstrap";
-import chroma from "chroma-js";
+
 import InputGroup from "react-bootstrap/InputGroup";
 import { Avatar } from "antd";
 import { Row, Col } from "react-bootstrap";
@@ -101,7 +101,7 @@ function SearchSidebar(props) {
       "-" +
       endDate.getDate();
     let categorySearchQuery = "";
-    if (selectedCategories == null) {
+    if (selectedCategories === null) {
       setSelectedCategories(options);
     } else {
       for (const [index, value] of selectedCategories.entries()) {

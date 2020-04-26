@@ -25,9 +25,6 @@ function ManageFlag() {
   const adminDelete = (id) => {
     dispatch(deletePins(id));
   };
-  const auth = useSelector((state) => state.auth);
-
-  const { isAuthenticated, user } = auth;
 
   return (
     <div>

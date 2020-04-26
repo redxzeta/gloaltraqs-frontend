@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { PayPalButton } from "react-paypal-button-v2";
 
 import { Row, Col } from "react-bootstrap";
@@ -111,17 +111,17 @@ export default function Support() {
           <div>
             <Col md={{ size: 2, offset: 5 }} className="col-md-2 offset-sm-4">
               <img
-                src="./static/frontend/images/instagram_icon.JPG"
+                src="../images/instagram_icon.JPG"
                 alt="instagram link"
                 className="social-media-images"
               />
               <img
-                src="./static/frontend/images/twitter_icon.JPG"
+                src="../images/twitter_icon.JPG"
                 alt="twitter link"
                 className="social-media-images"
               />
               <img
-                src="./static/frontend/images/facebook_icon.JPG"
+                src="../images/facebook_icon.JPG"
                 alt="facebook link"
                 className="social-media-images"
               />
