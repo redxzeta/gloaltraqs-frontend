@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Modal,
@@ -8,17 +8,14 @@ import {
   Form,
   FormGroup,
   Input,
-  Label
+  Label,
 } from "reactstrap";
-import InputGroup from "react-bootstrap/InputGroup";
+
 const buttonStyle = {
-  float: "right"
-};
-const labelStyle = {
-  marginRight: "10px"
+  float: "right",
 };
 
-export const FlagReportModal = props => {
+export const FlagReportModal = (props) => {
   return (
     <Modal
       isOpen={props.modalState}
