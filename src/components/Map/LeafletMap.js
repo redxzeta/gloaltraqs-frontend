@@ -65,10 +65,6 @@ const LeafletMap = (props) => {
   // can change provider to preference
 
   const [mapInstance, setMapInstance] = useState();
-  const [
-    markerClusterGroupInstance,
-    setMarkerClusterGroupInstance,
-  ] = useState();
 
   const searchControl = new GeoSearchControl({
     provider: provider,
@@ -84,9 +80,9 @@ const LeafletMap = (props) => {
   });
   const { setSidebarOpen, setStorySidebarOpen } = props;
   useEffect(() => {
-    props.setSidebarOpen(false);
-    props.setStorySidebarOpen(false);
-  }, [setSidebarOpen, setStorySidebarOpen]);
+    setSidebarOpen(false);
+    setStorySidebarOpen(false);
+  }, []);
 
   const updatePin = (marker) => {
     let start = null;
@@ -184,7 +180,7 @@ const LeafletMap = (props) => {
         onContextMenu={props.addMarker}
       >
         <ZoomControl position="bottomleft" />
-        {props.user == undefined || props.user.is_anonymous_active ? ( //pass in props of user
+        {props.user === undefined || props.user.is_anonymous_active ? ( //pass in props of user
           <TileLayer
             attribution="Map tiles by &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com/attributions'>CARTO</a>"
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -263,9 +259,9 @@ const LeafletMap = (props) => {
           {props.pins.map((marker, index) => {
             let post = [marker.latitude, marker.longitude];
             let categoryIcon = "";
-            if (marker.category == 1) {
+            if (marker.category === 1) {
               categoryIcon = personalIcon;
-            } else if (marker.category == 2) {
+            } else if (marker.category === 2) {
               categoryIcon = communityIcon;
             } else {
               categoryIcon = historicalIcon;

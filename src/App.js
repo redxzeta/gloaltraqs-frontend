@@ -11,7 +11,7 @@ import RegisterForm from "./components/accounts/RegisterForm";
 // import AlertTemplate from "react-alert-template-basic";
 import { Provider } from "react-redux";
 import store from "./store";
-import login from "./components/accounts/Login";
+import LoginForm from "./components/accounts/LoginForm";
 
 import PrivateRoute from "./components/common/PrivateRoute";
 import { loadUser } from "./actions/auth";
@@ -45,7 +45,7 @@ export default function App() {
               <Route exact path="/resources" component={Resources} />
               {/*<Route path="/Story/:id" exact component={Story} />*/}
               <Route exact path="/faq" component={FAQ} />
-              <Route exact path="/login" component={login} />
+              <Route exact path="/login" component={LoginForm} />
               <Route exact path="/register" component={RegisterForm} />
               <Route exact path="/users/:name" component={ProfileDashboard} />
               <Route exact path="/users/:name/settings" component={Settings} />

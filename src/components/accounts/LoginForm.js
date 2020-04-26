@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Tooltip from "@material-ui/core/Tooltip";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
-export default function Login() {
+export default function LoginForm() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { isAuthenticated, loginFail } = auth;
