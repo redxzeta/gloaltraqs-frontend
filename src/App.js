@@ -34,6 +34,7 @@ export default function App() {
     <Provider store={store}>
       <Router>
         <>
+          <Header />
           <div>
             {/*<div className="container-fluid" style={divStyle}>*/}
             <Switch>
