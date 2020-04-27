@@ -30,6 +30,12 @@ function Story(props) {
   const { isAuthenticated, user, userFavoritePinState } = auth;
   const [fixedArrow, setFixedArrow] = useState(false);
 
+   useEffect(() => {
+     if(props.pin.id && props.mapReference) {
+       props.centerMarker(props.pin);
+     }
+  },[props.pin] )
+
   const upvoteButoon = (
     <Link className="login-link favorite-story-btn" to="/login">
       <img
@@ -54,7 +60,7 @@ function Story(props) {
   }
 
   const handleScroll = (e) => {
-    const topConstraint = (window.innerHeight - 118.75) * 0.45; // window size - header size * map container size
+    const topConstraint = (window.innerHeight - 130) * 0.45; // window size - header size * map container size
     if (window.scrollY >= topConstraint && !fixedArrow) {
       setFixedArrow(true);
     } else if (window.scrollY < 386) {

@@ -207,7 +207,7 @@ function SearchSidebar(props) {
           styles={colorStyles}
         />
         <InputGroup style={{ marginTop: "20px" }}>
-          <Label className="sidebar-text" style={labelStyle} for="dateRange">
+          <Label className="sidebar-text" style={{ marginTop: "auto", marginBottom: "auto", marginRight: "10px" }} for="dateRange">
             Search date range
           </Label>
           <DatePicker

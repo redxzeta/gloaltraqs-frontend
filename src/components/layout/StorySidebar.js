@@ -30,7 +30,7 @@ function StorySidebar(props) {
     return (
       <Sidebar
         sidebar={
-          <div style={{ padding: "5px 5px 5px 5px" }}>
+          <div style={{ padding: "5px 5px 5px 5px", height: "100%" }}>
             <IconButton
               onClick={() => props.setStorySidebarOpen(false)}
               style={{ float: "right", zIndex: "5" }}
@@ -138,8 +138,8 @@ function StorySidebar(props) {
                           className="btn btn-primary btn-sm default-btn-purple"
                           style={{
                             position: "absolute",
-                            bottom: "50",
-                            right: "80",
+                            bottom: "20px",
+                            right: "120px",
                           }}
                           onClick={() => props.setEditPinState(props.pinData)}
                         >
@@ -149,8 +149,8 @@ function StorySidebar(props) {
                           type="button"
                           style={{
                             position: "absolute",
-                            bottom: "50",
-                            right: "0",
+                            bottom: "20px",
+                            right: "40px",
                           }}
                           className="btn btn-primary btn-sm default-btn-purple"
                           onClick={(e) => props.removalToggle(props.pinData.id)}
@@ -167,7 +167,7 @@ function StorySidebar(props) {
                   >
                     <button
                       type="button"
-                      style={{ position: "absolute", bottom: "50" }}
+                      style={{ position: "absolute", bottom: "20px" }}
                       className="btn btn-primary btn-sm default-btn-purple"
                     >
                       View Full Story

@@ -123,25 +123,24 @@ export default function ProfilePage(props) {
       {props.userProfile ? (
         <Row style={{ height: "100%", marginRight: "0px", marginLeft: "0px" }}>
           <Col md={8} style={{ paddingTop: "20px", paddingRight: "20px" }}>
-            {((isAuthenticated && user.id == props.userProfile.id) ||
-              (isAuthenticated && user.is_administrator)) && (
-              <Link to={`/users/${props.userProfile.username}/settings`}>
-                <button
-                  type="button"
-                  style={{ float: "right " }}
-                  className="btn btn-primary btn-sm default-btn-purple"
-                >
-                  Settings
-                </button>
-              </Link>
-            )}
+            {(((isAuthenticated && (user.id == props.userProfile.id)) || (isAuthenticated && user.is_administrator))) && (
+                <Link to={`/users/${props.userProfile.username}/settings`}>
+                  <button
+                    type="button"
+                    style={{ float: "right " }}
+                    className="btn btn-primary btn-sm default-btn-purple"
+                  >
+                    Settings
+                  </button>
+                </Link>
+              )}
             <UserProfileBio
               ownerid={props.userProfile.id}
               userProfile={props.userProfile}
               {...props}
             />
             <div className={"user-profile-body"}>
-              {props.userProfile.userStories && (
+              {((user && (user.id == props.userProfile.id)) || !props.userProfile.is_profile_private) && props.userProfile.userStories && (
                 <ListUserStories
                   updateStoryAnonymity={updateStoryAnonymity}
                   stories={props.userProfile.userStories}
@@ -155,6 +154,7 @@ export default function ProfilePage(props) {
           <ShowfavoritedPosts
             ownerid={props.userProfile.id}
             toggle={props.removalToggle}
+            userProfile={props.userProfile}
             favoriteStories={props.userProfile.user_upvoted_stories}
           />
         </Row>
@@ -172,7 +172,7 @@ const ShowfavoritedPosts = (props) => {
   return (
     <Col md={4} className="favorite-stories">
       <h2 className="profile-page-favorite-posts-title">Favorite Posts</h2>
-      {props.favoriteStories.length !== 0 ? (
+      {((user && (user.id == props.userProfile.id)) || !props.userProfile.is_profile_private) && props.favoriteStories.length !== 0 ? (
         props.favoriteStories.map((story, index) => {
           return (
             <div key={story.id} className="user-profile-favorite-posts-div">
