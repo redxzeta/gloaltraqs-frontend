@@ -10,6 +10,7 @@ import {
   getMaxPinDate,
   getPins,
 } from "../../actions/pins";
+import { searchUsers } from "../../actions/users";
 import { useDispatch, useSelector } from "react-redux";
 import useAddPinForm from "./CustomHooks/useAddPinForm";
 import useFlagForm from "./CustomHooks/useFlagForm";
@@ -79,7 +80,8 @@ export default function MapDashboard() {
     dispatch(getPins());
     dispatch(getMaxPinDate());
     dispatch(getMinPinDate());
-  }, []);
+    dispatch(searchUsers(""));
+  }, [dispatch]);
   useEffect(() => {
     if (mapReference != undefined) {
       let mapBounds = mapReference.getBounds();

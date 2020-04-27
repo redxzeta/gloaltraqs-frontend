@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CommentStory from "./CommentStory";
 //import { getPin } from "../../../actions/pins";
 import { Link, Redirect } from "react-router-dom";
@@ -21,12 +21,12 @@ function Story(props) {
 
   const { isAuthenticated, user } = auth;
   const [fixedArrow, setFixedArrow] = useState(false);
-
-   useEffect(() => {
-     if(props.pin.id && props.mapReference) {
-       props.centerMarker(props.pin);
-     }
-  },[props.pin] )
+  const { pin, mapReference, centerMarker } = props;
+  useEffect(() => {
+    if (pin.id && mapReference) {
+      centerMarker(pin);
+    }
+  }, [pin, mapReference]);
 
   const upvoteButoon = (
     <Link className="login-link favorite-story-btn" to="/login">

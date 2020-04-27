@@ -75,10 +75,6 @@ function SearchSidebar(props) {
   //   dispatch(getPins());
   // }, []);
 
-  useEffect(() => {
-    dispatch(searchUsers(""));
-  }, []);
-
   const onSetSidebarOpen = (open) => {
     setSidebarOpen({ sidebarOpen: open });
   };
@@ -207,7 +203,15 @@ function SearchSidebar(props) {
           styles={colorStyles}
         />
         <InputGroup style={{ marginTop: "20px" }}>
-          <Label className="sidebar-text" style={{ marginTop: "auto", marginBottom: "auto", marginRight: "10px" }} for="dateRange">
+          <Label
+            className="sidebar-text"
+            style={{
+              marginTop: "auto",
+              marginBottom: "auto",
+              marginRight: "10px",
+            }}
+            for="dateRange"
+          >
             Search date range
           </Label>
           <DatePicker
