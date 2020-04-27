@@ -181,8 +181,8 @@ function StorySidebar(props) {
         open={props.storySidebarOpen}
         onSetOpen={onSetSidebarOpen}
         pullRight={true}
+        sidebarClassName={"story-sidebar"}
         styles={{
-          sidebar: { background: "white", width: "40%", padding: "20px" },
           overlay: {
             position: "absolute",
             visibility: "hidden",

@@ -449,7 +449,7 @@ function StoryDisplay(props) {
   // change the map & story page styling for story slide up effect
   useEffect(() => {
     setStoryStyle({
-      top: "53%",
+      top: "45%",
     });
     props.setMapContainerStyle({
       height: "45%",
@@ -496,7 +496,7 @@ function IndividualStory(props) {
   useEffect(() => {
     dispatch(getPin(id, userid));
     props.setuserComment({
-      description: "fff",
+      description: " ",
       pin: id,
     });
   }, [id]);

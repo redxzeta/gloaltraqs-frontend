@@ -443,8 +443,8 @@ function SearchSidebar(props) {
       open={props.sidebarOpen}
       onSetOpen={onSetSidebarOpen}
       pullRight={true}
+      sidebarClassName={"search-sidebar"}
       styles={{
-        sidebar: { background: "white", width: "40%", padding: "20px" },
         overlay: {
           position: "absolute",
           visibility: "hidden",

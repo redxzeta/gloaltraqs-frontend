@@ -76,7 +76,8 @@ export default function ProfileDashboard() {
             modalState={removalModalState}
             toggle={removalToggle}
             onSubmit={onRemovalSubmit}
-            title="Remove"
+            title="are you sure you want to unfavorite this story?"
+            buttonTitle={"yes, unfavorite story"}
           />
         </Route>
         <Route path="/users">
