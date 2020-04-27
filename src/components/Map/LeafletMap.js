@@ -169,7 +169,7 @@ const LeafletMap = (props) => {
         }
         maxZoom={18} //shows map
         minZoom={3}
-        preferCanvas={true}
+        // preferCanvas={true}
         worldCopyJump={true}
         id="map"
         zoomControl={false}

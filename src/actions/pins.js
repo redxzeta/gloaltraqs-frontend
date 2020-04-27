@@ -20,7 +20,7 @@ import {
   GET_MAX_PIN,
   GET_MIN_PIN,
 } from "./types";
-
+import { format } from "date-fns";
 import { LINK } from "../link/link";
 //GET PINS
 export const getPins = () => (dispatch) => {
@@ -53,10 +53,10 @@ export const getMinPinDate = () => (dispatch) => {
   axios
     .get(`${LINK}/minPinDate`)
     .then((res) => {
-      let date = res.data[0].startDate.split("-");
+      // let date = res.data[0].startDate.split("-");
 
-      let minDate = new Date(date[0], date[1], date[2], 0, 0, 0, 0);
-
+      // let minDate = new Date(date[0], date[1], date[2], 0, 0, 0, 0);
+      const minDate = format(new Date(1900, 1, 1), "yyyy/MM/dd");
       dispatch({
         type: GET_MIN_PIN,
         payload: minDate,
@@ -69,10 +69,10 @@ export const getMaxPinDate = () => (dispatch) => {
   axios
     .get(`${LINK}/maxPinDate`)
     .then((res) => {
-      let date = res.data[0].startDate.split("-");
+      // let date = res.data[0].startDate.split("-");
 
-      let maxDate = new Date(date[0], date[1], date[2], 0, 0, 0, 0);
-
+      // let maxDate = new Date(date[0], date[1], date[2], 0, 0, 0, 0);
+      const maxDate = format(new Date(2020, 12, 25), "yyyy-MM-dd");
       dispatch({
         type: GET_MAX_PIN,
         payload: maxDate,

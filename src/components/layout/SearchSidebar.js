@@ -17,6 +17,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Slider from "@material-ui/core/Slider";
 import { Label } from "reactstrap";
+import { format, compareAsc } from "date-fns";
 
 import InputGroup from "react-bootstrap/InputGroup";
 import { Avatar } from "antd";
@@ -49,28 +50,20 @@ function SearchSidebar(props) {
   const [userSearchText, setUserSearchText] = useState("");
 
   const [dateRange, setDateRange] = useState([
-    props.minPinDate.getFullYear(),
-    props.maxPinDate.getFullYear(),
+    format(new Date(props.minPinDate), "yyyy"),
+    format(new Date(props.maxPinDate), "yyyy"),
   ]);
-
+  const { maxPinDate, minPinDate } = props;
   useEffect(() => {
     setDateRange([
-      props.minPinDate.getFullYear(),
-      props.maxPinDate.getFullYear(),
+      format(new Date(minPinDate), "yyyy"),
+      format(new Date(maxPinDate), "yyyy"),
     ]);
-    setMinDate(props.minPinDate.getFullYear());
-    setMaxDate(props.maxPinDate.getFullYear());
-  }, [props.minPinDate]);
-
-  useEffect(() => {
-    setDateRange([
-      props.minPinDate.getFullYear(),
-      props.maxPinDate.getFullYear(),
-    ]);
-    setMinDate(props.minPinDate.getFullYear());
-    setMaxDate(props.maxPinDate.getFullYear());
-  }, [props.maxPinDate]);
-
+    setStartDate(format(new Date(minPinDate), "yyyy"));
+    setMinDate(format(new Date(minPinDate), "yyyy"));
+    setMaxDate(format(new Date(maxPinDate), "yyyy"));
+  }, [minPinDate, maxPinDate]);
+  console.log(startDate);
   // useEffect(() => {
   //   dispatch(getPins());
   // }, []);
@@ -216,28 +209,8 @@ function SearchSidebar(props) {
           </Label>
           <DatePicker
             value={startDate}
-            minDate={
-              new Date(
-                props.minPinDate.getFullYear(),
-                props.minPinDate.getMonth() - 1,
-                props.minPinDate.getDate() - 2,
-                0,
-                0,
-                0,
-                0
-              )
-            }
-            maxDate={
-              new Date(
-                props.maxPinDate.getFullYear(),
-                props.maxPinDate.getMonth() - 1,
-                props.maxPinDate.getDate() + 1,
-                0,
-                0,
-                0,
-                0
-              )
-            }
+            minDate={props.minDate}
+            maxDate={props.maxDate}
             onChange={(date) => {
               setStartDate(date);
               setDateRange([date.getFullYear(), endDate.getFullYear()]);
@@ -245,28 +218,8 @@ function SearchSidebar(props) {
             format={"MM/dd/yyyy"}
           />
           <DatePicker
-            minDate={
-              new Date(
-                props.minPinDate.getFullYear(),
-                props.minPinDate.getMonth() - 1,
-                props.minPinDate.getDate() - 2,
-                0,
-                0,
-                0,
-                0
-              )
-            }
-            maxDate={
-              new Date(
-                props.maxPinDate.getFullYear(),
-                props.maxPinDate.getMonth() - 1,
-                props.maxPinDate.getDate() + 1,
-                0,
-                0,
-                0,
-                0
-              )
-            }
+            minDate={props.minDate}
+            maxDate={props.maxDate}
             value={endDate}
             onChange={(date) => {
               setEndDate(date);

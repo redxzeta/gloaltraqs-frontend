@@ -17,7 +17,9 @@ import {
   GET_MAX_PIN,
   GET_MIN_PIN,
 } from "../actions/types.js";
-
+import max from "date-fns/max";
+import min from "date-fns/min";
+import format from "date-fns/format";
 const initialState = {
   pins: [],
   pin: [],
@@ -61,6 +63,7 @@ export default function (state = initialState, action) {
         pinMaxDate: action.payload,
       };
     case GET_MIN_PIN:
+      console.log(action.payload);
       return {
         ...state,
         pinMinDate: action.payload,
@@ -73,11 +76,34 @@ export default function (state = initialState, action) {
         pin: [],
       };
     case ADD_PIN:
+      const addMinDate = min([
+        (new Date(state.pinMinDate), new Date(action.payload.startDate)),
+      ]);
+
+      const addMaxDate = max([
+        (new Date(state.pinMaxDate), new Date(action.payload.endDate)),
+      ]);
+      console.log(
+        "initial min date: " +
+          state.pinMaxDate +
+          " added pin start date: " +
+          action.payload.startDate +
+          " result : " +
+          addMaxDate
+      );
       return {
         ...state,
         pins: [...state.pins, action.payload],
+        pinMaxDate: addMaxDate,
+        pinMinDate: addMinDate,
       };
     case EDIT_PIN:
+      const editMinDate = min([
+        (new Date(state.pinMinDate), new Date(action.payload.startDate)),
+      ]);
+      const editMaxDate = max([
+        (new Date(state.pinMaxDate), new Date(action.payload.endDate)),
+      ]);
       return {
         ...state,
         // fixes duplicated pin on map when editing pin
@@ -86,6 +112,8 @@ export default function (state = initialState, action) {
           action.payload,
         ],
         pin: action.payload,
+        pinMaxDate: editMaxDate,
+        pinMinDate: editMinDate,
       };
     case ADD_COMMENT:
       const newComment = {

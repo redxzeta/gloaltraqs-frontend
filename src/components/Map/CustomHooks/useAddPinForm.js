@@ -50,8 +50,6 @@ const useAddPinForm = (callback) => {
 
     dispatch(addPin(submit));
     callback();
-    dispatch(getMaxPinDate());
-    dispatch(getMinPinDate());
     setmodalstate(!modalState);
     setaddPinValues({
       category: 1,

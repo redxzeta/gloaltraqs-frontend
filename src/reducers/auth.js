@@ -29,7 +29,6 @@ import {
   USER_UPVOTE,
   UNFAVORITE_PROFILE_STORY,
 } from "../actions/types";
-import { getPinsById } from "../actions/pins";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -63,22 +62,26 @@ export default function (state = initialState, action) {
         isProfileLoading: false,
       };
     case EDIT_PIN:
-      const updatedPin = state.userProfile.userStories.map((s) =>
-        s.id === action.payload.id
-          ? {
-              ...s,
-              title: action.payload.title,
-              description: action.payload.description,
-              category: action.payload.category,
-              startDate: action.payload.startDate,
-              endDate: action.payload.endDate,
-            }
-          : s
-      );
-      const userStoriesUpdatedProfile = {
-        ...state.userProfile,
-        userStories: updatedPin,
-      };
+      let updatedPin = null;
+      let userStoriesUpdatedProfile;
+      if (state.userProfile) {
+        updatedPin = state.userProfile.userStories.map((s) =>
+          s.id === action.payload.id
+            ? {
+                ...s,
+                title: action.payload.title,
+                description: action.payload.description,
+                category: action.payload.category,
+                startDate: action.payload.startDate,
+                endDate: action.payload.endDate,
+              }
+            : s
+        );
+        userStoriesUpdatedProfile = {
+          ...state.userProfile,
+          userStories: updatedPin,
+        };
+      }
       return {
         ...state,
         userProfile: userStoriesUpdatedProfile,
