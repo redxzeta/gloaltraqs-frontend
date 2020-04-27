@@ -24,7 +24,7 @@ import {
   useRouteMatch,
   useHistory,
 } from "react-router-dom";
-import LeafletMap from "./LeafletMap";
+//import LeafletMap from "./LeafletMap";
 //import SearchSidebar from "../layout/SearchSidebar";
 import StorySidebar from "../layout/StorySidebar";
 import ConfirmationModal from "../profile/ConfirmationModal";
@@ -42,6 +42,7 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 //   width: 100%;
 //   top: 0;
 // };
+const LeafletMap = React.lazy(() => import("./LeafletMap"));
 const Story = React.lazy(() => import("./Story/Story"));
 const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
@@ -296,51 +297,53 @@ export default function MapDashboard() {
                 removalToggle={removalToggle}
               />
             </div>
-            <LeafletMap
-              maplink={"/story"}
-              pins={pins}
-              divStyle={divStyle}
-              addMarker={addMarker}
-              placement={placement}
-              setPlacement={setplacement}
-              modalState={modalState}
-              toggle={toggle}
-              editPin={editPinForm}
-              seteditPin={seteditPinForm}
-              updateEditForm={updateEditForm}
-              editToggle={editToggle}
-              editpinmodalState={editpinmodalState}
-              seteditpinmodalState={seteditpinmodalState}
-              onEditSubmit={onEditSubmit}
-              getLocation={getLocation}
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-              pinDeleted={pinDeleted}
-              setPinDeleted={setPinDeleted}
-              showSidebarButton={true}
-              addPinValues={addPinValues}
-              handleAddPinChange={handleAddPinChange}
-              handleAddPinSubmit={handleAddPinSubmit}
-              setaddPinValues={setaddPinValues}
-              setAnonRadius={setAnonRadius}
-              darkMode={darkMode}
-              setdarkMode={setdarkMode}
-              mapReference={mapReference}
-              setMapReference={setMapReference}
-              user={user}
-              isAuthenticated={isAuthenticated}
-              storySidebarOpen={storySidebarOpen}
-              setStorySidebarOpen={setStorySidebarOpen}
-              pinData={pinData}
-              setPinData={setPinData}
-              pinCluster={pinCluster}
-              setPinCluster={setPinCluster}
-              mapContainerStyle={divStyle1}
-              setMapContainerStyle={setMapContainerStyle}
-              centerMarker={centerMarker}
-              addAddress={addAddress}
-              setAddAddress={setAddAddress}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <LeafletMap
+                maplink={"/story"}
+                pins={pins}
+                divStyle={divStyle}
+                addMarker={addMarker}
+                placement={placement}
+                setPlacement={setplacement}
+                modalState={modalState}
+                toggle={toggle}
+                editPin={editPinForm}
+                seteditPin={seteditPinForm}
+                updateEditForm={updateEditForm}
+                editToggle={editToggle}
+                editpinmodalState={editpinmodalState}
+                seteditpinmodalState={seteditpinmodalState}
+                onEditSubmit={onEditSubmit}
+                getLocation={getLocation}
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+                pinDeleted={pinDeleted}
+                setPinDeleted={setPinDeleted}
+                showSidebarButton={true}
+                addPinValues={addPinValues}
+                handleAddPinChange={handleAddPinChange}
+                handleAddPinSubmit={handleAddPinSubmit}
+                setaddPinValues={setaddPinValues}
+                setAnonRadius={setAnonRadius}
+                darkMode={darkMode}
+                setdarkMode={setdarkMode}
+                mapReference={mapReference}
+                setMapReference={setMapReference}
+                user={user}
+                isAuthenticated={isAuthenticated}
+                storySidebarOpen={storySidebarOpen}
+                setStorySidebarOpen={setStorySidebarOpen}
+                pinData={pinData}
+                setPinData={setPinData}
+                pinCluster={pinCluster}
+                setPinCluster={setPinCluster}
+                mapContainerStyle={divStyle1}
+                setMapContainerStyle={setMapContainerStyle}
+                centerMarker={centerMarker}
+                addAddress={addAddress}
+                setAddAddress={setAddAddress}
+              />
+            </Suspense>
           </div>
         </Route>
         <Route path="/story">
