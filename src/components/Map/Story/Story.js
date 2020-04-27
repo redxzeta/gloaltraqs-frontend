@@ -44,7 +44,7 @@ function Story(props) {
     return () => {
       window.removeEventListener("scroll", handleScroll, false);
     };
-  }, [handleScroll]);
+  }, []);
 
   if (props.pinDeleted) {
     props.setPinDeleted(false);
@@ -174,7 +174,11 @@ function Story(props) {
         </Col>
       </Row>
       <Row style={{ paddingTop: "15px" }}>
-        <Col md={8} className={"offset-md-2 col-10 offset-1"} style={{ marginBottom: "20px" }}>
+        <Col
+          md={8}
+          className={"offset-md-2 col-10 offset-1"}
+          style={{ marginBottom: "20px" }}
+        >
           {props.pin.commentstory && (
             <CommentStory
               user={user}

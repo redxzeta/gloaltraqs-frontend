@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, Suspense } from "react";
 
 import {
   getPin,
@@ -25,8 +25,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import LeafletMap from "./LeafletMap";
-import SearchSidebar from "../layout/SearchSidebar";
-import Story from "./Story/Story";
+//import SearchSidebar from "../layout/SearchSidebar";
 import StorySidebar from "../layout/StorySidebar";
 import ConfirmationModal from "../profile/ConfirmationModal";
 // const sidebarStyle = {
@@ -43,7 +42,8 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 //   width: 100%;
 //   top: 0;
 // };
-
+const Story = React.lazy(() => import("./Story/Story"));
+const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
   let { path, url } = useRouteMatch();
 
@@ -264,17 +264,19 @@ export default function MapDashboard() {
         <Route exact path="/">
           <div id={"map-dashboard"}>
             <div id={"sidebar-style"}>
-              <SearchSidebar
-                sidebarOpen={sidebarOpen}
-                maxPinDate={maxPinDate}
-                minPinDate={minPinDate}
-                setSidebarOpen={setSidebarOpen}
-                mapReference={mapReference}
-                setPlacement={setplacement}
-                centerMarker={centerMarker}
-                isSearch={isSearch}
-                setIsSearch={setIsSearch}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <SearchSidebar
+                  sidebarOpen={sidebarOpen}
+                  maxPinDate={maxPinDate}
+                  minPinDate={minPinDate}
+                  setSidebarOpen={setSidebarOpen}
+                  mapReference={mapReference}
+                  setPlacement={setplacement}
+                  centerMarker={centerMarker}
+                  isSearch={isSearch}
+                  setIsSearch={setIsSearch}
+                />
+              </Suspense>
               <StorySidebar
                 maplink={"/story"}
                 pinData={pinData}
@@ -510,12 +512,14 @@ function IndividualStory(props) {
   }, [id]);
 
   return (
-    <Story
-      pin={pin}
-      pinData={props.pinData}
-      centerMarker={props.centerMarker}
-      mapReference={props.mapReference}
-      {...props}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Story
+        pin={pin}
+        pinData={props.pinData}
+        centerMarker={props.centerMarker}
+        mapReference={props.mapReference}
+        {...props}
+      />
+    </Suspense>
   );
 }
