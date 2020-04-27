@@ -194,7 +194,8 @@ export default function Settings(props) {
         modalState={removalModalState}
         toggle={removalToggle}
         onSubmit={onConfirmDelete}
-        title="Remove Account"
+        title="are you sure you want to delete your profile?"
+        buttonTitle={"yes, delete my profile"}
       />
     </div>
   );

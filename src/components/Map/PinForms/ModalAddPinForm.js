@@ -102,7 +102,7 @@ function ModalAddPinForm(props) {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="address">Locality</Label>
+                  <Label for="address">Locality (City, township, etc.)</Label>
                   <Input
                     className="form-control"
                     type="text"
@@ -117,7 +117,7 @@ function ModalAddPinForm(props) {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="address">Region</Label>
+                  <Label for="address">Region (State, province, etc.)</Label>
                   <Input
                     className="form-control"
                     type="text"

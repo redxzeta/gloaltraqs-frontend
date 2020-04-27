@@ -435,7 +435,8 @@ export default function MapDashboard() {
         modalState={removalModalState}
         toggle={removalToggle}
         onSubmit={onDeleteHome}
-        title="Remove"
+        title="Are you sure you want to delete this story?"
+        buttonTitle={"Yes, delete this story"}
       />
     </Fragment>
   );

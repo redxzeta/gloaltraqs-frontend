@@ -7,7 +7,7 @@ const buttonStyle = {
 const labelStyle = {
   marginRight: "10px",
 };
-const ConfirmationModal = ({ modalState, toggle, onSubmit, title }) => {
+const ConfirmationModal = ({ modalState, toggle, onSubmit, title, buttonTitle }) => {
   return (
     <div>
       <Modal
@@ -17,16 +17,14 @@ const ConfirmationModal = ({ modalState, toggle, onSubmit, title }) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <ModalHeader toggle={toggle}> {title} Confirmation </ModalHeader>
+        <ModalHeader toggle={toggle}> {title} </ModalHeader>
         <ModalBody>
-          <Label style={labelStyle} for="category">
-            Are you sure ?
-          </Label>
-          <Button onClick={onSubmit} style={buttonStyle} color="danger">
-            {title}
+
+          <Button onClick={onSubmit} style={buttonStyle} className={"btn default-btn-purple"}>
+            { buttonTitle }
           </Button>
 
-          <Button color="secondary" onClick={toggle}>
+          <Button className={"btn default-btn-purple"} onClick={toggle}>
             Cancel
           </Button>
         </ModalBody>

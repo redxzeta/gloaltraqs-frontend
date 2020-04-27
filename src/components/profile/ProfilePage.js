@@ -20,6 +20,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Upvote from "../Map/Story/Upvote";
 import EditIcon from "@material-ui/icons/Edit";
+import BookMark from "../images/Bookmark_Icon.png";
+
 const FavoritePostField = ({
   index,
   title,
@@ -56,7 +58,7 @@ const FavoritePostField = ({
           <button className={"btn-no-style"} onClick={() => toggle(id2)}>
             <img
               className="user-profile-favorite-bookmark-icon"
-              src={"./static/frontend/images/Bookmark_Icon.png"}
+              src={BookMark}
               alt={"favorite this story icon"}
             />
           </button>
@@ -90,7 +92,7 @@ const FavoritePostField = ({
               color="textSecondary"
             >
               <Markup
-                content={description.substring(0, 250) + "..."}
+                content={description ? description.substring(0, 250) + "..." : ""}
                 blockList={["img"]}
                 noHtml={true}
               />
@@ -144,6 +146,7 @@ export default function ProfilePage(props) {
                   updateStoryAnonymity={updateStoryAnonymity}
                   stories={props.userProfile.userStories}
                   ownerid={props.userProfile.id}
+                  user={user}
                   {...props}
                 />
               )}
@@ -276,11 +279,13 @@ const ListUserStories = (props) => {
       </Row>
       {props.stories.length !== 0 ? (
         props.stories.map((story) => {
-          return (
-            <div style={{ paddingBottom: "20px" }} key={story.id}>
-              <StoryField story={story} {...props} />
-            </div>
-          );
+          if(!story.is_anonymous_pin || (props.user && props.user.id == props.ownerid)) {
+            return (
+              <div style={{ paddingBottom: "20px" }} key={story.id}>
+                <StoryField story={story} {...props} />
+              </div>
+            );
+          }
         })
       ) : (
         <NoStories type="User Stories" />

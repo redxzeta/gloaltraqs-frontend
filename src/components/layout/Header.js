@@ -183,14 +183,12 @@ function Header() {
         >
           <DropdownToggle
             caret
-            className="header-user-dropdown-button header-nav-username"
+            className="header-user-dropdown-button header-nav-link"
           >
             {user
-              ? `Welcome ${
-                  user.is_anonymous_active ? "Anonymous" : user.username
-                }`
-              : ""}{" "}
-            {userRole}{" "}
+              ? (
+                  <span>Welcome &nbsp;<span className={"header-nav-username"}>{user.is_anonymous_active ? "Anonymous" : user.username}</span></span>
+                ) : "" } {" "}<span className={"header-nav-username"}>{userRole}</span>{" "}
           </DropdownToggle>
           <DropdownMenu className="header-user-dropdown-menu">
             <DropdownItem>

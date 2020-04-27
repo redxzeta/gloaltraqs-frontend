@@ -23,7 +23,7 @@ const ModalDeleteConfirm = props => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <ModalHeader toggle={props.toggle}> Delete Confirmation </ModalHeader>
+        <ModalHeader toggle={props.toggle}> are you sure you want to delete this story? </ModalHeader>
         <ModalBody>
           <Form onSubmit={props.onSubmit}>
             <Button style={buttonStyle} color="danger">

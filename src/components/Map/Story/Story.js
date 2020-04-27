@@ -194,6 +194,7 @@ function Story(props) {
           {props.isAuthenticated && (
             <FlagReportModal
               flagForm={props.flagForm}
+              title={"Why are you flagging this story?"}
               toggle={props.flagToggle}
               modalState={props.flagModalState}
               onSubmit={props.onFlagSubmit}
@@ -203,6 +204,7 @@ function Story(props) {
           {props.isAuthenticated && (
             <FlagReportModal
               flagForm={props.flagForm}
+              title={"Why are you flagging this comment?"}
               toggle={props.flagCommentToggle}
               modalState={props.flagCommentModalState}
               onSubmit={props.onFlagCommentSubmit}

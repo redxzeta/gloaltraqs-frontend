@@ -477,7 +477,7 @@ const UserSearchForm = (props) => {
           <button
             type="submit"
             style={{ float: "right" }}
-            className="btn btn-primary"
+            className="btn btn-primary default-btn-purple"
           >
             Search
           </button>
