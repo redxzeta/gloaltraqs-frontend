@@ -17,9 +17,8 @@ import {
   GET_MAX_PIN,
   GET_MIN_PIN,
 } from "../actions/types.js";
-import max from "date-fns/max";
-import min from "date-fns/min";
-import format from "date-fns/format";
+import moment from "moment";
+
 const initialState = {
   pins: [],
   pin: [],
@@ -28,8 +27,8 @@ const initialState = {
   validUser: false,
   pinId: 0,
   flaggedPins: [],
-  pinMinDate: new Date(1000, 1, 1, 0, 0, 0, 0),
-  pinMaxDate: new Date(),
+  pinMinDate: "",
+  pinMaxDate: "",
 };
 
 export default function (state = initialState, action) {
@@ -60,13 +59,12 @@ export default function (state = initialState, action) {
     case GET_MAX_PIN:
       return {
         ...state,
-        pinMaxDate: action.payload,
+        pinMaxDate: new Date(action.payload),
       };
     case GET_MIN_PIN:
-      console.log(action.payload);
       return {
         ...state,
-        pinMinDate: action.payload,
+        pinMinDate: new Date(action.payload),
       };
     case DELETE_PINS:
       return {
@@ -76,34 +74,27 @@ export default function (state = initialState, action) {
         pin: [],
       };
     case ADD_PIN:
-      const addMinDate = min([
-        (new Date(state.pinMinDate), new Date(action.payload.startDate)),
-      ]);
+      const minDate = moment
+        .min(moment(action.payload.startDate), moment(state.pinMinDate))
+        .format("YYYY/MM/DD");
+      const maxDate = moment
+        .max(moment(action.payload.endDate), moment(state.pinMaxDate))
+        .format("YYYY/MM/DD");
 
-      const addMaxDate = max([
-        (new Date(state.pinMaxDate), new Date(action.payload.endDate)),
-      ]);
-      console.log(
-        "initial min date: " +
-          state.pinMaxDate +
-          " added pin start date: " +
-          action.payload.startDate +
-          " result : " +
-          addMaxDate
-      );
       return {
         ...state,
         pins: [...state.pins, action.payload],
-        pinMaxDate: addMaxDate,
-        pinMinDate: addMinDate,
+        pinMaxDate: new Date(maxDate),
+        pinMinDate: new Date(minDate),
       };
     case EDIT_PIN:
-      const editMinDate = min([
-        (new Date(state.pinMinDate), new Date(action.payload.startDate)),
-      ]);
-      const editMaxDate = max([
-        (new Date(state.pinMaxDate), new Date(action.payload.endDate)),
-      ]);
+      const editminDate = moment
+        .min(moment(action.payload.startDate), moment(state.pinMinDate))
+        .format("YYYY/MM/DD");
+      const editmaxDate = moment
+        .max(moment(action.payload.endDate), moment(state.pinMaxDate))
+        .format("YYYY/MM/DD");
+
       return {
         ...state,
         // fixes duplicated pin on map when editing pin
@@ -112,8 +103,8 @@ export default function (state = initialState, action) {
           action.payload,
         ],
         pin: action.payload,
-        pinMaxDate: editMaxDate,
-        pinMinDate: editMinDate,
+        pinMaxDate: editmaxDate,
+        pinMinDate: editminDate,
       };
     case ADD_COMMENT:
       const newComment = {
