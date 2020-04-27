@@ -18,9 +18,17 @@ import "react-datepicker/dist/react-datepicker.css";
 const buttonStyle = {
   float: "right",
 };
+
 const labelStyle = {
   marginRight: "10px",
 };
+
+const dateStyle = {
+  marginRight: "10px",
+  marginTop: "auto",
+  marginBottom: "auto"
+};
+
 function ModalEditPinForm(props) {
   const validateEditForm = (e) => {
     e.preventDefault();
@@ -53,9 +61,9 @@ function ModalEditPinForm(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <ModalHeader toggle={props.toggle}> Add a story </ModalHeader>
+        <ModalHeader toggle={props.toggle}> edit story </ModalHeader>
+        <Form onSubmit={validateEditForm} noValidate={true}>
         <ModalBody>
-          <Form onSubmit={validateEditForm} noValidate={true}>
             {address && (
               <>
                 <InputField
@@ -66,13 +74,13 @@ function ModalEditPinForm(props) {
                 />
                 <InputField
                   label="locality"
-                  title="Locality"
+                  title="Locality (City, township, etc.)"
                   value={locality}
                   onChange={updateEditForm}
                 />
                 <InputField
                   label="region"
-                  title="Region"
+                  title="Region (State, province, etc.)"
                   value={region}
                   onChange={updateEditForm}
                 />
@@ -143,7 +151,7 @@ function ModalEditPinForm(props) {
               />
             </FormGroup>
             <InputGroup>
-              <label style={labelStyle} for="startDate">
+              <label style={dateStyle}  for="startDate">
                 Start Date
               </label>
               <DatePicker
@@ -157,7 +165,7 @@ function ModalEditPinForm(props) {
                   })
                 }
               />
-              <label style={labelStyle} for="endDate">
+              <label style={dateStyle}  for="endDate">
                 &nbsp;&nbsp;&nbsp;End Date
               </label>
               <DatePicker
@@ -172,20 +180,16 @@ function ModalEditPinForm(props) {
                 }
               />
             </InputGroup>
-
-            <Button style={buttonStyle} color="success">
+        </ModalBody>
+          <ModalFooter>
+            <Button className="default-btn-purple" style={{ marginRight: "20px" }} onClick={props.toggle}>
+              Cancel
+            </Button>
+            <Button s className="default-btn-purple">
               Save
             </Button>
-          </Form>
-        </ModalBody>
-        <ModalFooter>
-          {/*<Button color="primary" onClick={props.toggle}>*/}
-          {/*  Do Something*/}
-          {/*</Button>{" "}*/}
-          <Button color="secondary" onClick={props.toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
+          </ModalFooter>
+        </Form>
       </Modal>
     </>
   );

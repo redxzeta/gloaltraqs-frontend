@@ -63,10 +63,6 @@
 /*    position: absolute;*/
 /*}*/
 
-.admin-moderator-edit {
-    float: right;
-}
-
 #world-map {
     width: 100%;
     height: 100%;
@@ -135,13 +131,18 @@
     /*height: 100%;*/
     width: 100%;
     position: fixed;
-    margin-top: 118px;
-    height: calc(100% - 118px); /* only compatible in certain browsers - I believe it's okay for our browser reqs*/
-    height: -webkit-calc(100% - 118px); /* google, safari */
-    height: -moz-calc(100% - 118px); /* firefox */
+    /*margin-top: 118px;*/
+    /*height: calc(100% - 118px); !* only compatible in certain browsers - I believe it's okay for our browser reqs*!*/
+    /*height: -webkit-calc(100% - 118px); !* google, safari *!*/
+    /*height: -moz-calc(100% - 118px); !* firefox *!*/
+    margin-top: 129px;
+    height: calc(100% - 129px);
+    height: -webkit-calc(100% - 129px);
+    height: -moz-calc(100% - 129px);
+
 }
 .main-content-div {
-    margin-top: 118px;
+    margin-top: 129px; /* was originally 118 locally, why did we have to change it? */
     padding: 20px;
     height: 100%;
     width: 100%;
@@ -202,7 +203,6 @@ b, strong {
   min-height: 100%;
   width: 100%;
   z-index: 2;
-  margin-top: 65px;
 }
 /*#story-container:hover > #story-page {*/
 /*  top: 0;*/
@@ -218,10 +218,7 @@ b, strong {
 
 .aboutHeader   
 {
-    padding-left: 100px;
-    padding-top: 100px;
     padding-bottom: 10px;
-    padding-right: 300px;
     float: left;
     font-size: 64px; /* should use rem or em for responsiveness */
     color: #ffffff;
@@ -232,8 +229,7 @@ b, strong {
 
 .aboutDesc
 {
-    padding: 40px;
-    padding-left: 100px;
+    margin-top: 40px;
     float: right;
     font-size: 20px;
     color: #ffffff;
@@ -309,7 +305,7 @@ b, strong {
 .default-btn-purple {
     border-radius: 8px !important;
     background: rgb(77, 65, 133) !important;
-    color: white;
+    color: white !important;
     font-family: "Eina", "Arial" !important;
     text-transform: lowercase !important;
 }
@@ -322,14 +318,15 @@ b, strong {
 .header-nav-link {
     color: white !important;
     font-family: Eina, Arial;
-    font-size: 1rem;
+    font-size: 1rem !important;
+    text-transform: lowercase !important;
 }
 .header-nav-link:hover {
     color: white !important;
 }
 
 .header-nav-username {
-    color: #e01783 !important;
+    color: #f0a055 !important;
     font-weight: 600;
     font-size: 1rem !important;
     text-transform: lowercase !important;
@@ -436,6 +433,7 @@ b, strong {
     margin-right: 0;
     border-color: black !important;
     padding-right: 100px !important;
+    font-family: "Eina", "Arial" !important;
 }
 
 .dropdown-nav {
@@ -1063,9 +1061,7 @@ button {
 .moveimage
 {
     padding-right: 10px;
-    padding-top: 150px;
-    width: 80%;
-    float: right;
+    width: 100%;
 }
 
 .con
@@ -1090,7 +1086,7 @@ button {
 
     border-radius: 40px 40px 40px 40px;
 }
-.threeButton3{
+.threeButton3 {
     text-align: center;
     width: 80%;
     border-color: #448CBC;
@@ -1099,19 +1095,17 @@ button {
 }
 .aboutHeader
 {
-    padding-top: 150px;
-
     float: left;
-    font-size: 48;
+    font-size: 2.5rem;
     color: #ffffff;
-    font: Eina;
+    font-family: Eina, Arial !important;
 }
 
 .aboutDesc
 {
 
     float: right;
-    font-size: 20;
+    font-size: 20px;
     color: #ffffff;
 
 }
@@ -1214,8 +1208,8 @@ button {
     color: white;
     border-radius: 50px;
     position: absolute;
-    right: 15;
-    top: 95;
+    right: 15px;
+    top: 95px;
     border: none;
 }
 .profile-image-div {
@@ -1234,8 +1228,8 @@ button {
 
 .profile-settings-div span {
     position: relative;
-    left: 20;
-    top: -14;
+    left: 20px;
+    top: -14px;
     color: white;
     font-family: "Eina", "Arial" !important;
     font-size: 0.8rem;
@@ -1243,11 +1237,11 @@ button {
     text-transform: lowercase;
 }
 .profile-settings-div label {
-    color: white;
+    color: white !important;
     font-family: "Eina", "Arial" !important;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: lowercase;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-transform: lowercase !important;
 }
 
 
@@ -1307,8 +1301,7 @@ button {
 {
     padding-right: 10px;
     padding-top: 30px;
-    width: 80%;
-    float: right;
+    width: 100%;
     font-size: 12px;
     color: #98999b;
 }
@@ -1320,6 +1313,7 @@ button {
 
 .faq-minus-btn {
     width: 15px;
+    margin-right: 5px;
     height: 20px;
 }
 
@@ -1361,7 +1355,7 @@ button {
 .fixed-down-icon-col {
     left: 20px;
     position: fixed !important;
-    top: 173px;
+    top: 155px;
 }
 
 .down-arrow-row a {
@@ -1379,4 +1373,84 @@ button {
     font-weight: 600 !important;
     color: #98999b !important;
     text-transform: none !important;
+}
+
+.modal-content {
+    border-radius: 24px;
+}
+
+.modal-title {
+    font-family: "Eina", "Arial" !important;
+    text-transform: lowercase !important;
+    letter-spacing: 1px !important;
+    font-size: 1.5rem !important;
+}
+
+.model-body-text {
+    font-family: "Eina", "Arial" !important;
+    text-transform: lowercase !important;
+}
+
+label {
+    font-family: Eina, Arial !important;
+    text-transform: lowercase !important;
+    color: black !important;
+    font-size: 1.2em !important;
+}
+
+select {
+    font-family: Eina, Arial !important;
+    text-transform: lowercase !important;
+    color: black !important;
+    font-size: 1em !important;
+}
+
+.react-date-picker {
+    font-family: Eina, Arial !important;
+    color: black !important;
+}
+
+.story-form-alerts {
+    text-transform: lowercase !important;
+    font-family: Eina, Arial !important;
+    color: #e63f52 !important;
+}
+.btn:focus{
+    box-shadow: none !important;
+}
+
+.resources-sub-text a {
+    color: white;
+    font-family: "Courier New", "Courier" !important;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.resources-sub-text a:hover {
+    color: white;
+    font-family: "Courier New", "Courier" !important;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+input {
+    font-family: Eina, Arial !important;
+}
+
+textarea {
+    font-family: Eina, Arial !important;
+}
+
+#tinymce {
+    font-family: Eina, Arial !important;
+}
+
+.navbar {
+    height: 130px !important;
 }

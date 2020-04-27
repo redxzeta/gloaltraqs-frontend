@@ -35,7 +35,7 @@ export default function App() {
       <Router>
         <>
           <Header />
-          <div>
+          <div style={{ height: "100%" }}>
             {/*<div className="container-fluid" style={divStyle}>*/}
             <Switch>
               <Route exact path="/" component={MapDashboard} />

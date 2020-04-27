@@ -24,9 +24,9 @@ export const FlagReportModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <ModalHeader toggle={props.toggle}> Flagging </ModalHeader>
+      <ModalHeader toggle={props.toggle}> { props.title } </ModalHeader>
+      <Form onSubmit={props.onSubmit}>
       <ModalBody>
-        <Form onSubmit={props.onSubmit}>
           {/* <FormGroup>
             <Label style={labelStyle} for="category">
               Type of Report
@@ -77,7 +77,7 @@ export const FlagReportModal = (props) => {
               Other
             </Label>
           </FormGroup>
-          <FormGroup>
+          <FormGroup style={{ marginTop: "20px" }}>
             <Label for="exampleText">Explain Your reason</Label>
             <Input
               type="textarea"
@@ -87,20 +87,16 @@ export const FlagReportModal = (props) => {
               value={props.flagForm.reason}
             />
           </FormGroup>
-
-          <Button style={buttonStyle} color="success">
-            Save
-          </Button>
-        </Form>
       </ModalBody>
       <ModalFooter>
-        {/*<Button color="primary" onClick={props.toggle}>*/}
-        {/*  Do Something*/}
-        {/*</Button>{" "}*/}
-        <Button color="secondary" onClick={props.toggle}>
+        <Button className="default-btn-purple" style={{ marginRight: "20px" }}  onClick={props.toggle}>
           Cancel
         </Button>
+         <Button className="default-btn-purple">
+          submit
+        </Button>
       </ModalFooter>
+      </Form>
     </Modal>
   );
 };

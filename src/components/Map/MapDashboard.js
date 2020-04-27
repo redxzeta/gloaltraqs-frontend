@@ -111,11 +111,11 @@ export default function MapDashboard() {
 
   const centerMarker = (marker) => {
     if (mapReference) {
-      mapReference.panTo([marker.latitude, marker.longitude]);
+      mapReference.panTo([Number(marker.latitude), Number(marker.longitude)]);
       setplacement({
         id: marker.id,
-        userlat: marker.latitude,
-        userlng: marker.longitude,
+        userlat: Number(marker.latitude),
+        userlng: Number(marker.longitude),
         zoom: mapReference.getZoom(),
       });
     }
@@ -431,7 +431,8 @@ export default function MapDashboard() {
         modalState={removalModalState}
         toggle={removalToggle}
         onSubmit={onDeleteHome}
-        title="Remove"
+        title="Are you sure you want to delete this story?"
+        buttonTitle={"Yes, delete this story"}
       />
     </Fragment>
   );
@@ -446,7 +447,7 @@ function StoryDisplay(props) {
   // change the map & story page styling for story slide up effect
   useEffect(() => {
     setStoryStyle({
-      top: "45%",
+      top: "53%",
     });
     props.setMapContainerStyle({
       height: "45%",
@@ -510,6 +511,7 @@ function IndividualStory(props) {
     <Story
       pin={pin}
       pinData={props.pinData}
+      centerMarker={props.centerMarker}
       mapReference={props.mapReference}
       {...props}
     />

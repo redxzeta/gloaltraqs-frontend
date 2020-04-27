@@ -22,6 +22,12 @@ function Story(props) {
   const { isAuthenticated, user } = auth;
   const [fixedArrow, setFixedArrow] = useState(false);
 
+   useEffect(() => {
+     if(props.pin.id && props.mapReference) {
+       props.centerMarker(props.pin);
+     }
+  },[props.pin] )
+
   const upvoteButoon = (
     <Link className="login-link favorite-story-btn" to="/login">
       <img
@@ -46,7 +52,7 @@ function Story(props) {
   }
 
   const handleScroll = (e) => {
-    const topConstraint = (window.innerHeight - 118.75) * 0.45; // window size - header size * map container size
+    const topConstraint = (window.innerHeight - 130) * 0.45; // window size - header size * map container size
     if (window.scrollY >= topConstraint && !fixedArrow) {
       setFixedArrow(true);
     } else if (window.scrollY < 386) {
@@ -89,6 +95,7 @@ function Story(props) {
               ) : (
                 "No Start Date"
               )}
+              {" - "}
               {props.pin.endDate ? (
                 <Moment format="MM/DD/YYYY">{props.pin.endDate}</Moment>
               ) : (
@@ -185,6 +192,7 @@ function Story(props) {
           {props.isAuthenticated && (
             <FlagReportModal
               flagForm={props.flagForm}
+              title={"Why are you flagging this story?"}
               toggle={props.flagToggle}
               modalState={props.flagModalState}
               onSubmit={props.onFlagSubmit}
@@ -194,6 +202,7 @@ function Story(props) {
           {props.isAuthenticated && (
             <FlagReportModal
               flagForm={props.flagForm}
+              title={"Why are you flagging this comment?"}
               toggle={props.flagCommentToggle}
               modalState={props.flagCommentModalState}
               onSubmit={props.onFlagCommentSubmit}

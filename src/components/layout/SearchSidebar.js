@@ -26,8 +26,8 @@ import { searchUsers, getNextPreviousUsers } from "../../actions/users";
 
 const options = [
   { value: "1", label: "Personal" },
-  { value: "2", label: "Community" },
-  { value: "3", label: "Historical" },
+  { value: "2", label: "Historical" },
+  { value: "3", label: "Resources" },
 ];
 
 const labelStyle = {
@@ -207,7 +207,7 @@ function SearchSidebar(props) {
           styles={colorStyles}
         />
         <InputGroup style={{ marginTop: "20px" }}>
-          <Label className="sidebar-text" style={labelStyle} for="dateRange">
+          <Label className="sidebar-text" style={{ marginTop: "auto", marginBottom: "auto", marginRight: "10px" }} for="dateRange">
             Search date range
           </Label>
           <DatePicker
@@ -477,7 +477,7 @@ const UserSearchForm = (props) => {
           <button
             type="submit"
             style={{ float: "right" }}
-            className="btn btn-primary"
+            className="btn btn-primary default-btn-purple"
           >
             Search
           </button>

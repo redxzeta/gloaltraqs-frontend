@@ -3,6 +3,9 @@ import axios from "axios";
 import CircularIndeterminate from "./CircularIndeterminate";
 import { userFirstUpvote, userUpovte } from "../../../actions/pins";
 import { useDispatch, useSelector } from "react-redux";
+import BookMark from "../../images/Bookmark_Outline_Icon.png";
+import AlreadyBookMarked from "../../images/Bookmark_Icon.png";
+
 function Upvote(props) {
   const auth = useSelector((state) => state.auth);
 
@@ -18,8 +21,8 @@ function Upvote(props) {
       }
     >
       {favoritedPin
-        ? "./static/frontend/images/Bookmark_Icon.png"
-        : "./static/frontend/images/Bookmark_Outline_Icon.png"}
+        ? AlreadyBookMarked
+        : BookMark}
     </FavoriteButton>
   );
 }

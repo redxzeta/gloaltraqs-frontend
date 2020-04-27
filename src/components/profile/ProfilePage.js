@@ -11,6 +11,8 @@ import { Row, Col } from "react-bootstrap";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import EditIcon from "@material-ui/icons/Edit";
+import BookMark from "../images/Bookmark_Icon.png";
+
 const FavoritePostField = ({
   index,
   title,
@@ -42,7 +44,7 @@ const FavoritePostField = ({
           <button className={"btn-no-style"} onClick={() => toggle(id2)}>
             <img
               className="user-profile-favorite-bookmark-icon"
-              src={"./static/frontend/images/Bookmark_Icon.png"}
+              src={BookMark}
               alt={"favorite this story icon"}
             />
           </button>
@@ -76,7 +78,7 @@ const FavoritePostField = ({
               color="textSecondary"
             >
               <Markup
-                content={description.substring(0, 250) + "..."}
+                content={description ? description.substring(0, 250) + "..." : ""}
                 blockList={["img"]}
                 noHtml={true}
               />
@@ -125,11 +127,12 @@ export default function ProfilePage(props) {
               {...props}
             />
             <div className={"user-profile-body"}>
-              {props.userProfile.userStories && (
+              {((user && (user.id == props.userProfile.id)) || !props.userProfile.is_profile_private) && props.userProfile.userStories && (
                 <ListUserStories
                   updateStoryAnonymity={updateStoryAnonymity}
                   stories={props.userProfile.userStories}
                   ownerid={props.userProfile.id}
+                  user={user}
                   {...props}
                 />
               )}
@@ -138,6 +141,7 @@ export default function ProfilePage(props) {
           <ShowfavoritedPosts
             ownerid={props.userProfile.id}
             toggle={props.removalToggle}
+            userProfile={props.userProfile}
             favoriteStories={props.userProfile.user_upvoted_stories}
           />
         </Row>
@@ -155,7 +159,7 @@ const ShowfavoritedPosts = (props) => {
   return (
     <Col md={4} className="favorite-stories">
       <h2 className="profile-page-favorite-posts-title">Favorite Posts</h2>
-      {props.favoriteStories.length !== 0 ? (
+      {((user && (user.id == props.userProfile.id)) || !props.userProfile.is_profile_private) && props.favoriteStories.length !== 0 ? (
         props.favoriteStories.map((story, index) => {
           return (
             <div key={story.id} className="user-profile-favorite-posts-div">
@@ -263,11 +267,13 @@ const ListUserStories = (props) => {
       </Row>
       {props.stories.length !== 0 ? (
         props.stories.map((story) => {
-          return (
-            <div style={{ paddingBottom: "20px" }} key={story.id}>
-              <StoryField story={story} {...props} />
-            </div>
-          );
+          if(!story.is_anonymous_pin || (props.user && props.user.id == props.ownerid)) {
+            return (
+              <div style={{ paddingBottom: "20px" }} key={story.id}>
+                <StoryField story={story} {...props} />
+              </div>
+            );
+          }
         })
       ) : (
         <NoStories type="User Stories" />

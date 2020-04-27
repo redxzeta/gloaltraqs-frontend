@@ -2,6 +2,7 @@ import React from "react";
 
 import axios from "axios";
 import { Row, Col } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -99,9 +100,9 @@ export default function Resources() {
             <h3 className="resources-title">what are we missing?</h3>
             <p className="resources-sub-text">
               Drop us a line on our{" "}
-              <span className="text-underline">Contact page</span> if you'd like
+              <Link to={"/contactUs"}><span className="text-underline">Contact page</span></Link> if you'd like
               to add to our ever-growing list of LGBTQ+ resources. Or just{" "}
-              <span class="text-underline">send</span> us an email directly.{" "}
+              <span class="resources-sub-text text-underline"><a href="mailto:help@arqive.com">send</a></span> us an email directly.{" "}
             </p>
           </div>
         </Col>

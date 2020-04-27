@@ -31,7 +31,6 @@ export default function ProfileImageModal(props) {
         <ModalBody style={{ height: "300px" }}>
           <Form>
             <FormGroup>
-              <Label for="exampleFile">Filffe</Label> <br />
               {props.image && (
                 <Cropper
                   image={props.image}
@@ -53,6 +52,7 @@ export default function ProfileImageModal(props) {
             type="file"
             name="file"
             id="exampleFile"
+            class="form-control-file"
             onChange={props.onSelectFile}
             accept="image/*"
           />
@@ -67,16 +67,16 @@ export default function ProfileImageModal(props) {
             aria-labelledby="Zoom"
             onChange={(e, zoom) => props.setZoom(zoom)}
           />
-          <Button
+
+          <Button className={"default-btn-purple"} style={{ marginRight: "20px" }} onClick={props.toggle}>
+            Cancel
+          </Button>
+           <Button
             style={buttonStyle}
             onClick={props.showCroppedImage}
-            color="success"
+            className={"default-btn-purple"}
           >
             Save
-          </Button>
-
-          <Button color="secondary" onClick={props.toggle}>
-            Cancel
           </Button>
         </ModalFooter>
       </Modal>
