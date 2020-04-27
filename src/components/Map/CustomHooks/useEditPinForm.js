@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editPin, getMinPinDate, getMaxPinDate } from "../../../actions/pins";
 const useEditPinForm = (pinData, setPinData) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const { isAuthenticated, user } = auth;
+  const { user } = auth;
   const [editpinmodalState, seteditpinmodalState] = useState(false);
   const [editPinForm, seteditPinForm] = useState({
     //fields for editng

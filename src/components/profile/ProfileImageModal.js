@@ -15,10 +15,9 @@ import Slider from "@material-ui/core/Slider";
 const buttonStyle = {
   float: "right",
 };
-
+const size = { width: 300, height: 300 };
+const aspect = 1;
 export default function ProfileImageModal(props) {
-  const size = { width: 300, height: 300 };
-  const aspect = 1;
   return (
     <>
       <Modal
