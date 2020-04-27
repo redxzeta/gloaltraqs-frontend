@@ -207,7 +207,7 @@ const UserProfileBio = (props) => {
   return (
     <div className={"user-profile-main-content"}>
       <Row>
-        <Col md={2} className={"offset-md-1"}>
+        <Col md={2} className={"offset-xl-1 col-xl-2 col-md-3 offset-md-0"}>
           <div className={"profile-image-div"}>
             {props.userProfile.profileurl ? (
               <img
@@ -233,7 +233,7 @@ const UserProfileBio = (props) => {
             )}
           </div>
         </Col>
-        <Col md={7}>
+        <Col className={"col-xl-8 offset-xl-1 offset-md-0 col-md-7"}>
           {/*{isAuthenticated && user.id === props.ownerid && (*/}
           {/*  <button onClick={() => props.toggle()}>Change</button>*/}
           {/*)}*/}
@@ -243,10 +243,10 @@ const UserProfileBio = (props) => {
             align="center"
             style={{ marginTop: "20px" }}
           >
-            <h1 className="user-profile-name text-left">
+            <h1 className="user-profile-name left-text">
               {props.userProfile ? `${props.userProfile.username}` : ""}
             </h1>
-            <p className="user-profile-bio text-left">
+            <p className="user-profile-bio left-text">
               {props.userProfile.bio}
             </p>
           </Typography>
@@ -273,7 +273,7 @@ const ListUserStories = (props) => {
   return (
     <>
       <Row>
-        <Col md={10} className={"offset-md-2"}>
+        <Col md={10} className={"offset-xl-2 offset-md-1"}>
           <p className={"user-profile-my-posts-title"}>my posts</p>
         </Col>
       </Row>
@@ -281,7 +281,7 @@ const ListUserStories = (props) => {
         props.stories.map((story) => {
           if(!story.is_anonymous_pin || (props.user && props.user.id == props.ownerid)) {
             return (
-              <div style={{ paddingBottom: "20px" }} key={story.id}>
+              <div className={"profile-page-story-row"} key={story.id}>
                 <StoryField story={story} {...props} />
               </div>
             );
@@ -308,8 +308,8 @@ const StoryField = (props) => {
   const { isAuthenticated, user } = auth;
   return (
     <>
-      <Row style={{ height: "150px" }}>
-        <Col md={6} className={"offset-md-2"} style={{ paddingRight: "5px" }}>
+      <Row style={{ minHeight: "150px", height: "auto" }}>
+        <Col className={"col-xl-6 col-md-7 offset-md-1 offset-xl-2"} style={{ paddingRight: "5px" }}>
           <Card className={"profile-story-card"}>
             <div
               className={
@@ -362,20 +362,22 @@ const StoryField = (props) => {
         </Col>
         {isAuthenticated &&
           (user.is_administrator || user.id === props.ownerid) && (
-            <Col md={3} style={{ paddingLeft: "0", paddingRight: "0" }}>
+            <Col className={"col-8 offset-2 col-xl-3 offset-md-0 col-md-4"}>
               <div className="profile-page-story-settings-card">
-                <p className="profile-anonymous-toggle-title">
-                  make this post anonymous?
-                </p>
-                <Switch
-                  className="react-switch"
-                  onColor={"#00ce7d"}
-                  offColor={"#e63f52"}
-                  width={90}
-                  height={35}
-                  onChange={() => props.updateStoryAnonymity(props.story)}
-                  checked={is_anonymous_pin}
-                />
+                <div className={"profile-page-story-settings-card-body"}>
+                  <p className="profile-anonymous-toggle-title">
+                    make this post anonymous?
+                  </p>
+                  <Switch
+                    className="react-switch"
+                    onColor={"#00ce7d"}
+                    offColor={"#e63f52"}
+                    width={90}
+                    height={35}
+                    onChange={() => props.updateStoryAnonymity(props.story)}
+                    checked={is_anonymous_pin}
+                  />
+                </div>
               </div>
             </Col>
           )}

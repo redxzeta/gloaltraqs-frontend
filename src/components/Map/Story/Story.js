@@ -182,7 +182,7 @@ function Story(props) {
         </Col>
       </Row>
       <Row style={{ paddingTop: "15px" }}>
-        <Col md={8} className={"offset-md-2 col-10 offset-1"}>
+        <Col md={8} className={"offset-md-2 col-10 offset-1"} style={{ marginBottom: "20px" }}>
           {props.pin.commentstory && (
             <CommentStory
               user={user}

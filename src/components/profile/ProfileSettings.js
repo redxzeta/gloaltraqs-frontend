@@ -89,8 +89,7 @@ export default function Settings(props) {
         >
           <Row>
             <Col
-              md={4}
-              className={"offset-md-2"}
+              className={"col-xl-4 col-md-8 offset-lg-2 offset-md-1 col-12"}
               style={{ paddingTop: "50px" }}
             >
               <h1>profile settings</h1>
@@ -150,7 +149,7 @@ export default function Settings(props) {
               </button>
             </Col>
             <Col
-              md={4}
+              className={"col-xl-4 col-md-10 offset-lg-1 offset-md-1 col-12"}
               style={{
                 paddingTop: "50px",
                 marginTop: "auto",

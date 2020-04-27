@@ -72,7 +72,16 @@
     /*margin-top: 90px;*/
     width: 40%;
 }
-
+.search-sidebar {
+    background: white;
+    width: 40%;
+    padding: 20px;
+}
+.story-sidebar {
+    background: white;
+    width: 40%;
+    padding: 20px;
+}
 /*.root {*/
 /*    position: absolute;*/
 /*    top: 0;*/
@@ -203,6 +212,7 @@ b, strong {
   min-height: 100%;
   width: 100%;
   z-index: 2;
+  margin-top: 70px;
 }
 /*#story-container:hover > #story-page {*/
 /*  top: 0;*/
@@ -312,7 +322,7 @@ b, strong {
 
 .site-header {
     background-color: black !important;
-    padding-right: 0 !important;
+    padding-right: 0px !important;
 }
 
 .header-nav-link {
@@ -321,8 +331,14 @@ b, strong {
     font-size: 1rem !important;
     text-transform: lowercase !important;
 }
+
 .header-nav-link:hover {
     color: white !important;
+}
+
+
+.navbar-toggler {
+    margin-right: 30px;
 }
 
 .header-nav-username {
@@ -365,7 +381,7 @@ b, strong {
 }
 
 .faq-page-background {
-    background: #F2CE5C !important;
+    background: #f5dc6d !important;
     min-height: 100%;
     height: auto;
     width: 100%;
@@ -399,7 +415,7 @@ b, strong {
 /* Style the buttons that are used to open and close the accordion panel */
  .accordion {
     background-color: white;
-    color: #F2CE5C;
+    color: #f5dc6d;
     cursor: pointer;
     width: 100%;
     text-align: left;
@@ -627,11 +643,11 @@ button {
 }
 
 .faq-header-active {
-    color: #F0DC7D !important;
+    color: #f5dc6d !important;
 }
 
 .faq-header-nav-link:hover, .faq-header-nav-link:focus {
-    color: #F0DC7D !important;
+    color: #f5dc6d !important;
 }
 
 .about-us-header-active {
@@ -915,8 +931,14 @@ button {
     border-radius: 20px;
     height: 100%;
     width: 80%;
-    padding-top: 20px;
     text-align: center;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.profile-page-story-settings-card-body {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .user-profile-my-posts-title {
@@ -1453,4 +1475,70 @@ textarea {
 
 .navbar {
     height: 130px !important;
+}
+
+.profile-page-story-row {
+    padding-bottom: 20px;
+}
+
+.left-text {
+      text-align: left !important;
+}
+
+@media screen and (max-width: 770px) {
+  .profile-page-story-settings-card {
+      width: 100%;
+      margin-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+  .profile-page-story-row {
+      padding-bottom: 50px;
+  }
+  .left-text {
+      text-align: center !important;
+  }
+  .leaflet-control-geosearch.bar {
+      width: 250px !important;
+  }
+  .navbar-collapse {
+    background-color: black;
+    padding: 30px;
+    margin-left: -16px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .profile-page-story-settings-card {
+      width: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+  .profile-page-story-row {
+      padding-bottom: 50px;
+  }
+  .left-text {
+      text-align: center !important;
+  }
+  .search-sidebar {
+      width: 80%;
+  }
+  .story-sidebar {
+      width: 50%
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .leaflet-control-geosearch.bar {
+      width: 150px !important;
+  }
+  .search-sidebar {
+      width: 100%;
+  }
+  .story-sidebar {
+      width: 100%
+  }
+  #story-page {
+      margin-top: 100px;
+  }
 }
