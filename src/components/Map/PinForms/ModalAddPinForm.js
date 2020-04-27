@@ -251,10 +251,10 @@ function ModalAddPinForm(props) {
                 format={"MM/dd/yyyy"}
                 name="startDate"
                 value={props.addPinValues.startDate}
-                onChange={(date) =>
+                onChange={(newdate) =>
                   props.setaddPinValues({
                     ...props.addPinValues,
-                    startDate: date,
+                    startDate: newdate,
                   })
                 }
               />
@@ -277,6 +277,7 @@ function ModalAddPinForm(props) {
 
           <ModalFooter>
             <Button
+              type="button"
               className="default-btn-purple"
               style={{ marginRight: "20px" }}
               onClick={props.toggle}

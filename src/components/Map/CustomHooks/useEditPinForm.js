@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editPin, getMinPinDate, getMaxPinDate } from "../../../actions/pins";
+import max from "date-fns/max";
 const useEditPinForm = (pinData, setPinData) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -17,14 +18,10 @@ const useEditPinForm = (pinData, setPinData) => {
   });
 
   const setEditPinState = (pin) => {
-    let start = pin.startDate.split("-");
-    start = new Date(start[0], start[1] - 1, start[2], 0, 0, 0, 0);
-    let end = pin.endDate.split("-");
-    end = new Date(end[0], end[1] - 1, end[2], 0, 0, 0, 0);
     seteditPinForm({
       ...pin,
-      startDate: start,
-      endDate: end,
+      startDate: new Date(pin.startDate),
+      endDate: new Date(pin.endDate),
     });
     seteditpinmodalState(!editpinmodalState);
   };
@@ -48,8 +45,7 @@ const useEditPinForm = (pinData, setPinData) => {
       startDate: editPinForm.startDate,
       endDate: editPinForm.endDate,
     });
-    dispatch(getMaxPinDate());
-    dispatch(getMinPinDate());
+
     editToggle();
   };
 
