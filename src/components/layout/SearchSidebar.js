@@ -140,9 +140,9 @@ function SearchSidebar(props) {
       if (category == 1) {
         color = "#e01783";
       } else if (category == 2) {
-        color = "#00ce7d";
-      } else {
         color = "#248dc1";
+      } else {
+        color = "#00ce7d";
       }
       return {
         ...styles,
@@ -308,7 +308,7 @@ function SearchSidebar(props) {
                     story.category == 1
                       ? "search-bar-story-card-trim-personal"
                       : story.category == 2
-                      ? "search-bar-story-card-trim-community"
+                      ? "search-bar-story-card-trim-resources"
                       : "search-bar-story-card-trim-historical"
                   }
                 ></div>

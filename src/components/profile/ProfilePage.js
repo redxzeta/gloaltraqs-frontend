@@ -35,8 +35,8 @@ const FavoritePostField = ({
           className={
             category === 1
               ? "search-bar-story-card-trim-personal"
-              : category === 2
-              ? "search-bar-story-card-trim-community"
+              : category == 2
+              ? "search-bar-story-card-trim-resources"
               : "search-bar-story-card-trim-historical"
           }
         ></div>
@@ -295,8 +295,8 @@ const StoryField = (props) => {
               className={
                 category === 1
                   ? "search-bar-story-card-trim-personal"
-                  : category === 2
-                  ? "search-bar-story-card-trim-community"
+                  : category == 2
+                  ? "search-bar-story-card-trim-resources"
                   : "search-bar-story-card-trim-historical"
               }
             ></div>

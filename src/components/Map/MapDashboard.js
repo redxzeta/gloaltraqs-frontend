@@ -501,7 +501,6 @@ function IndividualStory(props) {
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user, favoritedPin } = auth;
   const userid = isAuthenticated ? user.id : false;
-
   useEffect(() => {
     dispatch(getPin(id, userid));
     props.setuserComment({

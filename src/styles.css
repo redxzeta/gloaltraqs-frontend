@@ -755,7 +755,7 @@ button {
     width: 100%;
 }
 
-.search-bar-story-card-trim-community {
+.search-bar-story-card-trim-resources {
     height: 15px;
     background-color: #00ce7d !important;
     width: 100%;
@@ -849,6 +849,17 @@ react-date-picker--enabled {
     color: black !important;
     text-transform: none !important;
 }
+
+.story-page-story-address {
+    font-family: "Courier" !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: black !important;
+    text-transform: lowercase !important;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
 
 .story-page-dates {
     font-family: "Courier New", "Courier" !important;

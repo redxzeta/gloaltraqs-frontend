@@ -11,6 +11,7 @@ import Moment from "react-moment";
 import { IconButton } from "@material-ui/core";
 import { getPinsWithBounds } from "../../actions/pins";
 import { useSelector } from "react-redux";
+import {Col} from "react-bootstrap";
 
 function StorySidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -80,6 +81,7 @@ function StorySidebar(props) {
             props.pinData ? (
               <div className={"sidebar-story-div"}>
                 <h1 className="sidebar-story-title">{props.pinData.title}</h1>
+                <h3 className={"story-page-story-address"}>{props.pinData.address ? props.pinData.address : ""} {props.pinData.locality ? props.pinData.locality : ""} { props.pinData.region ? props.pinData.region : ""} {props.pinData.postCode ? props.pinData.postCode : ""} {props.pinData.country ? props.pinData.country : ""} </h3>
                 <h5>
                   {props.pinData.is_anonymous_pin ? (
                     <p
