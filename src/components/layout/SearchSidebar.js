@@ -137,9 +137,9 @@ function SearchSidebar(props) {
     multiValue: (styles, { data }) => {
       const category = data.value;
       let color = "white";
-      if (category === 1) {
+      if (category === "1") {
         color = "#e01783";
-      } else if (category === 2) {
+      } else if (category === "2") {
         color = "#248dc1";
       } else {
         color = "#00ce7d";
