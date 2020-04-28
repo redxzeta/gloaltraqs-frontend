@@ -81,7 +81,6 @@ export default function MapDashboard() {
     dispatch(getMinPinDate());
   }, []);
   useEffect(() => {
-    console.log("here trying first");
     if (mapReference != undefined) {
       let mapBounds = mapReference.getBounds();
       let south = mapBounds.getSouth();
@@ -93,10 +92,7 @@ export default function MapDashboard() {
   }, [mapReference]);
 
   useEffect(() => {
-    console.log("in use effect");
-    console.log("is search " + isSearch);
     if (mapReference != undefined && !isSearch) {
-      console.log("here");
       // dispatch(getPins());
       mapReference.once("moveend", function () {
         let mapBounds = mapReference.getBounds();
@@ -494,7 +490,6 @@ function IndividualStory(props) {
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user, favoritedPin } = auth;
   const userid = isAuthenticated ? user.id : false;
-  console.log(pin);
   useEffect(() => {
     dispatch(getPin(id, userid));
     props.setuserComment({
