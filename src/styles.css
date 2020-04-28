@@ -837,6 +837,17 @@ button {
     text-transform: none !important;
 }
 
+.story-page-story-address {
+    font-family: "Courier" !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: black !important;
+    text-transform: lowercase !important;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+
 .story-page-dates {
     font-family: "Courier New", "Courier" !important;
     font-size: 1rem !important;
