@@ -30,10 +30,10 @@ const options = [
   { value: "3", label: "Resources" },
 ];
 
-const labelStyle = {
-  marginRight: "10px",
-};
-const m = moment();
+// const labelStyle = {
+//   marginRight: "10px",
+// };
+
 function SearchSidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -137,9 +137,9 @@ function SearchSidebar(props) {
     multiValue: (styles, { data }) => {
       const category = data.value;
       let color = "white";
-      if (category == 1) {
+      if (category === 1) {
         color = "#e01783";
-      } else if (category == 2) {
+      } else if (category === 2) {
         color = "#248dc1";
       } else {
         color = "#00ce7d";
@@ -292,7 +292,7 @@ function SearchSidebar(props) {
         >
           {" "}
           {pinData.length}{" "}
-          {pinData.length == 1 ? " search result" : " search results"}{" "}
+          {pinData.length === 1 ? " search result" : " search results"}{" "}
         </p>
 
         {pinData.map((story, index) => {
@@ -305,9 +305,9 @@ function SearchSidebar(props) {
               >
                 <div
                   className={
-                    story.category == 1
+                    story.category === 1
                       ? "search-bar-story-card-trim-personal"
-                      : story.category == 2
+                      : story.category === 2
                       ? "search-bar-story-card-trim-resources"
                       : "search-bar-story-card-trim-historical"
                   }
@@ -350,7 +350,7 @@ function SearchSidebar(props) {
     </div>
   );
 
-  let resultCount = pinData.length;
+  // let resultCount = pinData.length;
   // console.log(props.minPinDate + " is MIN PIN DATE");
   // console.log(dateRange + " is the date range");
 
@@ -500,6 +500,7 @@ const ListUsersSearch = (props) => {
                             height: "100px",
                             width: "100px",
                           }}
+                          alt="SearchUserProfilePicture"
                         />
                       ) : (
                         <Avatar size={100} icon="user" />

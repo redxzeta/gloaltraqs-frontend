@@ -313,9 +313,10 @@ export default function (state = initialState, action) {
       const favoritedUserStories = {
         ...state.user,
         user_upvoted_stories: state.user.user_upvoted_stories.filter(
-          (x) => x.id !== action.payload.id
+          (x) => x.id !== action.payload
         ),
       };
+      console.log(favoritedUserStories);
       // const profileDel = {
       //   ...state.userProfile,
       //   user_upvoted_stories: state.userProfile.user_upvoted_stories.filter(

@@ -43,12 +43,10 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 //   top: 0;
 // };
 
-const LeafletMap = React.lazy(() => import("./LeafletMap"));
+import LeafletMap from "./LeafletMap";
 const Story = React.lazy(() => import("./Story/Story"));
 const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
-  let { path, url } = useRouteMatch();
-
   const [divStyle, setdivStyle] = useState({
     height: "100%",
     width: "100%",
@@ -85,7 +83,7 @@ export default function MapDashboard() {
     dispatch(searchUsers(""));
   }, [dispatch]);
   useEffect(() => {
-    if (mapReference != undefined) {
+    if (mapReference !== undefined) {
       let mapBounds = mapReference.getBounds();
       let south = mapBounds.getSouth();
       let west = mapBounds.getWest();
@@ -93,10 +91,10 @@ export default function MapDashboard() {
       let east = mapBounds.getEast();
       dispatch(getPinsWithBounds(north, south, east, west));
     }
-  }, [mapReference]);
+  }, [dispatch, mapReference]);
 
   useEffect(() => {
-    if (mapReference != undefined && !isSearch) {
+    if (mapReference !== undefined && !isSearch) {
       // dispatch(getPins());
       mapReference.once("moveend", function () {
         let mapBounds = mapReference.getBounds();
@@ -181,7 +179,7 @@ export default function MapDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [storySidebarOpen, setStorySidebarOpen] = useState(false);
   const [showSidebarButton, setShowSidebarButton] = useState(false);
-  const [map, setMap] = useState();
+
   const [addAddress, setAddAddress] = useState(false);
   const minPinDate = useSelector((state) => state.pins.pinMinDate);
   const maxPinDate = useSelector((state) => state.pins.pinMaxDate);
@@ -205,7 +203,7 @@ export default function MapDashboard() {
   };
 
   const toggle = () => {
-    if (modalState == true) {
+    if (modalState === true) {
       setAddAddress(false);
     }
     setmodalstate(!modalState);
@@ -217,7 +215,7 @@ export default function MapDashboard() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (succes) => {
-          if (mapReference != undefined) {
+          if (mapReference !== undefined) {
             mapReference.panTo([
               succes.coords.latitude,
               succes.coords.longitude,
@@ -298,11 +296,63 @@ export default function MapDashboard() {
                 removalToggle={removalToggle}
               />
             </div>
-            <Suspense fallback={<div>Loading...</div>}>
+
+            <LeafletMap
+              maplink={"/story"}
+              pins={pins}
+              divStyle={divStyle}
+              addMarker={addMarker}
+              placement={placement}
+              setPlacement={setplacement}
+              modalState={modalState}
+              toggle={toggle}
+              editPin={editPinForm}
+              seteditPin={seteditPinForm}
+              updateEditForm={updateEditForm}
+              editToggle={editToggle}
+              editpinmodalState={editpinmodalState}
+              seteditpinmodalState={seteditpinmodalState}
+              onEditSubmit={onEditSubmit}
+              getLocation={getLocation}
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+              pinDeleted={pinDeleted}
+              setPinDeleted={setPinDeleted}
+              showSidebarButton={true}
+              addPinValues={addPinValues}
+              handleAddPinChange={handleAddPinChange}
+              handleAddPinSubmit={handleAddPinSubmit}
+              setaddPinValues={setaddPinValues}
+              setAnonRadius={setAnonRadius}
+              darkMode={darkMode}
+              setdarkMode={setdarkMode}
+              mapReference={mapReference}
+              setMapReference={setMapReference}
+              user={user}
+              isAuthenticated={isAuthenticated}
+              storySidebarOpen={storySidebarOpen}
+              setStorySidebarOpen={setStorySidebarOpen}
+              pinData={pinData}
+              setPinData={setPinData}
+              pinCluster={pinCluster}
+              setPinCluster={setPinCluster}
+              mapContainerStyle={divStyle1}
+              setMapContainerStyle={setMapContainerStyle}
+              centerMarker={centerMarker}
+              addAddress={addAddress}
+              setAddAddress={setAddAddress}
+            />
+          </div>
+        </Route>
+        <Route path="/story">
+          <div id={"story-container"}>
+            {pinDeleted ? <Redirect to={"/"} /> : null}
+            <div id={"map-dashboard"}>
               <LeafletMap
+                centerMarker={centerMarker}
                 maplink={"/story"}
                 pins={pins}
-                divStyle={divStyle}
+                divStyle={divStyle1}
                 addMarker={addMarker}
                 placement={placement}
                 setPlacement={setplacement}
@@ -310,7 +360,6 @@ export default function MapDashboard() {
                 toggle={toggle}
                 editPin={editPinForm}
                 seteditPin={seteditPinForm}
-                updateEditForm={updateEditForm}
                 editToggle={editToggle}
                 editpinmodalState={editpinmodalState}
                 seteditpinmodalState={seteditpinmodalState}
@@ -321,6 +370,7 @@ export default function MapDashboard() {
                 pinDeleted={pinDeleted}
                 setPinDeleted={setPinDeleted}
                 showSidebarButton={true}
+                setStorySidebarOpen={setStorySidebarOpen}
                 addPinValues={addPinValues}
                 handleAddPinChange={handleAddPinChange}
                 handleAddPinSubmit={handleAddPinSubmit}
@@ -332,70 +382,14 @@ export default function MapDashboard() {
                 setMapReference={setMapReference}
                 user={user}
                 isAuthenticated={isAuthenticated}
-                storySidebarOpen={storySidebarOpen}
-                setStorySidebarOpen={setStorySidebarOpen}
-                pinData={pinData}
                 setPinData={setPinData}
-                pinCluster={pinCluster}
-                setPinCluster={setPinCluster}
-                mapContainerStyle={divStyle1}
+                isIndividualStoryPage={true}
+                mapContainerStyle={mapContainerStyle}
                 setMapContainerStyle={setMapContainerStyle}
-                centerMarker={centerMarker}
+                updateEditForm={updateEditForm}
                 addAddress={addAddress}
                 setAddAddress={setAddAddress}
               />
-            </Suspense>
-          </div>
-        </Route>
-        <Route path="/story">
-          <div id={"story-container"}>
-            {pinDeleted ? <Redirect to={"/"} /> : null}
-            <div id={"map-dashboard"}>
-              <Suspense fallback={<div>Loading...</div>}>
-                <LeafletMap
-                  centerMarker={centerMarker}
-                  maplink={"/story"}
-                  pins={pins}
-                  divStyle={divStyle1}
-                  addMarker={addMarker}
-                  placement={placement}
-                  setPlacement={setplacement}
-                  modalState={modalState}
-                  toggle={toggle}
-                  editPin={editPinForm}
-                  seteditPin={seteditPinForm}
-                  editToggle={editToggle}
-                  editpinmodalState={editpinmodalState}
-                  seteditpinmodalState={seteditpinmodalState}
-                  onEditSubmit={onEditSubmit}
-                  getLocation={getLocation}
-                  sidebarOpen={sidebarOpen}
-                  setSidebarOpen={setSidebarOpen}
-                  pinDeleted={pinDeleted}
-                  setPinDeleted={setPinDeleted}
-                  showSidebarButton={true}
-                  setStorySidebarOpen={setStorySidebarOpen}
-                  addPinValues={addPinValues}
-                  handleAddPinChange={handleAddPinChange}
-                  handleAddPinSubmit={handleAddPinSubmit}
-                  setaddPinValues={setaddPinValues}
-                  setAnonRadius={setAnonRadius}
-                  darkMode={darkMode}
-                  setdarkMode={setdarkMode}
-                  mapReference={mapReference}
-                  setMapReference={setMapReference}
-                  user={user}
-                  isAuthenticated={isAuthenticated}
-                  setPinData={setPinData}
-                  isIndividualStoryPage={true}
-                  mapContainerStyle={mapContainerStyle}
-                  setMapContainerStyle={setMapContainerStyle}
-                  centerMarker={centerMarker}
-                  updateEditForm={updateEditForm}
-                  addAddress={addAddress}
-                  setAddAddress={setAddAddress}
-                />
-              </Suspense>
             </div>
 
             <StoryDisplay
@@ -454,7 +448,7 @@ function StoryDisplay(props) {
   const { isAuthenticated, guest_user } = auth;
 
   let [storyStyle, setStoryStyle] = useState({ top: "100%" });
-  let [redirectHome, setRedirectHome] = useState(false);
+
   // change the map & story page styling for story slide up effect
   useEffect(() => {
     setStoryStyle({
@@ -499,21 +493,13 @@ function IndividualStory(props) {
   const pin = useSelector((state) => state.pins.pin);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const { isAuthenticated, user, favoritedPin } = auth;
+  const { isAuthenticated, user } = auth;
   const userid = isAuthenticated ? user.id : false;
   useEffect(() => {
     dispatch(getPin(id, userid));
     props.setuserComment({
       description: " ",
       pin: id,
-    });
-  }, [id]);
-
-  useEffect(() => {
-    props.seteditPin({
-      title: "",
-      description: "",
-      category: "",
     });
   }, [id]);
 

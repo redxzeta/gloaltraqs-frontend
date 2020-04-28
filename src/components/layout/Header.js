@@ -31,7 +31,7 @@ function Header() {
 
   useEffect(() => {
     const currentPage = location.pathname;
-    if (currentPage == "/faq") {
+    if (currentPage === "/faq") {
       setActivePages({
         faq: true,
         aboutUs: false,
@@ -39,7 +39,7 @@ function Header() {
         resources: false,
         contactUs: false,
       });
-    } else if (currentPage == "/About") {
+    } else if (currentPage === "/About") {
       setActivePages({
         faq: false,
         aboutUs: true,
@@ -47,7 +47,7 @@ function Header() {
         resources: false,
         contactUs: false,
       });
-    } else if (currentPage == "/support") {
+    } else if (currentPage === "/support") {
       setActivePages({
         faq: false,
         aboutUs: false,
@@ -55,7 +55,7 @@ function Header() {
         resources: false,
         contactUs: false,
       });
-    } else if (currentPage == "/resources") {
+    } else if (currentPage === "/resources") {
       setActivePages({
         faq: false,
         aboutUs: false,
@@ -63,7 +63,7 @@ function Header() {
         resources: true,
         contactUs: false,
       });
-    } else if (currentPage == "/ContactUs") {
+    } else if (currentPage === "/ContactUs") {
       setActivePages({
         faq: false,
         aboutUs: false,
@@ -103,17 +103,17 @@ function Header() {
   let userRole = "";
   let adminManager = null;
   let actual_username = "";
-  if (user != null) {
+  if (user !== null) {
     if (actual_username == "") {
       actual_username = user.username;
     }
 
     if (user.accessibility_mode_active) {
-      if (accessibilityWidget != undefined) {
+      if (accessibilityWidget !== undefined) {
         accessibilityWidget.style.visibility = "visible";
       }
     } else {
-      if (accessibilityWidget != undefined) {
+      if (accessibilityWidget !== undefined) {
         accessibilityWidget.style.visibility = "hidden";
       }
     }
@@ -137,7 +137,7 @@ function Header() {
       userRole = <strong>(Moderator)</strong>;
     }
   } else {
-    if (accessibilityWidget != undefined) {
+    if (accessibilityWidget !== undefined) {
       accessibilityWidget.style.visibility = "hidden";
     }
   }
@@ -185,10 +185,17 @@ function Header() {
             caret
             className="header-user-dropdown-button header-nav-link"
           >
-            {user
-              ? (
-                  <span>Welcome &nbsp;<span className={"header-nav-username"}>{user.is_anonymous_active ? "Anonymous" : user.username}</span></span>
-                ) : "" } {" "}<span className={"header-nav-username"}>{userRole}</span>{" "}
+            {user ? (
+              <span>
+                Welcome &nbsp;
+                <span className={"header-nav-username"}>
+                  {user.is_anonymous_active ? "Anonymous" : user.username}
+                </span>
+              </span>
+            ) : (
+              ""
+            )}{" "}
+            <span className={"header-nav-username"}>{userRole}</span>{" "}
           </DropdownToggle>
           <DropdownMenu className="header-user-dropdown-menu">
             <DropdownItem>
