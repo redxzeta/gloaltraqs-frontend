@@ -15,7 +15,7 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import AddCommentIcon from "@material-ui/icons/AddComment";
 import { GeoSearchControl } from "leaflet-geosearch";
 import { EsriProvider } from "leaflet-geosearch";
-
+import { useSelector } from "react-redux";
 export const defaultPointerIcon = new L.Icon({
   iconUrl: default_marker,
   iconRetinaUrl: default_marker,
@@ -156,6 +156,7 @@ const LeafletMap = (props) => {
       map.on("geosearch/showlocation", addressSearch);
     }
   }, [mapInstance]);
+  const guest = useSelector((state) => state.auth.guest_user);
 
   return (
     <div className="map-container" style={props.mapContainerStyle}>
@@ -180,8 +181,7 @@ const LeafletMap = (props) => {
         onContextMenu={props.addMarker}
       >
         <ZoomControl position="bottomleft" />
-        {props.user === undefined ||
-        (props.isAuthenticated && props.user.is_anonymous_active) ? ( //pass in props of user
+        {(props.isAuthenticated && props.user.is_anonymous_active) || guest ? ( //pass in props of user
           <TileLayer
             attribution="Map tiles by &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com/attributions'>CARTO</a>"
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
