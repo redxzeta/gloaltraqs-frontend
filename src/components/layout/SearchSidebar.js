@@ -223,7 +223,6 @@ function SearchSidebar(props) {
             // max={Number(new Date().getFullYear())}
             value={[dateRange.first, dateRange.last]}
             valueLabelDisplay="auto"
-            step={5}
             onChange={(event, newValue) => {
               // console.log("props.minPinDate "+ props.minPinDate.getFullYear());
               // console.log("new value " + newValue);
