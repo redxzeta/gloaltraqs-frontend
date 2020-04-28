@@ -103,8 +103,8 @@ export default function (state = initialState, action) {
           action.payload,
         ],
         pin: action.payload,
-        pinMaxDate: editmaxDate,
-        pinMinDate: editminDate,
+        pinMaxDate: new Date(editmaxDate),
+        pinMinDate: new Date(editminDate),
       };
     case ADD_COMMENT:
       const newComment = {
