@@ -42,6 +42,7 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 //   width: 100%;
 //   top: 0;
 // };
+
 const LeafletMap = React.lazy(() => import("./LeafletMap"));
 const Story = React.lazy(() => import("./Story/Story"));
 const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
@@ -350,50 +351,53 @@ export default function MapDashboard() {
           <div id={"story-container"}>
             {pinDeleted ? <Redirect to={"/"} /> : null}
             <div id={"map-dashboard"}>
-              <LeafletMap
-                centerMarker={centerMarker}
-                maplink={"/story"}
-                pins={pins}
-                divStyle={divStyle1}
-                addMarker={addMarker}
-                placement={placement}
-                setPlacement={setplacement}
-                modalState={modalState}
-                toggle={toggle}
-                editPin={editPinForm}
-                seteditPin={seteditPinForm}
-                editToggle={editToggle}
-                editpinmodalState={editpinmodalState}
-                seteditpinmodalState={seteditpinmodalState}
-                onEditSubmit={onEditSubmit}
-                getLocation={getLocation}
-                sidebarOpen={sidebarOpen}
-                setSidebarOpen={setSidebarOpen}
-                pinDeleted={pinDeleted}
-                setPinDeleted={setPinDeleted}
-                showSidebarButton={true}
-                setStorySidebarOpen={setStorySidebarOpen}
-                addPinValues={addPinValues}
-                handleAddPinChange={handleAddPinChange}
-                handleAddPinSubmit={handleAddPinSubmit}
-                setaddPinValues={setaddPinValues}
-                setAnonRadius={setAnonRadius}
-                darkMode={darkMode}
-                setdarkMode={setdarkMode}
-                mapReference={mapReference}
-                setMapReference={setMapReference}
-                user={user}
-                isAuthenticated={isAuthenticated}
-                setPinData={setPinData}
-                isIndividualStoryPage={true}
-                mapContainerStyle={mapContainerStyle}
-                setMapContainerStyle={setMapContainerStyle}
-                centerMarker={centerMarker}
-                updateEditForm={updateEditForm}
-                addAddress={addAddress}
-                setAddAddress={setAddAddress}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <LeafletMap
+                  centerMarker={centerMarker}
+                  maplink={"/story"}
+                  pins={pins}
+                  divStyle={divStyle1}
+                  addMarker={addMarker}
+                  placement={placement}
+                  setPlacement={setplacement}
+                  modalState={modalState}
+                  toggle={toggle}
+                  editPin={editPinForm}
+                  seteditPin={seteditPinForm}
+                  editToggle={editToggle}
+                  editpinmodalState={editpinmodalState}
+                  seteditpinmodalState={seteditpinmodalState}
+                  onEditSubmit={onEditSubmit}
+                  getLocation={getLocation}
+                  sidebarOpen={sidebarOpen}
+                  setSidebarOpen={setSidebarOpen}
+                  pinDeleted={pinDeleted}
+                  setPinDeleted={setPinDeleted}
+                  showSidebarButton={true}
+                  setStorySidebarOpen={setStorySidebarOpen}
+                  addPinValues={addPinValues}
+                  handleAddPinChange={handleAddPinChange}
+                  handleAddPinSubmit={handleAddPinSubmit}
+                  setaddPinValues={setaddPinValues}
+                  setAnonRadius={setAnonRadius}
+                  darkMode={darkMode}
+                  setdarkMode={setdarkMode}
+                  mapReference={mapReference}
+                  setMapReference={setMapReference}
+                  user={user}
+                  isAuthenticated={isAuthenticated}
+                  setPinData={setPinData}
+                  isIndividualStoryPage={true}
+                  mapContainerStyle={mapContainerStyle}
+                  setMapContainerStyle={setMapContainerStyle}
+                  centerMarker={centerMarker}
+                  updateEditForm={updateEditForm}
+                  addAddress={addAddress}
+                  setAddAddress={setAddAddress}
+                />
+              </Suspense>
             </div>
+
             <StoryDisplay
               placement={placement}
               setplacement={setplacement}

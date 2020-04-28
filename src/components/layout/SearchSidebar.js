@@ -17,7 +17,6 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Slider from "@material-ui/core/Slider";
 import { Label } from "reactstrap";
-import { format, compareAsc, setYear } from "date-fns";
 import moment from "moment";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Avatar } from "antd";
@@ -37,14 +36,11 @@ const labelStyle = {
 const m = moment();
 function SearchSidebar(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [pinType, setPinType] = useState(1);
+
   const [searchText, setSearchText] = useState("");
   const [selectedCategories, setSelectedCategories] = useState(options);
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(props.minPinDate);
-  const [endDate, setEndDate] = useState(props.maxPinDate);
-  const [minDate, setMinDate] = useState(0);
-  const [maxDate, setMaxDate] = useState(new Date());
+
   const pinData = useSelector((state) => state.pins.pins);
   const users = useSelector((state) => state.auth.users);
   const [userSearchText, setUserSearchText] = useState("");
@@ -117,12 +113,15 @@ function SearchSidebar(props) {
 
   const clearFilters = () => {
     setSelectedCategories(options);
-    setMinDate(props.minPinDate.getFullYear());
-    setMaxDate(props.maxPinDate.getFullYear());
-    setStartDate(props.minPinDate);
-    setEndDate(props.maxPinDate);
-    setDateRange([minPinDate, maxPinDate]);
+
     setSearchText("");
+
+    setDateRange({
+      first: Number(moment(minPinDate).format("YYYY")),
+      last: Number(moment(maxPinDate).format("YYYY")),
+      start: minPinDate,
+      end: maxPinDate,
+    });
     let mapBounds = props.mapReference.getBounds();
     let south = mapBounds.getSouth();
     let west = mapBounds.getWest();
@@ -224,6 +223,7 @@ function SearchSidebar(props) {
             // max={Number(new Date().getFullYear())}
             value={[dateRange.first, dateRange.last]}
             valueLabelDisplay="auto"
+            step={5}
             onChange={(event, newValue) => {
               // console.log("props.minPinDate "+ props.minPinDate.getFullYear());
               // console.log("new value " + newValue);
