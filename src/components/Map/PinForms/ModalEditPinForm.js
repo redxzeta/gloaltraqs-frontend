@@ -108,7 +108,7 @@ function ModalEditPinForm(props) {
                 onChange={props.updateEditForm}
               >
                 <option value="1">Personal</option>
-                <option value="2">Community</option>
+                <option value="2">Resources</option>
                 <option value="3">Historical</option>
               </select>
             </FormGroup>
