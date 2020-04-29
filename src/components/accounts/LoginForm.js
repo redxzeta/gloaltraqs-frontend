@@ -35,7 +35,7 @@ export default function LoginForm() {
     } else {
       setFailed(false);
     }
-  }, [loginFail]);
+  }, [submitted]);
 
   const reCaptchaLoaded = () => {
     console.log("captcha successfully loaded");

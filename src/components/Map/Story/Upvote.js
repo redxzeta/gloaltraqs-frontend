@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import CircularIndeterminate from "./CircularIndeterminate";
+import React from "react";
+
 import { userFirstUpvote, userUpovte } from "../../../actions/pins";
 import { useDispatch, useSelector } from "react-redux";
 import BookMark from "../../images/Bookmark_Outline_Icon.png";
@@ -20,9 +19,7 @@ function Upvote(props) {
           : dispatch(userFirstUpvote(props.id, user.id))
       }
     >
-      {favoritedPin
-        ? AlreadyBookMarked
-        : BookMark}
+      {favoritedPin ? AlreadyBookMarked : BookMark}
     </FavoriteButton>
   );
 }

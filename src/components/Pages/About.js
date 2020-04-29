@@ -28,7 +28,7 @@ function About() {
   useEffect(() => {
     dispatch(getAboutUs());
     // setAboutUs(aboutUsData);
-  }, []);
+  }, [dispatch]);
 
   const handleEditorChange = (e) => {
     setEditorContent(e.target.getContent());
@@ -94,20 +94,25 @@ function About() {
           <p className="aboutDesc">
             The arqive is an online map of queer stories (histories, herstories,
             theirstories) and resources created and collected by and for queer
-            people all around the world to serve as a resource and a reminder that
-            we are here, we've always been here, and we always will be.
+            people all around the world to serve as a resource and a reminder
+            that we are here, we've always been here, and we always will be.
             <br />
             <br />
-            Originally founded by Cynthia Wang in 2014, then revamped in 2019 with
-            new Co-Founder Zachary Vernon. The arqive seeks to provide the full
-            range of queer stories from historical/archival to personal by
-            geolocating them and digitally preserving them. This is an attempt to
-            counter the queer erasure that happens through the changing physical
-            locations of queer stories. It also seeks to make visible historically
-            marginalized voices and stories and connect queer people globally.
+            Originally founded by Cynthia Wang in 2014, then revamped in 2019
+            with new Co-Founder Zachary Vernon. The arqive seeks to provide the
+            full range of queer stories from historical/archival to personal by
+            geolocating them and digitally preserving them. This is an attempt
+            to counter the queer erasure that happens through the changing
+            physical locations of queer stories. It also seeks to make visible
+            historically marginalized voices and stories and connect queer
+            people globally.
           </p>
         </Col>
-        <Col md={5} className="offset-md-1" style={{ marginTop: "auto", marginBottom: "auto" }}>
+        <Col
+          md={5}
+          className="offset-md-1"
+          style={{ marginTop: "auto", marginBottom: "auto" }}
+        >
           <img className="moveimage" src={Logo} alt="About Us" />
           <p className="copyright">
             ©COPYRIGHT Manuscripts and Archives Division, The New York Public
@@ -115,8 +120,8 @@ function About() {
             Rainsford. Simon Tseko Nkoli ©University of California. Harvy Milk
             ©Jonathan Silin, courtesy of The New York Public Library. Harry Hay
             PHOTO: COURTESY OF NETFLIX. Marsha P. JOhnson ©Liz Mangelsdorf/San
-            Francisco Chronicle/Corbis. Phyllis Lyon and Del Martin ©William Lucas
-            Walker.Peter Staley
+            Francisco Chronicle/Corbis. Phyllis Lyon and Del Martin ©William
+            Lucas Walker.Peter Staley
           </p>
         </Col>
       </Row>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editPin, getMinPinDate, getMaxPinDate } from "../../../actions/pins";
-import max from "date-fns/max";
+import { editPin } from "../../../actions/pins";
+
 const useEditPinForm = (pinData, setPinData) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);

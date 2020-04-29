@@ -1,13 +1,12 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { updateProfilePic } from "../../../actions/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import axios from "axios";
 import getCroppedImg from "./cropImage";
 const useProfileImage = () => {
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = auth;
+
   const [modalState, setmodalState] = useState(false);
   const [save, setsave] = useState(false);
   const [image, setimage] = useState("");

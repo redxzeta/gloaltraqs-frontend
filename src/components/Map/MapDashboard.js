@@ -105,7 +105,7 @@ export default function MapDashboard() {
         dispatch(getPinsWithBounds(north, south, east, west));
       });
     }
-  }, [mapReference, isSearch]);
+  }, [mapReference, isSearch, dispatch]);
 
   useEffect(() => {
     getLocation();

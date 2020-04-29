@@ -7,7 +7,6 @@ import {
   ModalFooter,
   Form,
   FormGroup,
-  Label,
 } from "reactstrap";
 import Cropper from "react-easy-crop";
 import Slider from "@material-ui/core/Slider";
@@ -68,10 +67,14 @@ export default function ProfileImageModal(props) {
             onChange={(e, zoom) => props.setZoom(zoom)}
           />
 
-          <Button className={"default-btn-purple"} style={{ marginRight: "20px" }} onClick={props.toggle}>
+          <Button
+            className={"default-btn-purple"}
+            style={{ marginRight: "20px" }}
+            onClick={props.toggle}
+          >
             Cancel
           </Button>
-           <Button
+          <Button
             style={buttonStyle}
             onClick={props.showCroppedImage}
             className={"default-btn-purple"}

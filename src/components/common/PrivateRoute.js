@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
+//Redirect if needed
 import { connect } from "react-redux";
 import NotFoundPage from "../Pages/NotFoundPage";
 const PrivateRoute = ({ component: Component, auth, ...rest }) => {

@@ -1,27 +1,21 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
   useParams,
   useRouteMatch,
   useLocation,
 } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+
 import ManageFlag from "./ManageFlag";
 import ManageUsers from "./ManageUsers";
 import ManageComments from "./ManageComments";
 import ManageCategory from "./ManageCategory";
-import { RoutedTabs, NavTab } from "react-router-tabs";
+import { NavTab } from "react-router-tabs";
 import "./styles/react-router-tabs.css";
 export default function Manage() {
-  let { path, url } = useRouteMatch();
-
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const { isAuthenticated, user } = auth;
+  let { path } = useRouteMatch();
 
   return (
     <div className="main-content-div">
