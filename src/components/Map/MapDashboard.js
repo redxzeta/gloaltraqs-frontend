@@ -166,6 +166,8 @@ export default function MapDashboard() {
     removalToggle,
     onDeleteHome,
     removalFav,
+    loginToggle,
+    loginregisterModalState,
   } = useRemovalConfirm(onDelProfile);
   function userAddedPin() {
     mapReference.flyTo([addPinValues.latitude, addPinValues.longitude], 15);
@@ -427,6 +429,7 @@ export default function MapDashboard() {
               isLeavingStoryPage={isLeavingStoryPage}
               setIsLeavingStoryPage={setIsLeavingStoryPage}
               history={history}
+              loginToggle={loginToggle}
             />
           </div>
         </Route>
@@ -438,6 +441,12 @@ export default function MapDashboard() {
         onSubmit={onDeleteHome}
         title="Are you sure you want to delete this story?"
         buttonTitle={"Yes, delete this story"}
+      />
+      <ConfirmationModal
+        modalState={loginregisterModalState}
+        toggle={loginToggle}
+        login={true}
+        title="Login or Register To Favorite"
       />
     </Fragment>
   );

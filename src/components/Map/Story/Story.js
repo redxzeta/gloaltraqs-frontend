@@ -29,13 +29,17 @@ function Story(props) {
   // }, []);
 
   const upvoteButoon = (
-    <Link className="login-link favorite-story-btn" to="/login">
+    <div
+      className="login-link favorite-story-btn"
+      style={{ cursor: "pointer " }}
+    >
       <img
+        onClick={props.loginToggle}
         className="story-favorites-icon"
         src={BookMark}
         alt={"favorite this story icon"}
       />
-    </Link>
+    </div>
   );
 
   useEffect(() => {
@@ -88,7 +92,13 @@ function Story(props) {
           <h2 className={"story-page-story-title"}>
             <strong>{props.pin.title}</strong>
           </h2>
-          <h3 className={"story-page-story-address"}>{props.pin.address ? props.pin.address : ""} {props.pin.locality ? props.pin.locality : ""} { props.pin.region ? props.pin.region : ""} {props.pin.postCode ? props.pin.postCode : ""} {props.pin.country ? props.pin.country : ""} </h3>
+          <h3 className={"story-page-story-address"}>
+            {props.pin.address ? props.pin.address : ""}{" "}
+            {props.pin.locality ? props.pin.locality : ""}{" "}
+            {props.pin.region ? props.pin.region : ""}{" "}
+            {props.pin.postCode ? props.pin.postCode : ""}{" "}
+            {props.pin.country ? props.pin.country : ""}{" "}
+          </h3>
           {props.pin.startDate && props.pin.endDate ? (
             <p className={"story-page-dates"}>
               {props.pin.startDate ? (
