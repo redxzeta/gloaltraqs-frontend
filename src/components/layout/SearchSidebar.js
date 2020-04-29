@@ -26,8 +26,8 @@ import { searchUsers, getNextPreviousUsers } from "../../actions/users";
 
 const options = [
   { value: "1", label: "Personal" },
-  { value: "2", label: "Historical" },
-  { value: "3", label: "Resources" },
+  { value: "2", label: "Resources" },
+  { value: "3", label: "Historical" },
 ];
 
 // const labelStyle = {
@@ -137,12 +137,12 @@ function SearchSidebar(props) {
     multiValue: (styles, { data }) => {
       const category = data.value;
       let color = "white";
-      if (category === "1") {
+      if (category == 1) {
         color = "#e01783";
-      } else if (category === "2") {
-        color = "#248dc1";
-      } else {
+      } else if (category == 2) {
         color = "#00ce7d";
+      } else {
+        color = "#248dc1";
       }
       return {
         ...styles,
@@ -308,9 +308,9 @@ function SearchSidebar(props) {
               >
                 <div
                   className={
-                    story.category === 1
+                    story.category == 1
                       ? "search-bar-story-card-trim-personal"
-                      : story.category === 2
+                      : story.category == 2
                       ? "search-bar-story-card-trim-resources"
                       : "search-bar-story-card-trim-historical"
                   }

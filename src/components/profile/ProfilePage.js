@@ -31,11 +31,12 @@ const FavoritePostField = ({
   return (
     <div style={{ paddingTop: "20px", height: "auto" }} key={id} {...rest}>
       <Card className={"profile-story-card"}>
+        {console.log(category + " is the category " + title + " is the title")}
         <div
           className={
-            category === 1
+            category == 1
               ? "search-bar-story-card-trim-personal"
-              : category === 2
+              : category == 2
               ? "search-bar-story-card-trim-resources"
               : "search-bar-story-card-trim-historical"
           }
@@ -67,9 +68,7 @@ const FavoritePostField = ({
             <Typography gutterBottom variant="h5" component="h2">
               <p className="sidebar-story-author">
                 Posted by:{" "}
-                <span className="sidebar-story-username">
-                  {!isAnon && username ? username : "Anonymous"}
-                </span>
+                {!isAnon && username ? <Link to={`/users/${username}`}> <span className="sidebar-story-username">{username} </span> </Link> : <span className="sidebar-story-anon-username"> Anonymous</span>}
               </p>
             </Typography>
             <Typography
@@ -307,9 +306,9 @@ const StoryField = (props) => {
           <Card className={"profile-story-card"}>
             <div
               className={
-                category === 1
+                category == 1
                   ? "search-bar-story-card-trim-personal"
-                  : category === 2
+                  : category == 2
                   ? "search-bar-story-card-trim-resources"
                   : "search-bar-story-card-trim-historical"
               }

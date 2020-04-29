@@ -1579,3 +1579,34 @@ textarea {
         margin-top: 100px;
     }
 }
+
+.not-found-background {
+    background-color: #e63f52 !important;
+    height: 100%;
+    width: 100%;
+    padding-top: 80px;
+}
+
+.not-found-background h3 {
+    font-family: Eina, Arial !important;
+    text-transform: lowercase !important;
+    font-size: 2.2em !important;
+    color: white;
+}
+
+.not-found-background p {
+    text-align: left;
+    font-size: 1.5em !important;
+    color: white;
+    text-transform: lowercase;
+    font-family: "Courier New", "Courier" !important;
+}
+
+
+.not-found-background button {
+    border-radius: 8px;
+    color: white;
+    text-transform: lowercase;
+    font-family: Eina, Arial !important;
+    float: right;
+}
