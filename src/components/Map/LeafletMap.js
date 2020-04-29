@@ -84,6 +84,14 @@ const LeafletMap = (props) => {
     props.setStorySidebarOpen(false);
   }, []);
 
+  useEffect(() => {
+    if (mapInstance) {
+      let map = mapInstance.leafletElement;
+      props.setMapReference(mapInstance.leafletElement);
+      map.addControl(searchControl);
+      map.on("geosearch/showlocation", addressSearch);
+    }
+  }, [mapInstance]);
   const updatePin = (marker) => {
     let start = null;
     let end = null;
@@ -148,14 +156,7 @@ const LeafletMap = (props) => {
   };
 
   // used for adding the map reference for fly to and address search
-  useEffect(() => {
-    if (mapInstance) {
-      let map = mapInstance.leafletElement;
-      props.setMapReference(mapInstance.leafletElement);
-      map.addControl(searchControl);
-      map.on("geosearch/showlocation", addressSearch);
-    }
-  }, [mapInstance]);
+
   const guest = useSelector((state) => state.auth.guest_user);
 
   return (

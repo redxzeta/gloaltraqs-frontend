@@ -297,7 +297,10 @@ function SearchSidebar(props) {
 
         {pinData.map((story, index) => {
           return (
-            <Card style={{ marginTop: "10px", borderRadius: "20px" }}>
+            <Card
+              key={story.id}
+              style={{ marginTop: "10px", borderRadius: "20px" }}
+            >
               <Link
                 style={{ textDecoration: "inherit" }}
                 to={`story/${story.id}`}
@@ -483,7 +486,7 @@ const ListUsersSearch = (props) => {
     <>
       {props.users.map((user, index) => {
         return (
-          <Card key={index} style={{ marginTop: "5px" }}>
+          <Card key={user.id} style={{ marginTop: "5px" }}>
             <Link
               style={{ textDecoration: "inherit" }}
               to={`users/${user.username}`}
