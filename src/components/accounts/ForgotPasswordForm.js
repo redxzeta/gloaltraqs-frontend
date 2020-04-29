@@ -6,39 +6,42 @@ import useRemovalConfirm from "../profile/CustomHooks/useRemovalConfirm";
 import ConfirmationModal from "../profile/ConfirmationModal";
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
-  const [showError, setShowError] = useState(false);
+  const [showError, setShowError] = useState(true);
   const [messageFromServer, setMessageFromServer] = useState("");
   const { loginregisterModalState, loginToggle } = useRemovalConfirm();
+  const [message, setMessage] = useState("");
+
   const sendEmail = (e) => {
     e.preventDefault();
-    if (email === "") {
-      setShowError(false);
-      setMessageFromServer("");
-    } else {
+    if (!showError)
       axios
         .post(`${LINK}/password_reset/`, {
           email: email,
         })
         .then((response) => {
-          if (response.data.toString().includes("object")) {
-            console.log(response.headers);
-            setEmail("");
-            loginToggle();
-          }
-          // if (response.data === "email not in db") {
-          //   setShowError(true);
-          //   setMessageFromServer("");
-          // } else if (response.data === "recovery email sent") {
-          //   setShowError(false);
-          //   setMessageFromServer("recovery email sent");
-          // }
+          setMessage("Email have been sent");
+          loginToggle();
+          setEmail("");
         })
         .catch((error) => {
-          console.log(error.data);
+          setMessage("Enter a Valid Email");
+          loginToggle();
+          setEmail("");
         });
+    else {
+      setMessage("Enter a Valid Email");
+      loginToggle();
+      setEmail("");
     }
   };
-
+  const validateEmail = () => {
+    if (
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) &&
+      email.length > 0
+    ) {
+      setShowError(false);
+    }
+  };
   return (
     <div className={"main-content-div forgot-password-div"}>
       <div className="col-md-6 m-auto forgot-password-col">
@@ -52,6 +55,7 @@ export default function ForgotPasswordForm() {
                 id="email"
                 label="E-mail"
                 value={email}
+                onBlur={validateEmail}
                 onChange={(e) => setEmail(e.target.value)} // not sure about this part
                 placeholder="Email Address"
               />
@@ -86,7 +90,7 @@ export default function ForgotPasswordForm() {
       <ConfirmationModal
         modalState={loginregisterModalState}
         toggle={loginToggle}
-        title="Email has been Sent"
+        title={message}
         buttonTitle={"Confirm"}
         onSubmit={loginToggle}
       />

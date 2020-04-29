@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userFlagPin } from "../../../actions/pins";
 import { userFlagComment } from "../../../actions/auth";
@@ -7,7 +7,7 @@ const useFlagForm = () => {
   const [flagCommentModalState, setflagCommentModalState] = useState(false);
   const [flagForm, setflagForm] = useState("");
   const auth = useSelector((state) => state.auth);
-  const { isAuthenticated, user } = auth;
+  const { user } = auth;
   const dispatch = useDispatch();
   const flagToggle = (id) => {
     setflagModalState(!flagModalState);

@@ -8,7 +8,7 @@ const useProfileImage = () => {
   const dispatch = useDispatch();
 
   const [modalState, setmodalState] = useState(false);
-  const [save, setsave] = useState(false);
+
   const [image, setimage] = useState("");
   const [zoom, setZoom] = useState(1);
   const [crop, setcrop] = useState({
@@ -88,7 +88,6 @@ const useProfileImage = () => {
     onCropComplete,
     onSubmitPic,
     showCroppedImage,
-    save,
   };
 };
 export default useProfileImage;

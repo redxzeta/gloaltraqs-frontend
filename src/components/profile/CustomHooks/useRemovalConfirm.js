@@ -4,7 +4,7 @@ import { unFavoriteProfile } from "../../../actions/users";
 const useRemovalConfirm = (onSubmit) => {
   const [removalModalState, setremovalModalState] = useState(false);
   const [loginregisterModalState, setloginregisterModalState] = useState(false);
-  const [removalFav, setremovalFav] = useState();
+  const [removalFav, setremovalFav] = useState("");
   const dispatch = useDispatch();
   const removalToggle = (id) => {
     setremovalModalState(!removalModalState);
