@@ -8,50 +8,50 @@ import {
   ModalFooter,
   Form,
   FormGroup,
-  Label
+  Label,
 } from "reactstrap";
 import {
   getUsers,
   editUserRole,
   getNextPreviousUsers,
-  deleteUser
+  deleteUser,
 } from "../../actions/users";
 
 export default function ManageUsers() {
   const dispatch = useDispatch();
-  const users = useSelector(state => state.users.users);
+  const users = useSelector((state) => state.users.users);
   const [editUser, seteditUser] = useState();
   const [modalState, setmodalState] = useState(false);
   const [userRole, setuserRole] = useState(3);
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
-  const onSubmit = e => {
+  }, [dispatch]);
+  const onSubmit = (e) => {
     console.log(" the user role is " + userRole);
     e.preventDefault();
     let submit = {
-      id: editUser.id
+      id: editUser.id,
     };
     if (userRole === "1") {
       submit = {
         ...submit,
         is_moderator: false,
-        is_administrator: true
+        is_administrator: true,
       };
     } else if (userRole === "2") {
       submit = {
         ...submit,
         is_moderator: true,
-        is_administrator: false
+        is_administrator: false,
       };
     } else {
       submit = {
         ...submit,
         is_moderator: false,
-        is_administrator: false
+        is_administrator: false,
       };
     }
-    console.log(submit);
+
     dispatch(editUserRole(editUser.id, submit));
     setmodalState(!modalState);
   };
@@ -80,7 +80,7 @@ export default function ManageUsers() {
   );
 }
 
-const PrevNext = props => {
+const PrevNext = (props) => {
   const dispatch = useDispatch();
   return (
     <>
@@ -108,7 +108,7 @@ const PrevNext = props => {
   );
 };
 
-const ViewUsers = props => {
+const ViewUsers = (props) => {
   const dispatch = useDispatch();
   return (
     <table className="table table-bordered">
@@ -163,12 +163,12 @@ const ViewUsers = props => {
   );
 };
 
-const EditUserRole = props => {
+const EditUserRole = (props) => {
   const buttonStyle = {
-    float: "right"
+    float: "right",
   };
   const labelStyle = {
-    marginRight: "10px"
+    marginRight: "10px",
   };
   console.log(props.userRole);
   return (
@@ -193,14 +193,14 @@ const EditUserRole = props => {
               <select
                 name="Role"
                 value={props.userRole}
-                onChange={e => props.setuserRole(e.target.value)}
-              // value={props.userForm.category}
-              // onChange={e =>
-              //   props.setuserForm({
-              //     ...props.userForm,
-              //     category: e.target.value
-              //   })
-              // }
+                onChange={(e) => props.setuserRole(e.target.value)}
+                // value={props.userForm.category}
+                // onChange={e =>
+                //   props.setuserForm({
+                //     ...props.userForm,
+                //     category: e.target.value
+                //   })
+                // }
               >
                 <option value="1">Administrator</option>
                 <option value="2">Moderator</option>

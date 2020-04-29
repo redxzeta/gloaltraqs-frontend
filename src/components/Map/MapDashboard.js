@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, Suspense } from "react";
 
 import {
   getPin,
@@ -10,6 +10,7 @@ import {
   getMaxPinDate,
   getPins,
 } from "../../actions/pins";
+import { searchUsers } from "../../actions/users";
 import { useDispatch, useSelector } from "react-redux";
 import useAddPinForm from "./CustomHooks/useAddPinForm";
 import useFlagForm from "./CustomHooks/useFlagForm";
@@ -23,9 +24,8 @@ import {
   useRouteMatch,
   useHistory,
 } from "react-router-dom";
-import LeafletMap from "./LeafletMap";
-import SearchSidebar from "../layout/SearchSidebar";
-import Story from "./Story/Story";
+//import LeafletMap from "./LeafletMap";
+//import SearchSidebar from "../layout/SearchSidebar";
 import StorySidebar from "../layout/StorySidebar";
 import ConfirmationModal from "../profile/ConfirmationModal";
 // const sidebarStyle = {
@@ -43,9 +43,10 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 //   top: 0;
 // };
 
+import LeafletMap from "./LeafletMap";
+const Story = React.lazy(() => import("./Story/Story"));
+const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
-  let { path, url } = useRouteMatch();
-
   const [divStyle, setdivStyle] = useState({
     height: "100%",
     width: "100%",
@@ -79,9 +80,10 @@ export default function MapDashboard() {
     dispatch(getPins());
     dispatch(getMaxPinDate());
     dispatch(getMinPinDate());
-  }, []);
+    dispatch(searchUsers(""));
+  }, [dispatch]);
   useEffect(() => {
-    if (mapReference != undefined) {
+    if (mapReference !== undefined) {
       let mapBounds = mapReference.getBounds();
       let south = mapBounds.getSouth();
       let west = mapBounds.getWest();
@@ -89,10 +91,10 @@ export default function MapDashboard() {
       let east = mapBounds.getEast();
       dispatch(getPinsWithBounds(north, south, east, west));
     }
-  }, [mapReference]);
+  }, [dispatch, mapReference]);
 
   useEffect(() => {
-    if (mapReference != undefined && !isSearch) {
+    if (mapReference !== undefined && !isSearch) {
       // dispatch(getPins());
       mapReference.once("moveend", function () {
         let mapBounds = mapReference.getBounds();
@@ -103,7 +105,7 @@ export default function MapDashboard() {
         dispatch(getPinsWithBounds(north, south, east, west));
       });
     }
-  }, [pins]);
+  }, [mapReference, isSearch, dispatch]);
 
   useEffect(() => {
     getLocation();
@@ -164,6 +166,8 @@ export default function MapDashboard() {
     removalToggle,
     onDeleteHome,
     removalFav,
+    loginToggle,
+    loginregisterModalState,
   } = useRemovalConfirm(onDelProfile);
   function userAddedPin() {
     mapReference.flyTo([addPinValues.latitude, addPinValues.longitude], 15);
@@ -177,7 +181,7 @@ export default function MapDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [storySidebarOpen, setStorySidebarOpen] = useState(false);
   const [showSidebarButton, setShowSidebarButton] = useState(false);
-  const [map, setMap] = useState();
+
   const [addAddress, setAddAddress] = useState(false);
   const minPinDate = useSelector((state) => state.pins.pinMinDate);
   const maxPinDate = useSelector((state) => state.pins.pinMaxDate);
@@ -201,7 +205,7 @@ export default function MapDashboard() {
   };
 
   const toggle = () => {
-    if (modalState == true) {
+    if (modalState === true) {
       setAddAddress(false);
     }
     setmodalstate(!modalState);
@@ -213,7 +217,7 @@ export default function MapDashboard() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (succes) => {
-          if (mapReference != undefined) {
+          if (mapReference !== undefined) {
             mapReference.panTo([
               succes.coords.latitude,
               succes.coords.longitude,
@@ -262,17 +266,19 @@ export default function MapDashboard() {
         <Route exact path="/">
           <div id={"map-dashboard"}>
             <div id={"sidebar-style"}>
-              <SearchSidebar
-                sidebarOpen={sidebarOpen}
-                maxPinDate={maxPinDate}
-                minPinDate={minPinDate}
-                setSidebarOpen={setSidebarOpen}
-                mapReference={mapReference}
-                setPlacement={setplacement}
-                centerMarker={centerMarker}
-                isSearch={isSearch}
-                setIsSearch={setIsSearch}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <SearchSidebar
+                  sidebarOpen={sidebarOpen}
+                  maxPinDate={maxPinDate}
+                  minPinDate={minPinDate}
+                  setSidebarOpen={setSidebarOpen}
+                  mapReference={mapReference}
+                  setPlacement={setplacement}
+                  centerMarker={centerMarker}
+                  isSearch={isSearch}
+                  setIsSearch={setIsSearch}
+                />
+              </Suspense>
               <StorySidebar
                 maplink={"/story"}
                 pinData={pinData}
@@ -292,6 +298,7 @@ export default function MapDashboard() {
                 removalToggle={removalToggle}
               />
             </div>
+
             <LeafletMap
               maplink={"/story"}
               pins={pins}
@@ -381,12 +388,12 @@ export default function MapDashboard() {
                 isIndividualStoryPage={true}
                 mapContainerStyle={mapContainerStyle}
                 setMapContainerStyle={setMapContainerStyle}
-                centerMarker={centerMarker}
                 updateEditForm={updateEditForm}
                 addAddress={addAddress}
                 setAddAddress={setAddAddress}
               />
             </div>
+
             <StoryDisplay
               placement={placement}
               setplacement={setplacement}
@@ -422,6 +429,7 @@ export default function MapDashboard() {
               isLeavingStoryPage={isLeavingStoryPage}
               setIsLeavingStoryPage={setIsLeavingStoryPage}
               history={history}
+              loginToggle={loginToggle}
             />
           </div>
         </Route>
@@ -434,6 +442,12 @@ export default function MapDashboard() {
         title="Are you sure you want to delete this story?"
         buttonTitle={"Yes, delete this story"}
       />
+      <ConfirmationModal
+        modalState={loginregisterModalState}
+        toggle={loginToggle}
+        login={true}
+        title="Login or Register To Favorite"
+      />
     </Fragment>
   );
 }
@@ -443,7 +457,7 @@ function StoryDisplay(props) {
   const { isAuthenticated, guest_user } = auth;
 
   let [storyStyle, setStoryStyle] = useState({ top: "100%" });
-  let [redirectHome, setRedirectHome] = useState(false);
+
   // change the map & story page styling for story slide up effect
   useEffect(() => {
     setStoryStyle({
@@ -488,7 +502,7 @@ function IndividualStory(props) {
   const pin = useSelector((state) => state.pins.pin);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const { isAuthenticated, user, favoritedPin } = auth;
+  const { isAuthenticated, user } = auth;
   const userid = isAuthenticated ? user.id : false;
   useEffect(() => {
     dispatch(getPin(id, userid));
@@ -498,21 +512,15 @@ function IndividualStory(props) {
     });
   }, [id]);
 
-  useEffect(() => {
-    props.seteditPin({
-      title: "",
-      description: "",
-      category: "",
-    });
-  }, [id]);
-
   return (
-    <Story
-      pin={pin}
-      pinData={props.pinData}
-      centerMarker={props.centerMarker}
-      mapReference={props.mapReference}
-      {...props}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Story
+        pin={pin}
+        pinData={props.pinData}
+        centerMarker={props.centerMarker}
+        mapReference={props.mapReference}
+        {...props}
+      />
+    </Suspense>
   );
 }

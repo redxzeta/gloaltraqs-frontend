@@ -72,16 +72,19 @@
     /*margin-top: 90px;*/
     width: 40%;
 }
+
 .search-sidebar {
     background: white;
     width: 40%;
     padding: 20px;
 }
+
 .story-sidebar {
     background: white;
     width: 40%;
     padding: 20px;
 }
+
 /*.root {*/
 /*    position: absolute;*/
 /*    top: 0;*/
@@ -150,8 +153,10 @@
     height: -moz-calc(100% - 129px);
 
 }
+
 .main-content-div {
-    margin-top: 129px; /* was originally 118 locally, why did we have to change it? */
+    margin-top: 129px;
+    /* was originally 118 locally, why did we have to change it? */
     padding: 20px;
     height: 100%;
     width: 100%;
@@ -176,17 +181,19 @@
 }
 
 #open-sidebar-button {
-    z-index:998;
+    z-index: 998;
     position: absolute;
     right: 0px;
 }
 
 /* fix for bold Tiny MCE text not showing up in some pages */
-b, strong {
-    font-weight: bold !important; /* make this styling take precedence over bootstrap 'bolder' style */
+b,
+strong {
+    font-weight: bold !important;
+    /* make this styling take precedence over bootstrap 'bolder' style */
 }
 
-.userway{
+.userway {
     visibility: hidden;
 }
 
@@ -205,40 +212,40 @@ b, strong {
 /*}*/
 
 #story-page {
-  position: absolute;
-  transition: all .75s ease-out;
-  background: white;
-  height: auto;
-  min-height: 100%;
-  width: 100%;
-  z-index: 2;
-  margin-top: 70px;
+    position: absolute;
+    transition: all .75s ease-out;
+    background: white;
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+    z-index: 2;
+    margin-top: 70px;
 }
+
 /*#story-container:hover > #story-page {*/
 /*  top: 0;*/
 /*}*/
 
 #story-container {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 
 
-.aboutHeader   
-{
+.aboutHeader {
     padding-bottom: 10px;
     float: left;
-    font-size: 64px; /* should use rem or em for responsiveness */
+    font-size: 64px;
+    /* should use rem or em for responsiveness */
     color: #ffffff;
     /*font: Eina;*/
     font-family: eina, arial !important;
     text-transform: lowercase;
 }
 
-.aboutDesc
-{
+.aboutDesc {
     margin-top: 40px;
     float: right;
     font-size: 20px;
@@ -256,7 +263,7 @@ b, strong {
     background: rgb(77, 65, 133);
 
 }
-  
+
 .columnright {
     width: 40%;
     position: relative;
@@ -283,8 +290,8 @@ b, strong {
     margin-right: -10px;
     background: rgb(77, 65, 133);
 }
-  
-  /* Clear floats after the columns */
+
+/* Clear floats after the columns */
 .aboutUs-row {
     background: rgb(77, 65, 133);
     height: auto !important;
@@ -413,7 +420,7 @@ b, strong {
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
- .accordion {
+.accordion {
     background-color: white;
     color: #f5dc6d;
     cursor: pointer;
@@ -422,20 +429,21 @@ b, strong {
     border: none;
     outline: none;
     transition: 0.4s;
-  }
-  
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .accordion:hover {
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.accordion:hover {
     background-color: white;
-  }
-  
-  /* Style the accordion panel. Note: hidden by default */
-  .panel {
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
     padding: 0 18px;
     background-color: white;
     display: none;
     overflow: hidden;
-  } 
+}
 
 .header-user-dropdown-menu {
     background-color: black !important;
@@ -458,7 +466,7 @@ b, strong {
 }
 
 .dropdown-item:hover {
-  background-color: black !important;
+    background-color: black !important;
 }
 
 .header-dropdown-nav-item {
@@ -646,7 +654,8 @@ button {
     color: #f5dc6d !important;
 }
 
-.faq-header-nav-link:hover, .faq-header-nav-link:focus {
+.faq-header-nav-link:hover,
+.faq-header-nav-link:focus {
     color: #f5dc6d !important;
 }
 
@@ -654,7 +663,8 @@ button {
     color: rgb(77, 65, 133) !important;
 }
 
-.about-us-header-nav-link:hover, .aabout-us-header-nav-link:focus {
+.about-us-header-nav-link:hover,
+.aabout-us-header-nav-link:focus {
     color: rgb(77, 65, 133) !important;
 }
 
@@ -662,7 +672,8 @@ button {
     color: #00ce7d !important;
 }
 
-.resources-nav-link:hover, .resources-nav-link:focus {
+.resources-nav-link:hover,
+.resources-nav-link:focus {
     color: #00ce7d !important;
 }
 
@@ -816,7 +827,9 @@ button {
     text-transform: none !important;
 }
 
-.react-date-picker, react-date-picker--closed, react-date-picker--enabled {
+.react-date-picker,
+react-date-picker--closed,
+react-date-picker--enabled {
     padding-right: 20px !important;
 }
 
@@ -946,6 +959,7 @@ button {
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
+
 .profile-page-story-settings-card-body {
     position: relative;
     top: 50%;
@@ -989,12 +1003,12 @@ button {
 }
 
 .register-btn {
-    background-color: black !important;
+    background-color: #000 !important;
     border-radius: 15px !important;
     text-transform: lowercase !important;
-    color: white !important;
+    color: #fff !important;
     font-size: 1rem !important;
-    width: 120px !important;
+    width: auto !important;
 }
 
 .login-div {
@@ -1091,19 +1105,17 @@ button {
     margin-bottom: 40px;
 }
 
-.moveimage
-{
+.moveimage {
     padding-right: 10px;
     width: 100%;
 }
 
-.con
-{
+.con {
     background: rgb(77, 65, 133);
 }
 
 
-.threeButton1{
+.threeButton1 {
     padding-right: 100px;
     text-align: center;
     width: 80%;
@@ -1111,7 +1123,8 @@ button {
     border-style: solid;
     border-radius: 40px 40px 40px 40px;
 }
-.threeButton2{
+
+.threeButton2 {
     text-align: center;
     width: 80%;
     border-color: #CD3582;
@@ -1119,6 +1132,7 @@ button {
 
     border-radius: 40px 40px 40px 40px;
 }
+
 .threeButton3 {
     text-align: center;
     width: 80%;
@@ -1126,16 +1140,15 @@ button {
     border-style: solid;
     border-radius: 40px 40px 40px 40px;
 }
-.aboutHeader
-{
+
+.aboutHeader {
     float: left;
     font-size: 2.5rem;
     color: #ffffff;
     font-family: Eina, Arial !important;
 }
 
-.aboutDesc
-{
+.aboutDesc {
 
     float: right;
     font-size: 20px;
@@ -1174,8 +1187,8 @@ button {
     background: rgb(77, 65, 133);
 }
 
-  /* Clear floats after the columns */
-.aboutUs-row{
+/* Clear floats after the columns */
+.aboutUs-row {
     background: rgb(77, 65, 133);
     height: 100%;
 }
@@ -1245,6 +1258,7 @@ button {
     top: 95px;
     border: none;
 }
+
 .profile-image-div {
     width: 150px;
     position: relative;
@@ -1269,6 +1283,7 @@ button {
     font-weight: 600;
     text-transform: lowercase;
 }
+
 .profile-settings-div label {
     color: white !important;
     font-family: "Eina", "Arial" !important;
@@ -1278,7 +1293,7 @@ button {
 }
 
 
-.profile-settings-div h1{
+.profile-settings-div h1 {
     color: white;
     font-family: "Eina", "Arial" !important;
     font-size: 2rem;
@@ -1330,8 +1345,7 @@ button {
     font-weight: 600;
 }
 
-.copyright
-{
+.copyright {
     padding-right: 10px;
     padding-top: 30px;
     width: 100%;
@@ -1448,7 +1462,8 @@ select {
     font-family: Eina, Arial !important;
     color: #e63f52 !important;
 }
-.btn:focus{
+
+.btn:focus {
     box-shadow: none !important;
 }
 
@@ -1469,7 +1484,7 @@ select {
 }
 
 a:hover {
-  text-decoration: none !important;
+    text-decoration: none !important;
 }
 
 input {
@@ -1493,63 +1508,74 @@ textarea {
 }
 
 .left-text {
-      text-align: left !important;
+    text-align: left !important;
 }
 
 @media screen and (max-width: 770px) {
-  .profile-page-story-settings-card {
-      width: 100%;
-      margin-top: 10px;
-      padding-left: 5px;
-      padding-right: 5px;
-  }
-  .profile-page-story-row {
-      padding-bottom: 50px;
-  }
-  .left-text {
-      text-align: center !important;
-  }
-  .leaflet-control-geosearch.bar {
-      width: 250px !important;
-  }
-  .navbar-collapse {
-    background-color: black;
-    padding: 30px;
-    margin-left: -16px;
-  }
+    .profile-page-story-settings-card {
+        width: 100%;
+        margin-top: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .profile-page-story-row {
+        padding-bottom: 50px;
+    }
+
+    .left-text {
+        text-align: center !important;
+    }
+
+    .leaflet-control-geosearch.bar {
+        width: 250px !important;
+    }
+
+    .navbar-collapse {
+        background-color: black;
+        padding: 30px;
+        margin-left: -16px;
+    }
 }
 
 @media screen and (max-width: 900px) {
-  .profile-page-story-settings-card {
-      width: 100%;
-      padding-left: 5px;
-      padding-right: 5px;
-  }
-  .profile-page-story-row {
-      padding-bottom: 50px;
-  }
-  .left-text {
-      text-align: center !important;
-  }
-  .search-sidebar {
-      width: 80%;
-  }
-  .story-sidebar {
-      width: 50%
-  }
+    .profile-page-story-settings-card {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .profile-page-story-row {
+        padding-bottom: 50px;
+    }
+
+    .left-text {
+        text-align: center !important;
+    }
+
+    .search-sidebar {
+        width: 80%;
+    }
+
+    .story-sidebar {
+        width: 50%
+    }
 }
 
 @media screen and (max-width: 500px) {
-  .leaflet-control-geosearch.bar {
-      width: 150px !important;
-  }
-  .search-sidebar {
-      width: 100%;
-  }
-  .story-sidebar {
-      width: 100%
-  }
-  #story-page {
-      margin-top: 100px;
-  }
+    .leaflet-control-geosearch.bar {
+        width: 150px !important;
+    }
+
+    .search-sidebar {
+        width: 100%;
+    }
+
+    .story-sidebar {
+        width: 100%
+    }
+
+    #story-page {
+        margin-top: 100px;
+    }
 }

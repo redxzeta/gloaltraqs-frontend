@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { userFlagPin, userUnFlagPin } from "../../../actions/pins";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import React from "react";
+
+import { userUnFlagPin } from "../../../actions/pins";
+import { useDispatch } from "react-redux";
+
 function Flag(props) {
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth);
-  const { isAuthenticated, user } = auth;
 
   const flagid = props.pin.userFlaggedBefore
-    ? props.pin.flaggerstory.filter(a => a.flagger === props.user.id)[0].id
+    ? props.pin.flaggerstory.filter((a) => a.flagger === props.user.id)[0].id
     : 0;
   return (
     <>

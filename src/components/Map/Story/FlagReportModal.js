@@ -11,10 +11,6 @@ import {
   Label,
 } from "reactstrap";
 
-const buttonStyle = {
-  float: "right",
-};
-
 export const FlagReportModal = (props) => {
   return (
     <Modal
@@ -24,9 +20,9 @@ export const FlagReportModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <ModalHeader toggle={props.toggle}> { props.title } </ModalHeader>
+      <ModalHeader toggle={props.toggle}> {props.title} </ModalHeader>
       <Form onSubmit={props.onSubmit}>
-      <ModalBody>
+        <ModalBody>
           {/* <FormGroup>
             <Label style={labelStyle} for="category">
               Type of Report
@@ -87,15 +83,17 @@ export const FlagReportModal = (props) => {
               value={props.flagForm.reason}
             />
           </FormGroup>
-      </ModalBody>
-      <ModalFooter>
-        <Button className="default-btn-purple" style={{ marginRight: "20px" }}  onClick={props.toggle}>
-          Cancel
-        </Button>
-         <Button className="default-btn-purple">
-          submit
-        </Button>
-      </ModalFooter>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            className="default-btn-purple"
+            style={{ marginRight: "20px" }}
+            onClick={props.toggle}
+          >
+            Cancel
+          </Button>
+          <Button className="default-btn-purple">submit</Button>
+        </ModalFooter>
       </Form>
     </Modal>
   );

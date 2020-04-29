@@ -30,7 +30,7 @@ const labelStyle = {
 const dateStyle = {
   marginRight: "10px",
   marginTop: "auto",
-  marginBottom: "auto"
+  marginBottom: "auto",
 };
 function ModalAddPinForm(props) {
   const validateAddPinForm = async (e) => {
@@ -60,14 +60,11 @@ function ModalAddPinForm(props) {
     }
 
     if (props.addPinValues.title && props.addPinValues.description) {
-      console.log("Results");
-      console.log(results);
       if (results.length > 0) {
-        console.log("settings values");
         props.addPinValues.latitude = Number(results[0].y);
         props.addPinValues.longitude = Number(results[0].x);
       }
-      console.log("validating add pin...");
+
       props.handleAddPinSubmit();
     }
   };
@@ -82,8 +79,8 @@ function ModalAddPinForm(props) {
         centered
       >
         <ModalHeader toggle={props.toggle}> Add a story </ModalHeader>
-          <Form onSubmit={validateAddPinForm}>
-            <ModalBody>
+        <Form onSubmit={validateAddPinForm}>
+          <ModalBody>
             {props.addAddress ? (
               <>
                 <FormGroup>
@@ -203,14 +200,12 @@ function ModalAddPinForm(props) {
               </select>
             </FormGroup>
             <FormGroup>
-              <Label for="description">
-                Description
-              </Label>
-                 {!props.addPinValues.description ? (
-                  <p className="story-form-alerts">
-                    *Please enter a story description
-                  </p>
-                ) : null}
+              <Label for="description">Description</Label>
+              {!props.addPinValues.description ? (
+                <p className="story-form-alerts">
+                  *Please enter a story description
+                </p>
+              ) : null}
               <TinyMCE
                 content={props.addPinValues.description}
                 config={{
@@ -256,10 +251,10 @@ function ModalAddPinForm(props) {
                 format={"MM/dd/yyyy"}
                 name="startDate"
                 value={props.addPinValues.startDate}
-                onChange={(date) =>
+                onChange={(newdate) =>
                   props.setaddPinValues({
                     ...props.addPinValues,
-                    startDate: date,
+                    startDate: newdate,
                   })
                 }
               />
@@ -281,14 +276,17 @@ function ModalAddPinForm(props) {
           </ModalBody>
 
           <ModalFooter>
-            <Button className="default-btn-purple" style={{ marginRight: "20px" }} onClick={props.toggle}>
+            <Button
+              type="button"
+              className="default-btn-purple"
+              style={{ marginRight: "20px" }}
+              onClick={props.toggle}
+            >
               Cancel
             </Button>
-            <Button className="default-btn-purple">
-              Save
-            </Button>
+            <Button className="default-btn-purple">Save</Button>
           </ModalFooter>
-          </Form>
+        </Form>
       </Modal>
     </>
   );

@@ -111,9 +111,8 @@ export default function LoginForm() {
   return (
     <div className={"main-content-div login-div"}>
       <div className="col-md-6 m-auto login-col">
-        {console.log(attempts)}
         {/* if form was submitted and login failed then show an error banner*/}
-        {console.log("submitted " + submitted + " login fail " + failed)}
+
         <div className="card card-body mt-5 login-card">
           <h2 className="text-center login-title">Login</h2>
           {submitted && failed ? (

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import moment from "moment";
 import {
   GET_PINS,
   DELETE_PINS,
@@ -53,9 +53,9 @@ export const getMinPinDate = () => (dispatch) => {
   axios
     .get(`${LINK}/minPinDate`)
     .then((res) => {
-      let date = res.data[0].startDate.split("-");
+      const dates = "1869-04-20";
 
-      let minDate = new Date(date[0], date[1], date[2], 0, 0, 0, 0);
+      const minDate = moment(dates).format("YYYY/MM/DD");
 
       dispatch({
         type: GET_MIN_PIN,
@@ -66,19 +66,21 @@ export const getMinPinDate = () => (dispatch) => {
 };
 
 export const getMaxPinDate = () => (dispatch) => {
-  axios
-    .get(`${LINK}/maxPinDate`)
-    .then((res) => {
-      let date = res.data[0].startDate.split("-");
+  // axios
+  //   .get(`${LINK}/maxPinDate`)
+  //   .then((res) => {
+  //     // let date = res.data[0].startDate.split("-");
 
-      let maxDate = new Date(date[0], date[1], date[2], 0, 0, 0, 0);
+  // let maxDate = new Date(date[0], date[1], date[2], 0, 0, 0, 0);
+  const dates = "2020-04-20";
 
-      dispatch({
-        type: GET_MAX_PIN,
-        payload: maxDate,
-      });
-    })
-    .catch((err) => console.log(err));
+  const maxDate = moment(dates).format("YYYY/MM/DD");
+  dispatch({
+    type: GET_MAX_PIN,
+    payload: maxDate,
+  });
+  // })
+  // .catch((err) => console.log(err));
 };
 
 export const searchPins = (searchQuery, categories, startDate, endDate) => (

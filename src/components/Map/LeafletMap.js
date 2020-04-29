@@ -15,7 +15,7 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import AddCommentIcon from "@material-ui/icons/AddComment";
 import { GeoSearchControl } from "leaflet-geosearch";
 import { EsriProvider } from "leaflet-geosearch";
-
+import { useSelector } from "react-redux";
 export const defaultPointerIcon = new L.Icon({
   iconUrl: default_marker,
   iconRetinaUrl: default_marker,
@@ -84,6 +84,14 @@ const LeafletMap = (props) => {
     props.setStorySidebarOpen(false);
   }, []);
 
+  useEffect(() => {
+    if (mapInstance) {
+      let map = mapInstance.leafletElement;
+      props.setMapReference(mapInstance.leafletElement);
+      map.addControl(searchControl);
+      map.on("geosearch/showlocation", addressSearch);
+    }
+  }, [mapInstance]);
   const updatePin = (marker) => {
     let start = null;
     let end = null;
@@ -148,14 +156,8 @@ const LeafletMap = (props) => {
   };
 
   // used for adding the map reference for fly to and address search
-  useEffect(() => {
-    if (mapInstance) {
-      let map = mapInstance.leafletElement;
-      props.setMapReference(mapInstance.leafletElement);
-      map.addControl(searchControl);
-      map.on("geosearch/showlocation", addressSearch);
-    }
-  }, [mapInstance]);
+
+  const guest = useSelector((state) => state.auth.guest_user);
 
   return (
     <div className="map-container" style={props.mapContainerStyle}>
@@ -169,7 +171,7 @@ const LeafletMap = (props) => {
         }
         maxZoom={18} //shows map
         minZoom={3}
-        preferCanvas={true}
+        // preferCanvas={true}
         worldCopyJump={true}
         id="map"
         zoomControl={false}
@@ -180,8 +182,7 @@ const LeafletMap = (props) => {
         onContextMenu={props.addMarker}
       >
         <ZoomControl position="bottomleft" />
-        {props.user === undefined ||
-        (props.isAuthenticated && props.user.is_anonymous_active) ? ( //pass in props of user
+        {(props.isAuthenticated && props.user.is_anonymous_active) || guest ? ( //pass in props of user
           <TileLayer
             attribution="Map tiles by &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com/attributions'>CARTO</a>"
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -196,7 +197,6 @@ const LeafletMap = (props) => {
           <button
             className={"btn btn-primary add-story-button"}
             onClick={() => {
-              console.log("add address");
               props.setAddAddress(true);
 
               if (mapInstance) {

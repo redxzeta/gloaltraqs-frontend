@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CommentStory from "./CommentStory";
-import { getPin } from "../../../actions/pins";
-import {
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+//import { getPin } from "../../../actions/pins";
+import { Link, Redirect } from "react-router-dom";
 import Upvote from "./Upvote";
 import Flag from "./Flag";
 import Moment from "react-moment";
@@ -25,25 +18,28 @@ const storyBody = {
 };
 function Story(props) {
   const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
 
-  const { isAuthenticated, user, userFavoritePinState } = auth;
+  const { isAuthenticated, user } = auth;
   const [fixedArrow, setFixedArrow] = useState(false);
-
-   useEffect(() => {
-     if(props.pin.id && props.mapReference) {
-       props.centerMarker(props.pin);
-     }
-  },[props.pin] )
+  // const { pin, mapReference, centerMarker } = props;
+  // useEffect(() => {
+  //   if (pin.id && mapReference) {
+  //     centerMarker(pin);
+  //   }
+  // }, []);
 
   const upvoteButoon = (
-    <Link className="login-link favorite-story-btn" to="/login">
+    <div
+      className="login-link favorite-story-btn"
+      style={{ cursor: "pointer " }}
+    >
       <img
+        onClick={props.loginToggle}
         className="story-favorites-icon"
         src={BookMark}
         alt={"favorite this story icon"}
       />
-    </Link>
+    </div>
   );
 
   useEffect(() => {
@@ -96,7 +92,13 @@ function Story(props) {
           <h2 className={"story-page-story-title"}>
             <strong>{props.pin.title}</strong>
           </h2>
-          <h3 className={"story-page-story-address"}>{props.pin.address ? props.pin.address : ""} {props.pin.locality ? props.pin.locality : ""} { props.pin.region ? props.pin.region : ""} {props.pin.postCode ? props.pin.postCode : ""} {props.pin.country ? props.pin.country : ""} </h3>
+          <h3 className={"story-page-story-address"}>
+            {props.pin.address ? props.pin.address : ""}{" "}
+            {props.pin.locality ? props.pin.locality : ""}{" "}
+            {props.pin.region ? props.pin.region : ""}{" "}
+            {props.pin.postCode ? props.pin.postCode : ""}{" "}
+            {props.pin.country ? props.pin.country : ""}{" "}
+          </h3>
           {props.pin.startDate && props.pin.endDate ? (
             <p className={"story-page-dates"}>
               {props.pin.startDate ? (
@@ -183,7 +185,11 @@ function Story(props) {
         </Col>
       </Row>
       <Row style={{ paddingTop: "15px" }}>
-        <Col md={8} className={"offset-md-2 col-10 offset-1"} style={{ marginBottom: "20px" }}>
+        <Col
+          md={8}
+          className={"offset-md-2 col-10 offset-1"}
+          style={{ marginBottom: "20px" }}
+        >
           {props.pin.commentstory && (
             <CommentStory
               user={user}

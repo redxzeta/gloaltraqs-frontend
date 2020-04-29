@@ -1,11 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getFavoritePosts,
-  getUser,
-  unFavoriteProfile,
-} from "../../actions/users";
-import { editPin, getPinsByOwner, userUpovte } from "../../actions/pins";
 import { userEditValidate } from "../../actions/auth";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
@@ -14,11 +8,8 @@ import { Avatar } from "antd";
 import { Markup } from "interweave";
 import Switch from "react-switch";
 import { Row, Col } from "react-bootstrap";
-import useProfileImage from "./CustomHooks/useProfileImage";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import Upvote from "../Map/Story/Upvote";
 import EditIcon from "@material-ui/icons/Edit";
 import BookMark from "../images/Bookmark_Icon.png";
 
@@ -38,18 +29,13 @@ const FavoritePostField = ({
   ...rest
 }) => {
   return (
-    <div
-      style={{ paddingTop: "20px" }}
-      key={id}
-      {...rest}
-      style={{ height: "auto" }}
-    >
+    <div style={{ paddingTop: "20px", height: "auto" }} key={id} {...rest}>
       <Card className={"profile-story-card"}>
         <div
           className={
-            category == 1
+            category === 1
               ? "search-bar-story-card-trim-personal"
-              : category == 2
+              : category === 2
               ? "search-bar-story-card-trim-resources"
               : "search-bar-story-card-trim-historical"
           }
@@ -92,7 +78,9 @@ const FavoritePostField = ({
               color="textSecondary"
             >
               <Markup
-                content={description ? description.substring(0, 250) + "..." : ""}
+                content={
+                  description ? description.substring(0, 250) + "..." : ""
+                }
                 blockList={["img"]}
                 noHtml={true}
               />
@@ -108,8 +96,8 @@ export default function ProfilePage(props) {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
-  const { profileStatus, isAuthenticated, user } = auth;
-
+  const { isAuthenticated, user } = auth;
+  //profileStatus
   const updateStoryAnonymity = (pin) => {
     const is_anonymous_pin = !pin.is_anonymous_pin;
 
@@ -123,32 +111,35 @@ export default function ProfilePage(props) {
       {props.userProfile ? (
         <Row style={{ height: "100%", marginRight: "0px", marginLeft: "0px" }}>
           <Col md={8} style={{ paddingTop: "20px", paddingRight: "20px" }}>
-            {(((isAuthenticated && (user.id == props.userProfile.id)) || (isAuthenticated && user.is_administrator))) && (
-                <Link to={`/users/${props.userProfile.username}/settings`}>
-                  <button
-                    type="button"
-                    style={{ float: "right " }}
-                    className="btn btn-primary btn-sm default-btn-purple"
-                  >
-                    Settings
-                  </button>
-                </Link>
-              )}
+            {((isAuthenticated && user.id === props.userProfile.id) ||
+              (isAuthenticated && user.is_administrator)) && (
+              <Link to={`/users/${props.userProfile.username}/settings`}>
+                <button
+                  type="button"
+                  style={{ float: "right " }}
+                  className="btn btn-primary btn-sm default-btn-purple"
+                >
+                  Settings
+                </button>
+              </Link>
+            )}
             <UserProfileBio
               ownerid={props.userProfile.id}
               userProfile={props.userProfile}
               {...props}
             />
             <div className={"user-profile-body"}>
-              {((user && (user.id == props.userProfile.id)) || !props.userProfile.is_profile_private) && props.userProfile.userStories && (
-                <ListUserStories
-                  updateStoryAnonymity={updateStoryAnonymity}
-                  stories={props.userProfile.userStories}
-                  ownerid={props.userProfile.id}
-                  user={user}
-                  {...props}
-                />
-              )}
+              {((user && user.id === props.userProfile.id) ||
+                !props.userProfile.is_profile_private) &&
+                props.userProfile.userStories && (
+                  <ListUserStories
+                    updateStoryAnonymity={updateStoryAnonymity}
+                    stories={props.userProfile.userStories}
+                    ownerid={props.userProfile.id}
+                    user={user}
+                    {...props}
+                  />
+                )}
             </div>
           </Col>
           <ShowfavoritedPosts
@@ -168,11 +159,13 @@ export default function ProfilePage(props) {
 const ShowfavoritedPosts = (props) => {
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user } = auth;
-  const dispatch = useDispatch();
+
   return (
     <Col md={4} className="favorite-stories">
       <h2 className="profile-page-favorite-posts-title">Favorite Posts</h2>
-      {((user && (user.id == props.userProfile.id)) || !props.userProfile.is_profile_private) && props.favoriteStories.length !== 0 ? (
+      {((user && user.id === props.userProfile.id) ||
+        !props.userProfile.is_profile_private) &&
+      props.favoriteStories.length !== 0 ? (
         props.favoriteStories.map((story, index) => {
           return (
             <div key={story.id} className="user-profile-favorite-posts-div">
@@ -203,7 +196,7 @@ const ShowfavoritedPosts = (props) => {
 const UserProfileBio = (props) => {
   const auth = useSelector((state) => state.auth);
 
-  const { profileStatus, isAuthenticated, user } = auth;
+  const { isAuthenticated, user } = auth;
   return (
     <div className={"user-profile-main-content"}>
       <Row>
@@ -211,6 +204,7 @@ const UserProfileBio = (props) => {
           <div className={"profile-image-div"}>
             {props.userProfile.profileurl ? (
               <img
+                alt="profilepic"
                 src={props.userProfile.profileurl}
                 style={{
                   borderRadius: "50%",
@@ -279,12 +273,17 @@ const ListUserStories = (props) => {
       </Row>
       {props.stories.length !== 0 ? (
         props.stories.map((story) => {
-          if(!story.is_anonymous_pin || (props.user && props.user.id == props.ownerid)) {
+          if (
+            !story.is_anonymous_pin ||
+            (props.user && props.user.id === props.ownerid)
+          ) {
             return (
               <div className={"profile-page-story-row"} key={story.id}>
                 <StoryField story={story} {...props} />
               </div>
             );
+          } else {
+            return null;
           }
         })
       ) : (
@@ -295,27 +294,22 @@ const ListUserStories = (props) => {
 };
 
 const StoryField = (props) => {
-  const {
-    id,
-    title,
-    description,
-    is_anonymous_pin,
-    startDate,
-    endDate,
-    category,
-  } = props.story;
+  const { id, title, description, is_anonymous_pin, category } = props.story;
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user } = auth;
   return (
     <>
       <Row style={{ minHeight: "150px", height: "auto" }}>
-        <Col className={"col-xl-6 col-md-7 offset-md-1 offset-xl-2"} style={{ paddingRight: "5px" }}>
+        <Col
+          className={"col-xl-6 col-md-7 offset-md-1 offset-xl-2"}
+          style={{ paddingRight: "5px" }}
+        >
           <Card className={"profile-story-card"}>
             <div
               className={
-                category == 1
+                category === 1
                   ? "search-bar-story-card-trim-personal"
-                  : category == 2
+                  : category === 2
                   ? "search-bar-story-card-trim-resources"
                   : "search-bar-story-card-trim-historical"
               }

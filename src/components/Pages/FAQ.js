@@ -46,7 +46,7 @@ export default function FAQ() {
   });
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user } = auth;
-  const [isLoading, setisLoading] = useState(true);
+
   const [showEditForm, setshowEditForm] = useState("");
   useEffect(() => {
     axios
@@ -54,7 +54,6 @@ export default function FAQ() {
       .then((response) => {
         setfaqDesc(response.data);
         setbackUpFaq(response.data);
-        setisLoading(false);
       })
       .catch((error) => {
         // handle error

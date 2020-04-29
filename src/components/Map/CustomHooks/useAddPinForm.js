@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPin, getMaxPinDate, getMinPinDate } from "../../../actions/pins";
+import { addPin } from "../../../actions/pins";
 
 const useAddPinForm = (callback) => {
   const auth = useSelector((state) => state.auth);
@@ -48,12 +48,8 @@ const useAddPinForm = (callback) => {
       is_anonymous_pin: is_anonymous_pin,
     };
 
-    console.log(submit);
-    console.log("is submit");
     dispatch(addPin(submit));
     callback();
-    dispatch(getMaxPinDate());
-    dispatch(getMinPinDate());
     setmodalstate(!modalState);
     setaddPinValues({
       category: 1,

@@ -15,9 +15,9 @@ import TinyMCE from "react-tinymce";
 
 import DatePicker from "react-date-picker";
 import "react-datepicker/dist/react-datepicker.css";
-const buttonStyle = {
-  float: "right",
-};
+// const buttonStyle = {
+//   float: "right",
+// };
 
 const labelStyle = {
   marginRight: "10px",
@@ -26,13 +26,13 @@ const labelStyle = {
 const dateStyle = {
   marginRight: "10px",
   marginTop: "auto",
-  marginBottom: "auto"
+  marginBottom: "auto",
 };
 
 function ModalEditPinForm(props) {
   const validateEditForm = (e) => {
     e.preventDefault();
-    // console.log("validating edit pin...");
+
     if (props.userForm.title && props.userForm.description) {
       props.onSubmit();
     }
@@ -63,7 +63,7 @@ function ModalEditPinForm(props) {
       >
         <ModalHeader toggle={props.toggle}> edit story </ModalHeader>
         <Form onSubmit={validateEditForm} noValidate={true}>
-        <ModalBody>
+          <ModalBody>
             {address && (
               <>
                 <InputField
@@ -104,7 +104,7 @@ function ModalEditPinForm(props) {
               </Label>
               <select
                 name="category"
-                value={props.userForm.category}
+                value={category}
                 onChange={props.updateEditForm}
               >
                 <option value="1">Personal</option>
@@ -114,28 +114,28 @@ function ModalEditPinForm(props) {
             </FormGroup>
             <FormGroup>
               <Label for="title">Title</Label>
-              {!props.userForm.title ? (
+              {!title ? (
                 <p className="text-danger">*Please enter a story title</p>
               ) : null}
               <Input
                 className="form-control"
                 type="text"
                 name="title"
-                value={props.userForm.title}
+                value={title}
                 onChange={props.updateEditForm}
               />
             </FormGroup>
             <FormGroup>
               <Label for="description">
                 Description
-                {!props.userForm.description ? (
+                {!description ? (
                   <p className="text-danger">
                     *Please enter a story description
                   </p>
                 ) : null}
               </Label>
               <TinyMCE
-                content={props.userForm.description}
+                content={description}
                 config={{
                   height: 300,
                   fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
@@ -151,13 +151,13 @@ function ModalEditPinForm(props) {
               />
             </FormGroup>
             <InputGroup>
-              <label style={dateStyle}  for="startDate">
+              <label style={dateStyle} for="startDate">
                 Start Date
               </label>
               <DatePicker
                 format={"MM/dd/yyyy"}
                 name="startDate"
-                value={props.userForm.startDate}
+                value={startDate}
                 onChange={(date) =>
                   props.setuserForm({
                     ...props.userForm,
@@ -165,13 +165,13 @@ function ModalEditPinForm(props) {
                   })
                 }
               />
-              <label style={dateStyle}  for="endDate">
+              <label style={dateStyle} for="endDate">
                 &nbsp;&nbsp;&nbsp;End Date
               </label>
               <DatePicker
                 format={"MM/dd/yyyy"}
                 name="endDate"
-                value={props.userForm.endDate}
+                value={endDate}
                 onChange={(date) =>
                   props.setuserForm({
                     ...props.userForm,
@@ -180,9 +180,13 @@ function ModalEditPinForm(props) {
                 }
               />
             </InputGroup>
-        </ModalBody>
+          </ModalBody>
           <ModalFooter>
-            <Button className="default-btn-purple" style={{ marginRight: "20px" }} onClick={props.toggle}>
+            <Button
+              className="default-btn-purple"
+              style={{ marginRight: "20px" }}
+              onClick={props.toggle}
+            >
               Cancel
             </Button>
             <Button s className="default-btn-purple">

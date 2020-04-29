@@ -43,7 +43,6 @@ export default function App() {
               <Route exact path="/story/:id" component={MapDashboard} />
               <Route exact path="/About" component={About} />
               <Route exact path="/resources" component={Resources} />
-              {/*<Route path="/Story/:id" exact component={Story} />*/}
               <Route exact path="/faq" component={FAQ} />
               <Route exact path="/login" component={LoginForm} />
               <Route exact path="/register" component={RegisterForm} />
@@ -55,12 +54,13 @@ export default function App() {
               <PrivateRoute exact path="/manage/users" component={Manage} />
               <PrivateRoute exact path="/manage/comments" component={Manage} />
               <PrivateRoute exact path="/manage/category" component={Manage} />
-              {/*<Route path="/Story/:id/edit" exact component={EditStory} />*/}
               <Route path="/forgotPassword" component={ForgotPasswordForm} />
               <Route path="/resetPassword" component={ResetPasswordForm} />
               <Route path="/Support" component={Support} />
               <Route path="/ContactUs" component={ContactUs} />
-              <Route component={NotFoundPage} />
+              <Route path="*">
+                <NotFoundPage />
+              </Route>
               {/* <MapDashboard /> */}
             </Switch>
           </div>

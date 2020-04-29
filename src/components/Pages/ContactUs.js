@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import React, { useState } from "react";import axios from "axios";
 import { LINK } from "../../link/link";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 export default function ContactUs() {
-  // const auth = useSelector((state) => state.auth);
+
 
   let token = localStorage.getItem("token");
   axios.defaults.headers.common["Authorization"] = token;

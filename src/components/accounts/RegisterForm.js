@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../actions/auth";
-import { createMessage } from "../../actions/messages";
+//import { createMessage } from "../../actions/messages";
 import Recaptcha from "react-recaptcha";
 import * as EmailValidator from "email-validator";
-import { REGISTER_FAIL } from "../../actions/types";
+
 import Tooltip from "@material-ui/core/Tooltip";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
@@ -41,7 +41,6 @@ export default function RegisterForm() {
   useEffect(() => {
     if (submitted) {
       setFailed(registerFail);
-      console.log("register fail" + registerFail);
     } else {
       setFailed(false);
     }
@@ -136,12 +135,10 @@ export default function RegisterForm() {
     <div className="main-content-div register-div">
       <div className="col-md-6 m-auto register-col">
         {/* if the form was submitted and register failed, show banner*/}
-        {console.log("submitted " + submitted + " register fail " + failed)}
+
         <div className="card card-body mt-5 register-card">
           <h2 className="text-center register-title">register</h2>
-          {console.log(
-            "submitted " + submitted + " " + " register fail " + failed
-          )}
+
           {submitted && failed ? (
             <div
               className="card card-body mt-5 alert alert-danger"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { List } from "@material-ui/core";
+// import { List } from "@material-ui/core";
 import { LINK } from "../../link/link";
 
 export default function ManageCategory() {

@@ -17,6 +17,7 @@ import {
   GET_MAX_PIN,
   GET_MIN_PIN,
 } from "../actions/types.js";
+import moment from "moment";
 
 const initialState = {
   pins: [],
@@ -26,8 +27,8 @@ const initialState = {
   validUser: false,
   pinId: 0,
   flaggedPins: [],
-  pinMinDate: new Date(1000, 1, 1, 0, 0, 0, 0),
-  pinMaxDate: new Date(),
+  pinMinDate: "",
+  pinMaxDate: "",
 };
 
 export default function (state = initialState, action) {
@@ -58,12 +59,12 @@ export default function (state = initialState, action) {
     case GET_MAX_PIN:
       return {
         ...state,
-        pinMaxDate: action.payload,
+        pinMaxDate: new Date(action.payload),
       };
     case GET_MIN_PIN:
       return {
         ...state,
-        pinMinDate: action.payload,
+        pinMinDate: new Date(action.payload),
       };
     case DELETE_PINS:
       return {
@@ -73,11 +74,27 @@ export default function (state = initialState, action) {
         pin: [],
       };
     case ADD_PIN:
+      const minDate = moment
+        .min(moment(action.payload.startDate), moment(state.pinMinDate))
+        .format("YYYY/MM/DD");
+      const maxDate = moment
+        .max(moment(action.payload.endDate), moment(state.pinMaxDate))
+        .format("YYYY/MM/DD");
+
       return {
         ...state,
         pins: [...state.pins, action.payload],
+        pinMaxDate: new Date(maxDate),
+        pinMinDate: new Date(minDate),
       };
     case EDIT_PIN:
+      const editminDate = moment
+        .min(moment(action.payload.startDate), moment(state.pinMinDate))
+        .format("YYYY/MM/DD");
+      const editmaxDate = moment
+        .max(moment(action.payload.endDate), moment(state.pinMaxDate))
+        .format("YYYY/MM/DD");
+
       return {
         ...state,
         // fixes duplicated pin on map when editing pin
@@ -86,6 +103,8 @@ export default function (state = initialState, action) {
           action.payload,
         ],
         pin: action.payload,
+        pinMaxDate: new Date(editmaxDate),
+        pinMinDate: new Date(editminDate),
       };
     case ADD_COMMENT:
       const newComment = {
