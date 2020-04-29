@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { LINK } from "../../link/link";
+import useRemovalConfirm from "../profile/CustomHooks/useRemovalConfirm";
+import ConfirmationModal from "../profile/ConfirmationModal";
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
   const [messageFromServer, setMessageFromServer] = useState("");
-  console.log(showError + " " + messageFromServer);
+  const { loginregisterModalState, loginToggle } = useRemovalConfirm();
   const sendEmail = (e) => {
     e.preventDefault();
     if (email === "") {
@@ -20,9 +22,8 @@ export default function ForgotPasswordForm() {
         .then((response) => {
           if (response.data.toString().includes("object")) {
             console.log(response.headers);
-            window.alert(
-              "An e-mail has been sent with a link to change your password"
-            );
+            setEmail("");
+            loginToggle();
           }
           // if (response.data === "email not in db") {
           //   setShowError(true);
@@ -82,6 +83,13 @@ export default function ForgotPasswordForm() {
         )} */}
         </div>
       </div>
+      <ConfirmationModal
+        modalState={loginregisterModalState}
+        toggle={loginToggle}
+        title="Email has been Sent"
+        buttonTitle={"Confirm"}
+        onSubmit={loginToggle}
+      />
     </div>
   );
 }

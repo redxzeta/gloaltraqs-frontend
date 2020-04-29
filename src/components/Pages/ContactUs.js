@@ -1,11 +1,12 @@
-import React, { useState } from "react";import axios from "axios";
+import React, { useState } from "react";
+import axios from "axios";
 import { LINK } from "../../link/link";
-
+import useRemovalConfirm from "../profile/CustomHooks/useRemovalConfirm";
+import ConfirmationModal from "../profile/ConfirmationModal";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 export default function ContactUs() {
-
-
+  const { loginregisterModalState, loginToggle } = useRemovalConfirm();
   let token = localStorage.getItem("token");
   axios.defaults.headers.common["Authorization"] = token;
 
@@ -14,6 +15,7 @@ export default function ContactUs() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     if (email !== "") {
       // var data = JSON.stringify({ "name": name.value, "email": email.value });
       const config = {
@@ -24,18 +26,25 @@ export default function ContactUs() {
       // Request Body
       // const body = JSON.stringify({ username, email, password });
       let data = JSON.stringify({ email: email, message: message });
-      axios.post(`${LINK}/contactUs/`, data, config).then((response) => {
-        console.log(response);
-      });
+      axios
+        .post(`${LINK}/contactUs/`, data, config)
+        .then((response) => {
+          loginToggle();
+          setEmail("");
+          setMessage("");
+        })
+        .catch((err) => console.log(err));
     } else {
       setEmail(`Anonymous@anon.com`);
 
       axios
         .post(`${LINK}/contactUs/`, { email: email, message: message })
         .then((response) => {
-          console.log(response);
-          alert("Your message has been sent");
-        });
+          loginToggle();
+          setEmail("");
+          setMessage("");
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -88,6 +97,13 @@ export default function ContactUs() {
           </form>
         </div>
       </div>
+      <ConfirmationModal
+        modalState={loginregisterModalState}
+        toggle={loginToggle}
+        title="Thank you for Contacting Us"
+        buttonTitle={"Confirm"}
+        onSubmit={loginToggle}
+      />
     </div>
   );
 }
