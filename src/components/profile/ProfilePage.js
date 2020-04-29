@@ -33,9 +33,9 @@ const FavoritePostField = ({
       <Card className={"profile-story-card"}>
         <div
           className={
-            category === 1
+            category === "1"
               ? "search-bar-story-card-trim-personal"
-              : category === 2
+              : category === "2"
               ? "search-bar-story-card-trim-resources"
               : "search-bar-story-card-trim-historical"
           }
@@ -67,9 +67,19 @@ const FavoritePostField = ({
             <Typography gutterBottom variant="h5" component="h2">
               <p className="sidebar-story-author">
                 Posted by:{" "}
-                <span className="sidebar-story-username">
-                  {!isAnon && username ? username : "Anonymous"}
-                </span>
+                {!isAnon && username ? (
+                  <Link to={`/users/${username}`}>
+                    {" "}
+                    <span className="sidebar-story-username">
+                      {username}{" "}
+                    </span>{" "}
+                  </Link>
+                ) : (
+                  <span className="sidebar-story-anon-username">
+                    {" "}
+                    Anonymous
+                  </span>
+                )}
               </p>
             </Typography>
             <Typography

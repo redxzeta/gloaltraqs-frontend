@@ -26,8 +26,8 @@ import { searchUsers, getNextPreviousUsers } from "../../actions/users";
 
 const options = [
   { value: "1", label: "Personal" },
-  { value: "2", label: "Historical" },
-  { value: "3", label: "Resources" },
+  { value: "2", label: "Resources" },
+  { value: "3", label: "Historical" },
 ];
 
 // const labelStyle = {
@@ -140,9 +140,9 @@ function SearchSidebar(props) {
       if (category === "1") {
         color = "#e01783";
       } else if (category === "2") {
-        color = "#248dc1";
-      } else {
         color = "#00ce7d";
+      } else {
+        color = "#248dc1";
       }
       return {
         ...styles,
