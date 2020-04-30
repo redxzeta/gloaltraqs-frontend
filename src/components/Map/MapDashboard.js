@@ -77,9 +77,10 @@ export default function MapDashboard() {
   const [isSearch, setIsSearch] = useState(false);
 
   useEffect(() => {
-    dispatch(getPins());
     dispatch(getMaxPinDate());
     dispatch(getMinPinDate());
+    dispatch(getPins());
+
     dispatch(searchUsers(""));
   }, [dispatch]);
   useEffect(() => {
