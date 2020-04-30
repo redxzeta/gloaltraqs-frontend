@@ -21,7 +21,7 @@ import moment from "moment";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Avatar } from "antd";
 import { Row, Col } from "react-bootstrap";
-
+import { getPins } from "../../actions/pins";
 import { searchUsers, getNextPreviousUsers } from "../../actions/users";
 
 const options = [
@@ -127,7 +127,8 @@ function SearchSidebar(props) {
     let west = mapBounds.getWest();
     let north = mapBounds.getNorth();
     let east = mapBounds.getEast();
-    dispatch(getPinsWithBounds(north, south, east, west));
+    //dispatch(getPinsWithBounds(north, south, east, west));
+    dispatch(getPins());
     props.setIsSearch(false);
     // dispatch(getPins());
   };

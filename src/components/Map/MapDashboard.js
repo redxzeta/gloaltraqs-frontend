@@ -44,6 +44,7 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 // };
 
 import LeafletMap from "./LeafletMap";
+import {LatLng} from "leaflet/dist/leaflet-src.esm";
 const Story = React.lazy(() => import("./Story/Story"));
 const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
@@ -77,38 +78,38 @@ export default function MapDashboard() {
   const [isSearch, setIsSearch] = useState(false);
 
   useEffect(() => {
-    // dispatch(getPins());
     dispatch(getMaxPinDate());
     dispatch(getMinPinDate());
     dispatch(searchUsers(""));
+    dispatch(getPins());
   }, [dispatch]);
 
   // I changed the below two useEffects in order to make the getPinsWithBounds work
   // pretty much get pins that are within the view and if the map moves refetch pins in new coord bounds
-  useEffect(() => {
-    if (mapReference !== undefined) {
-      let mapBounds = mapReference.getBounds();
-      let south = mapBounds.getSouth();
-      let west = mapBounds.getWest();
-      let north = mapBounds.getNorth();
-      let east = mapBounds.getEast();
-      dispatch(getPinsWithBounds(north, south, east, west));
-    }
-  }, [mapReference]);
-
-  useEffect(() => {
-    if (mapReference !== undefined) {
-      // dispatch(getPins());
-      mapReference.once("moveend", function () {
-        let mapBounds = mapReference.getBounds();
-        let south = mapBounds.getSouth();
-        let west = mapBounds.getWest();
-        let north = mapBounds.getNorth();
-        let east = mapBounds.getEast();
-        dispatch(getPinsWithBounds(north, south, east, west));
-      });
-    }
-  }, [pins]);
+  // useEffect(() => {
+  //   if (mapReference !== undefined) {
+  //     let mapBounds = mapReference.getBounds();
+  //     let south = mapBounds.getSouth();
+  //     let west = mapBounds.getWest();
+  //     let north = mapBounds.getNorth();
+  //     let east = mapBounds.getEast();
+  //     dispatch(getPinsWithBounds(north, south, east, west));
+  //   }
+  // }, [mapReference]);
+  //
+  // useEffect(() => {
+  //   if (mapReference !== undefined && !isSearch) {
+  //     // dispatch(getPins());
+  //     mapReference.once("moveend", function () {
+  //       let mapBounds = mapReference.getBounds();
+  //       let south = mapBounds.getSouth();
+  //       let west = mapBounds.getWest();
+  //       let north = mapBounds.getNorth();
+  //       let east = mapBounds.getEast();
+  //       dispatch(getPinsWithBounds(north, south, east, west));
+  //     });
+  //   }
+  // }, [pins]);
 
   useEffect(() => {
     getLocation();
@@ -116,7 +117,6 @@ export default function MapDashboard() {
 
   const centerMarker = (marker) => {
     if (mapReference) {
-      mapReference.panTo([Number(marker.latitude), Number(marker.longitude)]);
       setplacement({
         id: marker.id,
         userlat: Number(marker.latitude),

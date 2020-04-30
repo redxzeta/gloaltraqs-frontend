@@ -21,12 +21,13 @@ function Story(props) {
 
   const { isAuthenticated, user } = auth;
   const [fixedArrow, setFixedArrow] = useState(false);
-  // const { pin, mapReference, centerMarker } = props;
-  // useEffect(() => {
-  //   if (pin.id && mapReference) {
-  //     centerMarker(pin);
-  //   }
-  // }, []);
+  const { pin, mapReference, centerMarker } = props;
+
+  useEffect(() => {
+    if (pin.id && mapReference && pin.latitude && pin.longitude) {
+      centerMarker(pin);
+    }
+  }, [pin.id]);
 
   const upvoteButoon = (
     <div
