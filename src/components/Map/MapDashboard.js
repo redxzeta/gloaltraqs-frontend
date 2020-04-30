@@ -478,21 +478,21 @@ function StoryDisplay(props) {
     });
   }, []);
 
-  // useEffect(() => {
-  //   return () => {
+  useEffect(() => {
+    return () => {
 
-  //     setStoryStyle({
-  //       top: "100%"
-  //     });
-  //     props.setMapContainerStyle({
-  //       height: "100%"
-  //     });
-  //     setTimeout(function() { //Start the timer
-  //           props.setIsLeavingStoryPage(false);
-  //           props.history.push("/#");
-  //     }.bind(this), 700);
-  //   }
-  // }, [props.isLeavingStoryPage]);
+      setStoryStyle({
+        top: "100%"
+      });
+      props.setMapContainerStyle({
+        height: "100%"
+      });
+      // setTimeout(function() { //Start the timer
+      //       props.setIsLeavingStoryPage(false);
+      //       props.history.push("/#");
+      // }.bind(this), 500);
+    }
+  }, []);
   return (
     <div id={"story-page"} style={storyStyle}>
       <Switch>
