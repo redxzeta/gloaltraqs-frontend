@@ -77,8 +77,8 @@ export default function Support() {
                   style={{ borderRadius: "8px" }}
                 >
                   {/*<h2 className="text-center">Support Us</h2>*/}
-                  <label className="support-us-image-sub-text">
-                    Donation Amount:{" "}
+                  <label className="support-us-image-sub-text text-center">
+                    donation{" "}
                   </label>
                   <input
                     type="value"
@@ -116,21 +116,21 @@ export default function Support() {
           <div>
             <Col className="col-md-3 offset-md-5 col-md-2 col-8 offset-3">
               <div>
-                <a href={"https://www.instagram.com/the.arqive/?fbclid=IwAR3q0KyoS1eNKmXVbiAqvq31J2hlAh-PmHoRwlUU4orUGM79nP_YYueGSws"}>
+                <a target="_blank" href={"https://www.instagram.com/the.arqive/?fbclid=IwAR3q0KyoS1eNKmXVbiAqvq31J2hlAh-PmHoRwlUU4orUGM79nP_YYueGSws"}>
                   <img
                     src={IG}
                     alt="instagram link"
                     className="social-media-images"
                   />
                 </a>
-                <a href={"https://twitter.com/thearqive"}>
+                <a target="_blank" href={"https://twitter.com/thearqive"}>
                 <img
                   src={TW}
                   alt="twitter link"
                   className="social-media-images"
                 />
                 </a>
-                <a href={"https://www.facebook.com/pg/thearqive/about/?ref=page_internal"}>
+                <a target="_blank" href={"https://www.facebook.com/pg/thearqive/about/?ref=page_internal"}>
                 <img
                   src={FB}
                   alt="facebook link"

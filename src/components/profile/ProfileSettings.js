@@ -175,14 +175,14 @@ export default function Settings(props) {
     } else {
       userCanEdit = (
         <div>
-          <h2>Forbidden!</h2>
+          <h2 style={{ textTransform: "lowercase", color: "white", fontFamily: "Eina, Arial" }}>Forbidden!</h2>
         </div>
       );
     }
   } else {
     userCanEdit = (
       <div>
-        <h2>Forbidden!</h2>
+        <h2 style={{ textTransform: "lowercase", color: "white", fontFamily: "Eina, Arial" }}>Forbidden!</h2>
       </div>
     );
   }

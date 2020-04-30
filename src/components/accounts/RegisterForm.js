@@ -44,7 +44,7 @@ export default function RegisterForm() {
     } else {
       setFailed(false);
     }
-  }, [registerFail, submitted]);
+  }, [registerFail]);
 
   const verifyCallback = (response) => {
     if (response) {
@@ -136,7 +136,7 @@ export default function RegisterForm() {
       <div className="col-md-6 m-auto register-col">
         {/* if the form was submitted and register failed, show banner*/}
 
-        <div className="card card-body mt-5 register-card">
+        <div className="card card-body mt-5 register-card accounts-form-group">
           <h2 className="text-center register-title">register</h2>
 
           {submitted && failed ? (
@@ -233,7 +233,7 @@ export default function RegisterForm() {
               />
               <p className="text-danger">{userForm.errors["password2"]}</p>
             </div>
-            <div className="form-group row justify-content-between justify-content-around">
+            <div className="form-group">
               {/*This is the ReCaptcha*/}
               <Recaptcha
                 className="float-left"
@@ -244,7 +244,7 @@ export default function RegisterForm() {
               />
               <button
                 type="submit"
-                className="btn btn-primary float-right register-btn"
+                className="btn btn-primary float-right register-btn default-btn-purple"
               >
                 Register
               </button>

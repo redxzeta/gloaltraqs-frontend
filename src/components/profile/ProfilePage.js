@@ -12,6 +12,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import EditIcon from "@material-ui/icons/Edit";
 import BookMark from "../images/Bookmark_Icon.png";
+import DefaultProfilePic from "../images/ProfilePic-03.png";
 
 const FavoritePostField = ({
   index,
@@ -30,12 +31,12 @@ const FavoritePostField = ({
 }) => {
   return (
     <div style={{ paddingTop: "20px", height: "auto" }} key={id} {...rest}>
-      <Card className={"profile-story-card"}>
+      <Card className={"profile-story-card story-card"}>
         <div
           className={
-            category === "1"
+            category == 1
               ? "search-bar-story-card-trim-personal"
-              : category === "2"
+              : category == 2
               ? "search-bar-story-card-trim-resources"
               : "search-bar-story-card-trim-historical"
           }
@@ -64,24 +65,12 @@ const FavoritePostField = ({
             >
               {title}
             </Typography>
-            <Typography gutterBottom variant="h5" component="h2">
-              <p className="sidebar-story-author">
-                Posted by:{" "}
-                {!isAnon && username ? (
-                  <Link to={`/users/${username}`}>
-                    {" "}
-                    <span className="sidebar-story-username">
-                      {username}{" "}
-                    </span>{" "}
-                  </Link>
-                ) : (
-                  <span className="sidebar-story-anon-username">
-                    {" "}
-                    Anonymous
-                  </span>
-                )}
-              </p>
-            </Typography>
+            {/*<Typography gutterBottom variant="h5" component="h2">*/}
+            {/*  <p className="sidebar-story-author">*/}
+            {/*    Posted by:{" "}*/}
+            {/*    {!isAnon && username ? <Link to={`/users/${username}`}> <span className="sidebar-story-username">{username} </span> </Link> : <span className="sidebar-story-anon-username"> Anonymous</span>}*/}
+            {/*  </p>*/}
+            {/*</Typography>*/}
             <Typography
               variant="body2"
               className="user-profile-story-description"
@@ -95,6 +84,13 @@ const FavoritePostField = ({
                 noHtml={true}
               />
             </Typography>
+             <Typography
+              variant="body2"
+              color="textSecondary"
+              className={"sidebar-story-read-more"}
+            >
+              read more
+            </Typography>
           </CardContent>
         </Link>
       </Card>
@@ -107,6 +103,7 @@ export default function ProfilePage(props) {
   const auth = useSelector((state) => state.auth);
 
   const { isAuthenticated, user } = auth;
+
   //profileStatus
   const updateStoryAnonymity = (pin) => {
     const is_anonymous_pin = !pin.is_anonymous_pin;
@@ -225,7 +222,17 @@ const UserProfileBio = (props) => {
                 }}
               />
             ) : (
-              <Avatar size={125} icon="user" />
+              <img
+                alt="profilepic"
+                src={DefaultProfilePic}
+                style={{
+                  borderRadius: "50%",
+                  height: "125px",
+                  width: "125px",
+                  margin: "auto",
+                  display: "block",
+                }}
+              />
             )}
             {isAuthenticated && user.id === props.ownerid && (
               <button
@@ -237,7 +244,7 @@ const UserProfileBio = (props) => {
             )}
           </div>
         </Col>
-        <Col className={"col-xl-8 offset-xl-1 offset-md-0 col-md-7"}>
+        <Col className={"col-xl-8 offset-xl-0 offset-lg-0 offset-md-0 col-md-7"}>
           {/*{isAuthenticated && user.id === props.ownerid && (*/}
           {/*  <button onClick={() => props.toggle()}>Change</button>*/}
           {/*)}*/}
@@ -262,15 +269,25 @@ const UserProfileBio = (props) => {
 
 const ProfileNotFound = () => {
   return (
-    <Typography variant="h5" component="h3" align="center">
-      <Avatar size={250} icon="user" />
-      <p>Profile Not Found</p>
+    <Typography variant="h5" component="h3" align="center" style={{ paddingTop: "80px"}}>
+       <img
+          alt="profilepic"
+          src={DefaultProfilePic}
+          style={{
+            borderRadius: "50%",
+            height: "125px",
+            width: "125px",
+            margin: "auto",
+            display: "block",
+          }}
+        />
+      <p style={{ textTransform: "lowercase", fontFamily: "Eina, Arial"}}>Profile Not Found</p>
     </Typography>
   );
 };
 
 const NoStories = ({ type }) => {
-  return <div style={{ padding: "20px" }}>No {type} found</div>;
+  return <div className={"offset-2"} style={{ padding: "20px", textTransform: "lowercase" }}>No {type} found</div>;
 };
 
 const ListUserStories = (props) => {
@@ -314,12 +331,12 @@ const StoryField = (props) => {
           className={"col-xl-6 col-md-7 offset-md-1 offset-xl-2"}
           style={{ paddingRight: "5px" }}
         >
-          <Card className={"profile-story-card"}>
+          <Card className={"profile-story-card story-card"}>
             <div
               className={
-                category === 1
+                category == 1
                   ? "search-bar-story-card-trim-personal"
-                  : category === 2
+                  : category == 2
                   ? "search-bar-story-card-trim-resources"
                   : "search-bar-story-card-trim-historical"
               }
@@ -328,6 +345,8 @@ const StoryField = (props) => {
               style={{
                 paddingLeft: "40px",
                 paddingRight: "40px",
+                minHeight: "150px",
+                height: "auto"
               }}
             >
               <Link to={`/story/${id}`}>

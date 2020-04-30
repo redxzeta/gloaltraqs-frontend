@@ -4,7 +4,9 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 
 import { LINK } from "../../link/link";
-
+import {
+  Input,
+} from "reactstrap";
 export default function ResetPasswordForm() {
   const [passwordForm, setpasswordForm] = useState({
     password: "",
@@ -35,7 +37,7 @@ export default function ResetPasswordForm() {
         })
         .then((response) => {
           if (response.data.toString().includes("object")) {
-            window.alert("Your password has been reset");
+            window.alert("your password has been reset");
           }
           //   if (response.data === "email not in db") {
           //     this.setState({
@@ -87,14 +89,14 @@ export default function ResetPasswordForm() {
     return formIsValid;
   };
   return (
-    <div className={"main-content-div"}>
-      <div className="col-md-6 m-auto">
-        <div className="card card-body mt-5">
-          <h2 className="text-center">Reset Password</h2>
-          <form className="profile-form" onSubmit={confirmPass}>
+    <div className={"main-content-div forgot-password-div"}>
+      <div className="col-md-6 m-auto forgot-password-col">
+        <div className="card card-body mt-5 forgot-password-card accounts-form-group">
+          <h2 className="text-center forgot-password-title">Reset Password</h2>
+          <form className="profile-form accounts-form-group" onSubmit={confirmPass}>
             <div className="form-group">
-              <p>Please input your new password:</p>
-              <TextField
+              <p className="forgot-password-text">Please input your new password:</p>
+              <Input
                 id="password"
                 label="New Password"
                 type="password"
@@ -105,14 +107,13 @@ export default function ResetPasswordForm() {
                     password: e.target.value,
                   })
                 }
-                placeholder="password"
               />
               <p className="text-danger">{passwordForm.errors["password"]}</p>
 
-              <p>Please Confirm your password:</p>
-              <TextField
+              <p className="forgot-password-text">Please Confirm your password:</p>
+              <Input
                 id="password2"
-                label="Confirm Password"
+                label="confirm password"
                 type="password"
                 value={passwordForm.password2}
                 onChange={(e) =>
@@ -122,13 +123,13 @@ export default function ResetPasswordForm() {
                   })
                 }
                 // this.handleChange("password2")}
-                placeholder="Confirm Password"
               />
               <p className="text-danger">{passwordForm.errors["password2"]}</p>
-            </div>
-            <button type="submit" className="btn btn-primary float-left">
+
+              <button type="submit" className="btn btn-primary float-right default-btn-purple">
               Reset Password
-            </button>
+              </button>
+            </div>
           </form>
         </div>
       </div>

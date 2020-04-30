@@ -51,7 +51,7 @@ export default function ContactUs() {
   return (
     <div className="main-content-div contact-us-div">
       <div className="col-md-6 m-auto contact-us-col">
-        <div className="card card-body mt-5 contact-us-card">
+        <div className="card card-body mt-5 contact-us-card accounts-form-group">
           <h2 className="text-center contact-us-title">What's on your mind?</h2>
           <form onSubmit={onSubmit}>
             <div className="form-group">

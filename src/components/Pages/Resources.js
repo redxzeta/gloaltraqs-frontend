@@ -51,7 +51,7 @@ export default function Resources() {
                 <div className="card card-body resources-card">
                   <h2 className="resource-title">
                     The GLBT National Youth Talkline (youth serving youth
-                    through age 25
+                    through age 25)
                   </h2>
                   <p className="resource-contact-text">(800) 246-7743</p>
                   <p className="resource-text">
@@ -101,12 +101,12 @@ export default function Resources() {
             <p className="resources-sub-text">
               Drop us a line on our{" "}
               <Link to={"/contactUs"}>
-                <span className="text-underline">Contact page</span>
+                <span className="resources-sub-text text-underline">Contact page</span>
               </Link>{" "}
               if you'd like to add to our ever-growing list of LGBTQ+ resources.
               Or just{" "}
               <span class="resources-sub-text text-underline">
-                <a href="mailto:help@arqive.com">send</a>
+                <a href="mailto:arqive@gmail.com">send</a>
               </span>{" "}
               us an email directly.{" "}
             </p>

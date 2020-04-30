@@ -41,7 +41,7 @@ export const editUser = (userId, editorId, user) => (dispatch) => {
   axios
     .patch(`${LINK}/auth/users/${userId}/`, user)
     .then((res) => {
-      if (editorId === userId) {
+      if (editorId == userId) {
         dispatch({
           type: EDIT_USER,
           payload: res.data,

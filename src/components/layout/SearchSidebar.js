@@ -4,7 +4,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Sidebar from "react-sidebar";
 import { IconButton } from "@material-ui/core";
 import { getPinsWithBounds, searchPins } from "../../actions/pins";
-
+import DefaultProfilePic from "../images/ProfilePic-03.png";
 import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -137,9 +137,9 @@ function SearchSidebar(props) {
     multiValue: (styles, { data }) => {
       const category = data.value;
       let color = "white";
-      if (category === "1") {
+      if (category == 1) {
         color = "#e01783";
-      } else if (category === "2") {
+      } else if (category == 2) {
         color = "#00ce7d";
       } else {
         color = "#248dc1";
@@ -168,7 +168,7 @@ function SearchSidebar(props) {
         <div className={"form-group"}>
           <label className="sidebar-text">Search:</label>
           <input
-            className="form-control"
+            className="form-control sidebar-input-placeholder"
             id="searchForm"
             label="Search"
             placeholder={"Search for stories"}
@@ -299,7 +299,8 @@ function SearchSidebar(props) {
           return (
             <Card
               key={story.id}
-              style={{ marginTop: "10px", borderRadius: "20px" }}
+              className={"story-card"}
+              style={{ marginTop: "10px" }}
             >
               <Link
                 style={{ textDecoration: "inherit" }}
@@ -308,9 +309,9 @@ function SearchSidebar(props) {
               >
                 <div
                   className={
-                    story.category === 1
+                    story.category == 1
                       ? "search-bar-story-card-trim-personal"
-                      : story.category === 2
+                      : story.category == 2
                       ? "search-bar-story-card-trim-resources"
                       : "search-bar-story-card-trim-historical"
                   }
@@ -341,7 +342,7 @@ function SearchSidebar(props) {
                       color="textSecondary"
                       className={"sidebar-story-read-more"}
                     >
-                      read more
+                      view story
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -383,8 +384,9 @@ function SearchSidebar(props) {
                 title="Search Users"
               >
                 <UserSearchForm
-                  previous={users.previous}
-                  next={users.next}
+                  // going to comment out for now - kinda buggy
+                  // previous={users.previous}
+                  // next={users.next}
                   count={users.count}
                   onSubmit={submitUserSearch}
                   setUserSearchText={setUserSearchText}
@@ -424,7 +426,7 @@ const UserSearchForm = (props) => {
         <div className={"form-group"}>
           <label className="sidebar-text">Search: </label>
           <input
-            className="form-control"
+            className="form-control sidebar-input-placeholder"
             id="searchForm"
             label="Search"
             placeholder={"Search for users"}
@@ -486,7 +488,7 @@ const ListUsersSearch = (props) => {
     <>
       {props.users.map((user, index) => {
         return (
-          <Card key={user.id} style={{ marginTop: "5px" }}>
+          <Card key={user.id} className="story-card" style={{ marginTop: "10px" }}>
             <Link
               style={{ textDecoration: "inherit" }}
               to={`users/${user.username}`}
@@ -506,7 +508,17 @@ const ListUsersSearch = (props) => {
                           alt="SearchUserProfilePicture"
                         />
                       ) : (
-                        <Avatar size={100} icon="user" />
+                         <img
+                            alt="profilepic"
+                            src={DefaultProfilePic}
+                            style={{
+                              borderRadius: "50%",
+                              height: "100px",
+                              width: "100px",
+                              margin: "auto",
+                              display: "block",
+                            }}
+                          />
                       )}
                     </Col>
                     <Col

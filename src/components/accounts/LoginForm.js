@@ -35,7 +35,7 @@ export default function LoginForm() {
     } else {
       setFailed(false);
     }
-  }, [submitted]);
+  }, [loginFail]);
 
   const reCaptchaLoaded = () => {
     console.log("captcha successfully loaded");
@@ -113,7 +113,7 @@ export default function LoginForm() {
       <div className="col-md-6 m-auto login-col">
         {/* if form was submitted and login failed then show an error banner*/}
 
-        <div className="card card-body mt-5 login-card">
+        <div className="card card-body mt-5 login-card accounts-form-group">
           <h2 className="text-center login-title">Login</h2>
           {submitted && failed ? (
             <div
@@ -174,7 +174,7 @@ export default function LoginForm() {
                 </div>
               </Tooltip>
             </ClickAwayListener>
-            <div className="form-group row justify-content-between justify-content-around">
+            <div className="form-group">
               <recaptcha loginAttempts={attempts} />
               {attempts ? (
                 <Recaptcha
@@ -189,7 +189,7 @@ export default function LoginForm() {
               )}
               <button
                 type="submit"
-                className="btn btn-primary float-right login-btn"
+                className="btn btn-primary float-right login-btn default-btn-purple"
               >
                 Login
               </button>

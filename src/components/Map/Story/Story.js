@@ -99,25 +99,7 @@ function Story(props) {
             {props.pin.postCode ? props.pin.postCode : ""}{" "}
             {props.pin.country ? props.pin.country : ""}{" "}
           </h3>
-          {props.pin.startDate && props.pin.endDate ? (
-            <p className={"story-page-dates"}>
-              {props.pin.startDate ? (
-                <Moment format="MM/DD/YYYY">{props.pin.startDate}</Moment>
-              ) : (
-                "No Start Date"
-              )}
-              {" - "}
-              {props.pin.endDate ? (
-                <Moment format="MM/DD/YYYY">{props.pin.endDate}</Moment>
-              ) : (
-                "No End Date"
-              )}
-            </p>
-          ) : (
-            ""
-          )}
-          {/* <p>By: {authorName}</p> */}
-          {props.pin.is_anonymous_pin ? (
+            {props.pin.is_anonymous_pin ? (
             <p className="sidebar-story-author">
               Posted by:{" "}
               <span className="sidebar-story-anon-username">Anonymous</span>
@@ -135,7 +117,23 @@ function Story(props) {
               </p>
             </Link>
           )}
-
+          {props.pin.startDate && props.pin.endDate ? (
+            <p className={"story-page-dates"}>
+              {props.pin.startDate ? (
+                <Moment format="MM/DD/YYYY">{props.pin.startDate}</Moment>
+              ) : (
+                "No Start Date"
+              )}
+              {" - "}
+              {props.pin.endDate ? (
+                <Moment format="MM/DD/YYYY">{props.pin.endDate}</Moment>
+              ) : (
+                "No End Date"
+              )}
+            </p>
+          ) : (
+            ""
+          )}
           <div className="sidebar-story-description">
             <Markup content={props.pin.description} />
           </div>

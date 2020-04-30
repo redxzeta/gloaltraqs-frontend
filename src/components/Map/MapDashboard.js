@@ -77,11 +77,14 @@ export default function MapDashboard() {
   const [isSearch, setIsSearch] = useState(false);
 
   useEffect(() => {
-    dispatch(getPins());
+    // dispatch(getPins());
     dispatch(getMaxPinDate());
     dispatch(getMinPinDate());
     dispatch(searchUsers(""));
   }, [dispatch]);
+
+  // I changed the below two useEffects in order to make the getPinsWithBounds work
+  // pretty much get pins that are within the view and if the map moves refetch pins in new coord bounds
   useEffect(() => {
     if (mapReference !== undefined) {
       let mapBounds = mapReference.getBounds();
@@ -91,10 +94,10 @@ export default function MapDashboard() {
       let east = mapBounds.getEast();
       dispatch(getPinsWithBounds(north, south, east, west));
     }
-  }, [dispatch, mapReference]);
+  }, [mapReference]);
 
   useEffect(() => {
-    if (mapReference !== undefined && !isSearch) {
+    if (mapReference !== undefined) {
       // dispatch(getPins());
       mapReference.once("moveend", function () {
         let mapBounds = mapReference.getBounds();
@@ -105,7 +108,7 @@ export default function MapDashboard() {
         dispatch(getPinsWithBounds(north, south, east, west));
       });
     }
-  }, [mapReference, isSearch, dispatch]);
+  }, [pins]);
 
   useEffect(() => {
     getLocation();
@@ -243,7 +246,7 @@ export default function MapDashboard() {
 
   const [userComment, setuserComment] = useState({
     pin: "",
-    description: "lit",
+    description: "",
   });
   const [toggleComment, settoggleComment] = useState(false);
   const onSubmitComment = (e) => {
@@ -371,7 +374,7 @@ export default function MapDashboard() {
                 setSidebarOpen={setSidebarOpen}
                 pinDeleted={pinDeleted}
                 setPinDeleted={setPinDeleted}
-                showSidebarButton={true}
+                showSidebarButton={false}
                 setStorySidebarOpen={setStorySidebarOpen}
                 addPinValues={addPinValues}
                 handleAddPinChange={handleAddPinChange}
@@ -430,6 +433,13 @@ export default function MapDashboard() {
               setIsLeavingStoryPage={setIsLeavingStoryPage}
               history={history}
               loginToggle={loginToggle}
+             sidebarOpen={sidebarOpen}
+              maxPinDate={maxPinDate}
+              minPinDate={minPinDate}
+              setSidebarOpen={setSidebarOpen}
+              setPlacement={setplacement}
+              isSearch={isSearch}
+              setIsSearch={setIsSearch}
             />
           </div>
         </Route>

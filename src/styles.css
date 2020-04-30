@@ -237,7 +237,7 @@ strong {
 .aboutHeader {
     padding-bottom: 10px;
     float: left;
-    font-size: 64px;
+    font-size: 1rem;
     /* should use rem or em for responsiveness */
     color: #ffffff;
     /*font: Eina;*/
@@ -248,7 +248,7 @@ strong {
 .aboutDesc {
     margin-top: 40px;
     float: right;
-    font-size: 20px;
+    font-size: 1rem;
     color: #ffffff;
 
 }
@@ -410,7 +410,7 @@ strong {
 }
 
 .faq-answer {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .add-faq-button {
@@ -622,7 +622,7 @@ button {
 
 .support-us-main-content-text {
     color: white;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .support-us-side-content-col {
@@ -703,10 +703,10 @@ button {
 }
 
 .resource-text {
-    font-family: "Courier New", "Courier" !important;
-    font-weight: 600 !important;
+    font-family: Eina, Arial !important;
+    font-weight: 500 !important;
     color: black !important;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin: 0 !important;
 }
 
@@ -716,6 +716,8 @@ button {
     color: black !important;
     font-size: 1rem;
     margin: 0 !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .resources-card {
@@ -744,8 +746,8 @@ button {
 
 .resources-sub-text {
     color: white;
-    font-family: "Courier New", "Courier" !important;
-    font-size: 1.2rem;
+    font-family: Eina, Arial !important;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
@@ -778,7 +780,7 @@ button {
 
 .sidebar-story-description {
     font-family: "Eina", "Arial" !important;
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
     font-weight: 500 !important;
     color: black !important;
     text-transform: none !important;
@@ -805,7 +807,7 @@ button {
 
 .sidebar-story-author {
     font-family: "Courier New", "Courier" !important;
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
     font-weight: 600 !important;
     color: black !important;
     text-transform: none !important;
@@ -813,7 +815,7 @@ button {
 
 .sidebar-story-username {
     font-family: "Courier New", "Courier" !important;
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
     font-weight: 600 !important;
     color: rgb(77, 65, 133) !important;
     text-transform: none !important;
@@ -824,8 +826,19 @@ button {
     font-size: 1rem !important;
     font-weight: 500 !important;
     color: #98999b !important;
-    text-transform: none !important;
+    text-transform: lowercase !important;
 }
+
+.profile-story-card {
+    min-height: 100%;
+    height: auto;
+}
+
+.sidebar-input-placeholder {
+    font-family: "Eina", "Arial" !important;
+    text-transform: lowercase !important;
+}
+
 
 .react-date-picker,
 react-date-picker--closed,
@@ -863,10 +876,11 @@ react-date-picker--enabled {
 
 .story-page-dates {
     font-family: "Courier New", "Courier" !important;
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
     font-weight: 600 !important;
     color: rgb(77, 65, 133) !important;
     text-transform: lowercase !important;
+    line-height: 1px;
 }
 
 .anticon-user {
@@ -1047,6 +1061,10 @@ react-date-picker--enabled {
     width: 120px !important;
 }
 
+.accounts-form-group {
+    padding: 30px 30px !important;
+}
+
 
 .forgot-password-div {
     background-color: rgb(77, 65, 133) !important;
@@ -1092,6 +1110,11 @@ react-date-picker--enabled {
 
 .react-switch {
     margin-top: 7px;
+}
+
+.story-card {
+    border-radius: 25px !important;
+    box-shadow: -5px 5px rgba(0, 0, 0, 0.1) !important;
 }
 
 .profile-page-favorite-posts-title {
@@ -1151,7 +1174,7 @@ react-date-picker--enabled {
 .aboutDesc {
 
     float: right;
-    font-size: 20px;
+    font-size: 1rem;
     color: #ffffff;
 
 }
@@ -1221,7 +1244,7 @@ react-date-picker--enabled {
 
 .user-profile-story-description {
     font-family: "Eina", "Arial" !important;
-    font-size: 0.8rem;
+    font-size: 1.1rem !important;
     color: black !important;
     text-transform: none !important;
 }
@@ -1349,7 +1372,7 @@ react-date-picker--enabled {
     padding-right: 10px;
     padding-top: 30px;
     width: 100%;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #98999b;
 }
 
@@ -1379,7 +1402,7 @@ react-date-picker--enabled {
 
 .story-comment-header {
     font-family: "Eina", "Arial" !important;
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
     font-weight: 500 !important;
     color: black !important;
     text-transform: lowercase !important;
@@ -1416,7 +1439,7 @@ react-date-picker--enabled {
 
 .sidebar-story-anon-username {
     font-family: "Courier New", "Courier" !important;
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
     font-weight: 600 !important;
     color: #98999b !important;
     text-transform: none !important;
@@ -1424,6 +1447,7 @@ react-date-picker--enabled {
 
 .modal-content {
     border-radius: 24px;
+    padding: 20px;
 }
 
 .modal-title {
@@ -1467,18 +1491,18 @@ select {
     box-shadow: none !important;
 }
 
-.resources-sub-text a {
+.resources-sub-text span, .resources-sub-text a {
     color: white;
-    font-family: "Courier New", "Courier" !important;
-    font-size: 1.2rem;
+    font-family: Eina, Arial !important;
+    font-size: 1.1rem;
     font-weight: 500;
     text-decoration: underline;
 }
 
-.resources-sub-text a:hover {
-    color: white;
-    font-family: "Courier New", "Courier" !important;
-    font-size: 1.2rem;
+.resources-sub-text span:hover, .resources-sub-text a:hover {
+    color: white !important;
+    font-family: Eina, Arial !important;
+    font-size: 1.1rem;
     font-weight: 700;
     text-decoration: underline;
 }
@@ -1609,4 +1633,20 @@ textarea {
     text-transform: lowercase;
     font-family: Eina, Arial !important;
     float: right;
+}
+
+/*.story-page-sidebar-closed {*/
+/*    margin-top: 130px !important;*/
+/*    position: fixed !important;*/
+/*    z-index: 0 !important;*/
+/*}*/
+
+/*.story-page-sidebar-open {*/
+/*    margin-top: 130px !important;*/
+/*    position: fixed !important;*/
+/*    z-index: 5 !important;*/
+/*}*/
+
+.MuiCardContent-root {
+    padding: 20px 20px 20px 20px;
 }
