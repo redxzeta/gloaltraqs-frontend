@@ -19,6 +19,7 @@ import {
   GET_NEXT_FLAGGED_PINS,
   GET_MAX_PIN,
   GET_MIN_PIN,
+  ADMIN_DELETE_FLAGGED_PIN,
 } from "./types";
 
 import { LINK } from "../link/link";
@@ -339,6 +340,18 @@ export const getPinsById = (pinIdArray) => (dispatch) => {
       dispatch({
         type: GET_PINS,
         payload: favoritedPins,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const adminDeleteFlaggedPin = (id) => (dispatch) => {
+  axios
+    .delete(`${LINK}/pinFlagged/${id}/`)
+    .then((res) => {
+      dispatch({
+        type: ADMIN_DELETE_FLAGGED_PIN,
+        payload: id,
       });
     })
     .catch((err) => console.log(err));

@@ -16,6 +16,7 @@ import {
   GET_NEXT_FLAGGED_PINS,
   GET_MAX_PIN,
   GET_MIN_PIN,
+  ADMIN_DELETE_FLAGGED_PIN,
 } from "../actions/types.js";
 import moment from "moment";
 
@@ -66,6 +67,7 @@ export default function (state = initialState, action) {
         ...state,
         pinMinDate: new Date(action.payload),
       };
+
     case DELETE_PINS:
       return {
         ...state,
@@ -187,6 +189,21 @@ export default function (state = initialState, action) {
       return {
         ...state,
         flaggedPins: action.payload,
+      };
+    case ADMIN_DELETE_FLAGGED_PIN:
+      const flagpinscheck = {
+        ...state.flaggedPins,
+        results: state.flaggedPins.results.filter(
+          (flag) => flag.id !== action.payload
+        ),
+      };
+
+      return {
+        ...state,
+
+        flaggedPins: flagpinscheck,
+
+        pin: [],
       };
     default:
       return state;

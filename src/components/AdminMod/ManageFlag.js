@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getFlaggedPins,
   getNextFlaggedPins,
-  deletePins,
+  adminDeleteFlaggedPin,
 } from "../../actions/pins";
 import { Link } from "react-router-dom";
-import { Card, Input } from 'reactstrap';
+import { Card, Input } from "reactstrap";
 function ManageFlag() {
   const [showReport, setshowReport] = useState("");
   const [flagLimitNum, setFlagLimitNum] = useState(5);
@@ -24,7 +24,7 @@ function ManageFlag() {
     }));
   };
   const adminDelete = (id) => {
-    dispatch(deletePins(id));
+    dispatch(adminDeleteFlaggedPin(id));
   };
 
   return (
@@ -35,16 +35,14 @@ function ManageFlag() {
       </div>
       <div className="container-fluid">
         <div className={"flag-input-div"}>
-         <span className="flag-num-label">flag number filter</span>
-         <Input
+          <span className="flag-num-label">flag number filter</span>
+          <Input
             id="numOfFlags"
             label="Number of flags to filter"
             type="text"
             className="flag-limit-input"
             value={flagLimitNum}
-            onChange={(e) =>
-                setFlagLimitNum(e.target.value)
-            }
+            onChange={(e) => setFlagLimitNum(e.target.value)}
           />
         </div>
 
@@ -95,69 +93,72 @@ const PrevNext = (props) => {
 function ListFlags(props) {
   const dispatch = useDispatch();
   return (
-      <Card className={"manage-card"}>
-        <table className="table manage-table table-responsive-sm table-responsive-md">
-          <thead className="manage-table-head">
-            <th>
-              story title
-            </th>
-            <th>
-              owner
-            </th>
-            <th>
-              number of flags
-            </th>
-            <th>
-              action
-            </th>
-            <th>
-              reason
-            </th>
-            <th>
-              link to story
-            </th>
-          </thead>
-          <tbody>
-            {props.pins.map((pin, index) => {
-              if(pin.flagscore >= props.flagLimit) {
-                return (
-                    <tr key={index}>
-                      <td>{pin.title}</td>
-                      <td><strong>{pin.username ? <Link to={`/users/${pin.username}`}>{pin.username}</Link> : "Anonymous"}</strong></td>
-                      <td>{pin.flagscore} flags</td>
-                      <td>
-                        <button
-                            onClick={() => dispatch(deletePins(pin.id))}
-                            className="btn btn-sm default-btn-purple"
-                        >
-                          Delete
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                            onClick={() => props.toggleReports(pin.id)}
-                            className="btn btn-sm default-btn-purple"
-                        >
-                          Show Reports
-                        </button>
-                        {props.showReport[pin.id]
-                            ? pin.flaggerstory && (
-                            <div className={"manage-reports"}>
-                              <StoryReports reports={pin.flaggerstory}/>
-                            </div>
+    <Card className={"manage-card"}>
+      <table className="table manage-table table-responsive-sm table-responsive-md">
+        <thead className="manage-table-head">
+          <th>story title</th>
+          <th>owner</th>
+          <th>number of flags</th>
+          <th>action</th>
+          <th>reason</th>
+          <th>link to story</th>
+        </thead>
+        <tbody>
+          {props.pins.map((pin, index) => {
+            if (pin.flagscore >= props.flagLimit) {
+              return (
+                <tr key={index}>
+                  <td>{pin.title}</td>
+                  <td>
+                    <strong>
+                      {pin.username ? (
+                        <Link to={`/users/${pin.username}`}>
+                          {pin.username}
+                        </Link>
+                      ) : (
+                        "Anonymous"
+                      )}
+                    </strong>
+                  </td>
+                  <td>{pin.flagscore} flags</td>
+                  <td>
+                    <button
+                      onClick={() => dispatch(adminDeleteFlaggedPin(pin.id))}
+                      className="btn btn-sm default-btn-purple"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => props.toggleReports(pin.id)}
+                      className="btn btn-sm default-btn-purple"
+                    >
+                      Show Reports
+                    </button>
+                    {props.showReport[pin.id]
+                      ? pin.flaggerstory && (
+                          <div className={"manage-reports"}>
+                            <StoryReports reports={pin.flaggerstory} />
+                          </div>
                         )
-                            : null}
-                      </td>
-                      <td>
-                        <Link className="sidebar-story-read-more" to={`/Story/${pin.id}`}>view story</Link>
-                      </td>
-                    </tr>
-                );
-              }
-            })}
-          </tbody>
-        </table>
-      </Card>
+                      : null}
+                  </td>
+                  <td>
+                    <Link
+                      className="sidebar-story-read-more"
+                      to={`/Story/${pin.id}`}
+                    >
+                      view story
+                    </Link>
+                  </td>
+                </tr>
+              );
+            }
+          })}
+        </tbody>
+      </table>
+    </Card>
   );
 }
 
