@@ -50,7 +50,6 @@ function ManageFlag() {
           <ListFlags
             pins={flaggedPins.results}
             flagLimit={flagLimitNum}
-            handleDelete={adminDelete}
             toggleReports={toggleReports}
             showReport={showReport}
           />

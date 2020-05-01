@@ -8,7 +8,7 @@ export default function ManageComments() {
   const [showReport, setshowReport] = useState("");
   useEffect(() => {
     axios
-      .get(`https://globaltraqsdev.com/api/`)
+      .get(`https://globaltraqsdev.com/api/flagcomment/`)
       .then((res) => {
         setflagComments(res.data);
       })
@@ -23,7 +23,7 @@ export default function ManageComments() {
   };
   const onDeleteComment = (id) => {
     axios
-      .delete(`https://globaltraqsdev.com/api/${id}/`)
+      .delete(`https://globaltraqsdev.com/flagcomment/${id}/`)
       .then((res) => {
         setflagComments(flagComments.filter((comment) => comment.id !== id));
       })
@@ -48,64 +48,52 @@ const DisplayComments = (props) => {
     <div className="container-fluid manage-container">
       manage flagged comments
       <Card className={"manage-card"}>
-            <table className="table manage-table table-responsive-sm table-responsive-md">
-               <thead className="manage-table-head">
-                <th>
-                  story title
-                </th>
-                <th>
-                  description
-                </th>
-                <th>
-                  number of flags
-                </th>
-                <th>
-                  action
-                </th>
-                <th>
-                  reason
-                </th>
-                <th>
-                  link to story
-                </th>
-              </thead>
-            <tbody>
-              {props.comments.map((pin) => {
-                return (
-                  <tr key={pin.id}>
-                    <td>{pin.username ? pin.username : "Anonymous"}</td>
-                    <td>{pin.description}</td>
-                    <td>{pin.flagscore} flags</td>
-                    <td>
-                      <button
-                        onClick={() => props.onDelete(pin.id)}
-                        className="btn btn-sm default-btn-purple"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => props.toggleReports(pin.id)}
-                        className="btn btn-sm default-btn-purple"
-                      >
-                        Show Reports
-                      </button>
-                      {props.showReport[pin.id]
-                        ? pin.flaggingComment && (
-                            <CommentReports reports={pin.flaggingComment} />
-                          )
-                        : null}
-                    </td>
-                    <td>
-                      <Link to={`/Story/${pin.pin.id}`}>View Story</Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Card>
+        <table className="table manage-table table-responsive-sm table-responsive-md">
+          <thead className="manage-table-head">
+            <th>story title</th>
+            <th>description</th>
+            <th>number of flags</th>
+            <th>action</th>
+            <th>reason</th>
+            <th>link to story</th>
+          </thead>
+          <tbody>
+            {props.comments.map((pin) => {
+              return (
+                <tr key={pin.id}>
+                  <td>{pin.username ? pin.username : "Anonymous"}</td>
+                  <td>{pin.description}</td>
+                  <td>{pin.flagscore} flags</td>
+                  <td>
+                    <button
+                      onClick={() => props.onDelete(pin.id)}
+                      className="btn btn-sm default-btn-purple"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => props.toggleReports(pin.id)}
+                      className="btn btn-sm default-btn-purple"
+                    >
+                      Show Reports
+                    </button>
+                    {props.showReport[pin.id]
+                      ? pin.flaggingComment && (
+                          <CommentReports reports={pin.flaggingComment} />
+                        )
+                      : null}
+                  </td>
+                  <td>
+                    <Link to={`/Story/${pin.pin.id}`}>View Story</Link>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </Card>
     </div>
   );
 };
