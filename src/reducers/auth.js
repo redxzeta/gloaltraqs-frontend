@@ -142,9 +142,10 @@ export default function (state = initialState, action) {
       };
     case EDIT_USER_ROLE:
       const usersRole = [
-        ...state.users.results.filter((p) => p.id !== action.payload),
+        ...state.users.results.filter((p) => p.id !== action.payload.id),
         action.payload,
       ];
+      console.log(usersRole);
       const listUsers = {
         ...state.users,
         results: usersRole,
