@@ -1650,3 +1650,81 @@ textarea {
 .MuiCardContent-root {
     padding: 20px 20px 20px 20px;
 }
+
+.management-div {
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    padding: 50px
+}
+
+.nav-tab {
+    color: rgb(77, 65, 133) !important;
+    text-align: left;
+    font-size: 1.1em !important;
+    text-transform: lowercase;
+    font-weight: 600;
+    font-family: "Courier New", "Courier" !important;
+    border-bottom: 1px solid rgb(77, 65, 133) !important;
+}
+
+.nav-tab:hover {
+    color: rgb(77, 65, 133) !important;
+    text-align: left;
+    font-size: 1.1em !important;
+    text-transform: lowercase;
+    font-weight: 700 !important;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(77, 65, 133) !important;
+}
+
+.nav-tab.active {
+    background-color: rgb(77, 65, 133) !important;
+    border-radius: 8px;
+    font-weight: 600;
+    color: white !important;
+    border-color: transparent;
+}
+
+.manage-container {
+    padding: 25px;
+    color: black;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.manage-table {
+    margin-top: 25px !important;
+    font-family: "Eina", "Arial" !important;
+    color: black !important;
+    font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+    width: auto;
+}
+
+.manage-table-head, .manage-table-head th {
+    font-family: "Eina", "Arial" !important;
+    color: black !important;
+    font-size: 1em;
+    text-transform: lowercase !important;
+}
+
+.manage-reports {
+    font-family: "Eina", "Arial" !important;
+    color: black !important;
+    font-size: 0.8rem;
+    width: 100%;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.manage-paginate-buttons {
+    float: right;
+    margin-right: 50px;
+}
+
+.manage-paginate-buttons button {
+    margin-right: 10px;
+}

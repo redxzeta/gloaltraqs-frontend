@@ -18,11 +18,11 @@ export default function Manage() {
   let { path } = useRouteMatch();
 
   return (
-    <div className="main-content-div">
-      <NavTab to="/manage/flag">Check Flags</NavTab>
-      <NavTab to="/manage/users">Manage User</NavTab>
-      <NavTab to="/manage/comments">Manage Comments</NavTab>
-      <NavTab to="/manage/category">Manage Category</NavTab>
+    <div className="main-content-div management-div">
+      <NavTab to="/manage/flag">Flags</NavTab>
+      <NavTab to="/manage/users">Users</NavTab>
+      <NavTab to="/manage/comments">Comments</NavTab>
+      {/*<NavTab to="/manage/category">Manage Category</NavTab>*/}
       <Switch>
         <Route exact path={`/manage`}>
           <MainManage />
@@ -38,9 +38,10 @@ export default function Manage() {
         <Route path={`/manage/comments`}>
           <ManageComments />
         </Route>
-        <Route path={`/manage/category`}>
-          <ManageCategory />
-        </Route>
+        {/* commenting out just for now*/}
+        {/*<Route path={`/manage/category`}>*/}
+        {/*  <ManageCategory />*/}
+        {/*</Route>*/}
       </Switch>
     </div>
   );

@@ -44,19 +44,40 @@ export default function ManageComments() {
 
 const DisplayComments = (props) => {
   return (
-    <div className="container">
-      <table className="table table-bordered">
+    <div className="container-fluid manage-container">
+      manage flagged comments
+        <table className="table manage-table table-responsive-sm table-responsive-md">
+           <thead className="manage-table-head">
+            <th>
+              story title
+            </th>
+            <th>
+              description
+            </th>
+            <th>
+              number of flags
+            </th>
+            <th>
+              action
+            </th>
+            <th>
+              reason
+            </th>
+            <th>
+              link to story
+            </th>
+          </thead>
         <tbody>
           {props.comments.map((pin) => {
             return (
               <tr key={pin.id}>
-                <td>{pin.username ? pin.username : "Anon"}</td>
+                <td>{pin.username ? pin.username : "Anonymous"}</td>
                 <td>{pin.description}</td>
                 <td>{pin.flagscore} flags</td>
                 <td>
                   <button
                     onClick={() => props.onDelete(pin.id)}
-                    className="btn btn-danger"
+                    className="btn btn-sm default-btn-purple"
                   >
                     Delete
                   </button>
@@ -64,7 +85,7 @@ const DisplayComments = (props) => {
                 <td>
                   <button
                     onClick={() => props.toggleReports(pin.id)}
-                    className="btn btn-danger"
+                    className="btn btn-sm default-btn-purple"
                   >
                     Show Reports
                   </button>

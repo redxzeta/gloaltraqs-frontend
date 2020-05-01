@@ -65,17 +65,22 @@ export default function ManageUsers() {
   };
 
   return (
-    <div className="container">
-      <PrevNext next={users.next} previous={users.previous} />
-      <ViewUsers
-        users={users.results}
-        onSubmit={onSubmit}
-        setEdit={setEdit}
-        modalState={modalState}
-        toggle={toggle}
-        userRole={userRole}
-        setuserRole={setuserRole}
-      />
+    <div className={"manage-container"}>
+      manage users
+      <div className={"manage-paginate-buttons"}>
+        <PrevNext next={users.next} previous={users.previous} />
+      </div>
+      <div className="container-fluid">
+        <ViewUsers
+          users={users.results}
+          onSubmit={onSubmit}
+          setEdit={setEdit}
+          modalState={modalState}
+          toggle={toggle}
+          userRole={userRole}
+          setuserRole={setuserRole}
+        />
+      </div>
     </div>
   );
 }
@@ -86,7 +91,7 @@ const PrevNext = (props) => {
     <>
       {props.previous ? (
         <button
-          className="btn btn-outline-primary"
+          className="btn btn-sm default-btn-purple"
           onClick={() => dispatch(getNextPreviousUsers(props.previous))}
         >
           Previous
@@ -96,7 +101,7 @@ const PrevNext = (props) => {
       )}
       {props.next ? (
         <button
-          className="btn btn-outline-primary"
+          className="btn btn-sm default-btn-purple"
           onClick={() => dispatch(getNextPreviousUsers(props.next))}
         >
           Next
@@ -111,7 +116,21 @@ const PrevNext = (props) => {
 const ViewUsers = (props) => {
   const dispatch = useDispatch();
   return (
-    <table className="table table-bordered">
+    <table className="table table-responsive-sm manage-table table-responsive-md">
+      <thead className="manage-table-head">
+          <th>
+            username
+          </th>
+          <th>
+            role
+          </th>
+          <th>
+            change role
+          </th>
+          <th>
+            delete user
+          </th>
+        </thead>
       <tbody>
         {props.users &&
           props.users.map((user, index) => {
@@ -131,7 +150,7 @@ const ViewUsers = (props) => {
                 <td>
                   <button
                     onClick={() => props.setEdit(user, selection)}
-                    className="btn btn-success"
+                    className="btn btn-sm default-btn-purple"
                   >
                     Edit Role
                   </button>
@@ -139,7 +158,7 @@ const ViewUsers = (props) => {
                 <td>
                   <button
                     onClick={() => dispatch(deleteUser(user.id))}
-                    className="btn btn-danger"
+                    className="btn btn-sm default-btn-purple"
                   >
                     Delete user
                   </button>
