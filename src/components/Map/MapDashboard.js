@@ -154,7 +154,7 @@ export default function MapDashboard() {
     onEditSubmit,
     updateEditForm,
     setEditPinState,
-  } = useEditPinForm(pinData, setPinData);
+  } = useEditPinForm(userEditedPin, pinData, setPinData);
   const onDelProfile = () => {
     dispatch(deletePins(removalFav));
     setStorySidebarOpen(!storySidebarOpen);
@@ -172,8 +172,15 @@ export default function MapDashboard() {
     loginToggle,
     loginregisterModalState,
   } = useRemovalConfirm(onDelProfile);
+
   function userAddedPin() {
     mapReference.flyTo([addPinValues.latitude, addPinValues.longitude], 15);
+    centerMarker(addPinValues);
+  }
+
+   function userEditedPin() {
+    mapReference.flyTo([editPinForm.latitude, editPinForm.longitude], 15);
+    centerMarker(editPinForm);
   }
 
   const auth = useSelector((state) => state.auth);

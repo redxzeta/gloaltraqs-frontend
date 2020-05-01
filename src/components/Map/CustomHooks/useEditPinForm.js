@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editPin } from "../../../actions/pins";
 
-const useEditPinForm = (pinData, setPinData) => {
+const useEditPinForm = (callback, pinData, setPinData) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { user } = auth;
@@ -10,6 +10,11 @@ const useEditPinForm = (pinData, setPinData) => {
   const [editPinForm, seteditPinForm] = useState({
     //fields for editng
     id: "1",
+    address: "",
+    locality: "",
+    region: "",
+    country: "",
+    postCode: "",
     title: "",
     description: "",
     category: "1",
@@ -25,6 +30,7 @@ const useEditPinForm = (pinData, setPinData) => {
     });
     seteditpinmodalState(!editpinmodalState);
   };
+
   const updateEditForm = (e) => {
     e.persist();
     seteditPinForm((editPinForm) => ({
@@ -32,13 +38,20 @@ const useEditPinForm = (pinData, setPinData) => {
       [e.target.name]: e.target.value,
     }));
   };
+
   const onEditSubmit = (e) => {
     //patches the selected pin
     if (e) e.preventDefault();
-
+     console.log("edit submit");
     dispatch(editPin(editPinForm, editPinForm.id, user.id));
+    callback();
     setPinData({
       ...pinData,
+      address: editPinForm.address,
+      locality: editPinForm.locality,
+      region: editPinForm.region,
+      country: editPinForm.country,
+      postCode: editPinForm.postCode,
       title: editPinForm.title,
       description: editPinForm.description,
       category: editPinForm.category,

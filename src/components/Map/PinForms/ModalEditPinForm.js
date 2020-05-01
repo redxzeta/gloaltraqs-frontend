@@ -19,6 +19,13 @@ import "react-datepicker/dist/react-datepicker.css";
 //   float: "right",
 // };
 
+
+// import
+import { OpenStreetMapProvider } from "leaflet-geosearch";
+
+// setup
+const provider = new OpenStreetMapProvider();
+
 const labelStyle = {
   marginRight: "10px",
 };
@@ -30,10 +37,34 @@ const dateStyle = {
 };
 
 function ModalEditPinForm(props) {
-  const validateEditForm = (e) => {
+  const validateEditForm = async (e) => {
     e.preventDefault();
 
+      let address = props.userForm.address;
+      let locality = props.userForm.locality;
+      let region = props.userForm.region;
+      let country = props.userForm.country;
+      let postCode = props.userForm.postCode;
+
+      let addressQuery =
+        address +
+        " " +
+        locality +
+        " " +
+        region +
+        " " +
+        postCode +
+        " " +
+        country;
+      // search
+      let results = await provider.search({ query: addressQuery });
+
+
     if (props.userForm.title && props.userForm.description) {
+      if (results.length > 0) {
+        props.userForm.latitude = Number(results[0].y);
+        props.userForm.longitude = Number(results[0].x);
+      }
       props.onSubmit();
     }
   };

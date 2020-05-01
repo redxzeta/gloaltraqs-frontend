@@ -141,6 +141,13 @@ export const addPin = (pin) => (dispatch) => {
 };
 
 export const editPin = (pin, id, userid) => (dispatch) => {
+  let latitudeSplit = pin.latitude.toString().split(".");
+  let latitude = latitudeSplit[0] + "." + latitudeSplit[1].substring(0, 6);
+  let longitudeSplit = pin.longitude.toString().split(".");
+  let longitude = longitudeSplit[0] + "." + longitudeSplit[1].substring(0, 6);
+  pin.latitude = latitude;
+  pin.longitude = longitude;
+
   axios
     .patch(`${LINK}/pins/${id}/`, pin)
     .then((res) => {
