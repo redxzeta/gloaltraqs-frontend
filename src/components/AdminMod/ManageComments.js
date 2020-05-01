@@ -10,6 +10,7 @@ export default function ManageComments() {
     axios
       .get(`https://globaltraqsdev.com/api/flagcomment/`)
       .then((res) => {
+        console.log(flagComments);
         setflagComments(res.data);
       })
       .catch((error) => console.log(error));
@@ -55,7 +56,6 @@ const DisplayComments = (props) => {
             <th>number of flags</th>
             <th>action</th>
             <th>reason</th>
-            <th>link to story</th>
           </thead>
           <tbody>
             {props.comments.map((pin) => {
@@ -84,9 +84,6 @@ const DisplayComments = (props) => {
                           <CommentReports reports={pin.flaggingComment} />
                         )
                       : null}
-                  </td>
-                  <td>
-                    <Link to={`/Story/${pin.pin.id}`}>View Story</Link>
                   </td>
                 </tr>
               );
