@@ -130,7 +130,7 @@ function Header() {
       adminManager = (
         <li className="nav-item">
           <Link to="/manage" className="nav-link header-dropdown-nav-item">
-            Manage
+            Management
           </Link>
         </li>
       );

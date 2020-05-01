@@ -6,9 +6,10 @@ import {
   deletePins,
 } from "../../actions/pins";
 import { Link } from "react-router-dom";
-
+import { Card, Input } from 'reactstrap';
 function ManageFlag() {
   const [showReport, setshowReport] = useState("");
+  const [flagLimitNum, setFlagLimitNum] = useState(5);
   const flaggedPins = useSelector((state) => state.pins.flaggedPins);
   const dispatch = useDispatch(); // dispatches the action
 
@@ -29,11 +30,28 @@ function ManageFlag() {
   return (
     <div className={"manage-container"}>
       manage flagged posts
-      <div className="container-fluid">
+      <div className={"manage-paginate-buttons"}>
         <PrevNext next={flaggedPins.next} previous={flaggedPins.previous} />
+      </div>
+      <div className="container-fluid">
+        <div className={"flag-input-div"}>
+         <span className="flag-num-label">flag number filter</span>
+         <Input
+            id="numOfFlags"
+            label="Number of flags to filter"
+            type="text"
+            className="flag-limit-input"
+            value={flagLimitNum}
+            onChange={(e) =>
+                setFlagLimitNum(e.target.value)
+            }
+          />
+        </div>
+
         {flaggedPins.results && (
           <ListFlags
             pins={flaggedPins.results}
+            flagLimit={flagLimitNum}
             handleDelete={adminDelete}
             toggleReports={toggleReports}
             showReport={showReport}
@@ -53,7 +71,7 @@ const PrevNext = (props) => {
       {props.previous ? (
         <button
           onClick={() => dispatch(getNextFlaggedPins(props.previous))}
-          className="btn btn-outline-primary"
+          className="btn btn-sm default-btn-purple"
         >
           Previous{" "}
         </button>
@@ -63,7 +81,7 @@ const PrevNext = (props) => {
       {props.next ? (
         <button
           onClick={() => dispatch(getNextFlaggedPins(props.next))}
-          className="btn btn-outline-primary"
+          className="btn btn-sm default-btn-purple"
         >
           Next
         </button>
@@ -77,7 +95,7 @@ const PrevNext = (props) => {
 function ListFlags(props) {
   const dispatch = useDispatch();
   return (
-      <card>
+      <Card className={"manage-card"}>
         <table className="table manage-table table-responsive-sm table-responsive-md">
           <thead className="manage-table-head">
             <th>
@@ -101,43 +119,45 @@ function ListFlags(props) {
           </thead>
           <tbody>
             {props.pins.map((pin, index) => {
-              return (
-                <tr key={index}>
-                  <td>{pin.title}</td>
-                  <td>{pin.username ? <Link to={`/users/${pin.username}`}>{pin.username}</Link> : "Anonymous"}</td>
-                  <td>{pin.flagscore} flags</td>
-                  <td>
-                    <button
-                      onClick={() => dispatch(deletePins(pin.id))}
-                      className="btn btn-sm default-btn-purple"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => props.toggleReports(pin.id)}
-                      className="btn btn-sm default-btn-purple"
-                    >
-                      Show Reports
-                    </button>
-                    {props.showReport[pin.id]
-                      ? pin.flaggerstory && (
-                          <div className={"manage-reports"}>
-                            <StoryReports reports={pin.flaggerstory} />
-                          </div>
+              if(pin.flagscore >= props.flagLimit) {
+                return (
+                    <tr key={index}>
+                      <td>{pin.title}</td>
+                      <td><strong>{pin.username ? <Link to={`/users/${pin.username}`}>{pin.username}</Link> : "Anonymous"}</strong></td>
+                      <td>{pin.flagscore} flags</td>
+                      <td>
+                        <button
+                            onClick={() => dispatch(deletePins(pin.id))}
+                            className="btn btn-sm default-btn-purple"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                            onClick={() => props.toggleReports(pin.id)}
+                            className="btn btn-sm default-btn-purple"
+                        >
+                          Show Reports
+                        </button>
+                        {props.showReport[pin.id]
+                            ? pin.flaggerstory && (
+                            <div className={"manage-reports"}>
+                              <StoryReports reports={pin.flaggerstory}/>
+                            </div>
                         )
-                      : null}
-                  </td>
-                  <td>
-                    <Link to={`/Story/${pin.id}`}>View Story</Link>
-                  </td>
-                </tr>
-              );
+                            : null}
+                      </td>
+                      <td>
+                        <Link className="sidebar-story-read-more" to={`/Story/${pin.id}`}>view story</Link>
+                      </td>
+                    </tr>
+                );
+              }
             })}
           </tbody>
         </table>
-      </card>
+      </Card>
   );
 }
 

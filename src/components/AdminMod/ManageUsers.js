@@ -9,6 +9,7 @@ import {
   Form,
   FormGroup,
   Label,
+  Card
 } from "reactstrap";
 import {
   getUsers,
@@ -23,6 +24,7 @@ export default function ManageUsers() {
   const [editUser, seteditUser] = useState();
   const [modalState, setmodalState] = useState(false);
   const [userRole, setuserRole] = useState(3);
+
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
@@ -75,6 +77,7 @@ export default function ManageUsers() {
           users={users.results}
           onSubmit={onSubmit}
           setEdit={setEdit}
+          editUser={editUser}
           modalState={modalState}
           toggle={toggle}
           userRole={userRole}
@@ -114,10 +117,13 @@ const PrevNext = (props) => {
 };
 
 const ViewUsers = (props) => {
+  const {isAuthenticated, user} = useSelector((state) => state.auth);
+  let loggedInUser = user;
   const dispatch = useDispatch();
   return (
-    <table className="table table-responsive-sm manage-table table-responsive-md">
-      <thead className="manage-table-head">
+    <Card className={"manage-card"}>
+      <table className="table table-responsive-sm manage-table table-responsive-md">
+        <thead className="manage-table-head">
           <th>
             username
           </th>
@@ -137,48 +143,55 @@ const ViewUsers = (props) => {
             let userRole = "";
             let selection = 3;
             if (user.is_administrator) {
-              userRole = <strong>Administrator</strong>;
+              userRole = <strong>administrator</strong>;
               selection = 1;
             } else if (user.is_moderator) {
-              userRole = <strong>Moderator</strong>;
+              userRole = <strong>moderator</strong>;
               selection = 2;
             }
-            return (
-              <tr key={index}>
-                <td>{user.username}</td>
-                <td>{userRole}</td>
-                <td>
-                  <button
-                    onClick={() => props.setEdit(user, selection)}
-                    className="btn btn-sm default-btn-purple"
-                  >
-                    Edit Role
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => dispatch(deleteUser(user.id))}
-                    className="btn btn-sm default-btn-purple"
-                  >
-                    Delete user
-                  </button>
-                </td>
-                <td>
-                  <EditUserRole
-                    user={user}
-                    onSubmit={props.onSubmit}
-                    index={index}
-                    toggle={props.toggle}
-                    modalState={props.modalState}
-                    userRole={props.userRole}
-                    setuserRole={props.setuserRole}
-                  />
-                </td>
-              </tr>
-            );
+            // don't show currently logged in user (ie can't manage themselves)
+            if(loggedInUser && loggedInUser.id != user.id) {
+              if((loggedInUser.is_administrator) || (loggedInUser.is_moderator && !user.is_administrator)) {
+                return (
+                    <tr key={index}>
+                      <td>{user.username}</td>
+                      <td>{userRole}</td>
+                      <td>
+                        <button
+                            onClick={() => props.setEdit(user, selection)}
+                            className="btn btn-sm default-btn-purple"
+                        >
+                          Edit Role
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                            onClick={() => dispatch(deleteUser(user.id))}
+                            className="btn btn-sm default-btn-purple"
+                        >
+                          Delete user
+                        </button>
+                      </td>
+                      <td>
+                        <EditUserRole
+                            loggedInUser={loggedInUser}
+                            editUser={props.editUser}
+                            onSubmit={props.onSubmit}
+                            index={index}
+                            toggle={props.toggle}
+                            modalState={props.modalState}
+                            userRole={props.userRole}
+                            setuserRole={props.setuserRole}
+                        />
+                      </td>
+                    </tr>
+                );
+              }
+            }
           })}
       </tbody>
     </table>
+   </Card>
   );
 };
 
@@ -190,53 +203,68 @@ const EditUserRole = (props) => {
     marginRight: "10px",
   };
   console.log(props.userRole);
-  return (
-    <>
-      <Modal
-        isOpen={props.modalState}
-        toggle={props.toggle}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <ModalHeader toggle={props.toggle}>
-          {" "}
-          Changing Role for {props.user.username}{" "}
-        </ModalHeader>
-        <ModalBody>
-          <Form onSubmit={props.onSubmit}>
-            <FormGroup>
-              <Label style={labelStyle} for="category">
-                Select Role
-              </Label>
-              <select
-                name="Role"
-                value={props.userRole}
-                onChange={(e) => props.setuserRole(e.target.value)}
-                // value={props.userForm.category}
-                // onChange={e =>
-                //   props.setuserForm({
-                //     ...props.userForm,
-                //     category: e.target.value
-                //   })
-                // }
-              >
-                <option value="1">Administrator</option>
-                <option value="2">Moderator</option>
-                <option value="3">None </option>
-              </select>
-            </FormGroup>
-            <Button style={buttonStyle} color="success">
-              Save
-            </Button>
-          </Form>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="secondary" onClick={props.toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
-    </>
-  );
+  if(props.loggedInUser) {
+    return (
+        <>
+          <Modal
+              isOpen={props.modalState}
+              toggle={props.toggle}
+              size="lg"
+              aria-labelledby="contained-modal-title-vcenter"
+              centered
+          >
+            <ModalHeader toggle={props.toggle}>
+              {" "}
+              Changing Role for {props.editUser ? props.editUser.username : ""}{" "}
+            </ModalHeader>
+            <ModalBody>
+              <Form onSubmit={props.onSubmit}>
+                <FormGroup>
+                  <Label style={labelStyle} for="category">
+                    Select Role
+                  </Label>
+                  <select
+                      name="Role"
+                      value={props.userRole}
+                      onChange={(e) => props.setuserRole(e.target.value)}
+                      // value={props.userForm.category}
+                      // onChange={e =>
+                      //   props.setuserForm({
+                      //     ...props.userForm,
+                      //     category: e.target.value
+                      //   })
+                      // }
+                  >
+                    {props.loggedInUser.is_administrator ? (
+                            <>
+                              <option value="1">Administrator</option>
+                              <option value="2">Moderator</option>
+                              <option value="3">None</option>
+                            </>
+                        ) :
+                        (
+                            <>
+                              <option value="1">Moderator</option>
+                              <option value="2">None</option>
+                            </>
+                        )};
+                  </select>
+                </FormGroup>
+                <Button style={buttonStyle} color="success">
+                  Save
+                </Button>
+              </Form>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" onClick={props.toggle}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
+        </>
+    );
+  }
+  else {
+    return null;
+  }
 };

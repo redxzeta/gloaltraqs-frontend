@@ -456,7 +456,7 @@ export default function MapDashboard() {
         modalState={loginregisterModalState}
         toggle={loginToggle}
         login={true}
-        title="Login or Register To Favorite"
+        title="login or register to favorite"
       />
     </Fragment>
   );

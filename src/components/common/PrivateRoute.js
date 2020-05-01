@@ -13,7 +13,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
         } else if (!auth.isAuthenticated) {
           return <NotFoundPage />;
         } else {
-          if (auth.user.is_administrator) return <Component {...props} />;
+          if (auth.user.is_administrator || auth.user.is_moderator) return <Component {...props} />;
           else {
             return <NotFoundPage />;
           }

@@ -1483,7 +1483,8 @@ select {
 
 .story-form-alerts {
     text-transform: lowercase !important;
-    font-family: Eina, Arial !important;
+    font-family: "Courier New", "Courier" !important;
+    font-weight: 600;
     color: #e63f52 !important;
 }
 
@@ -1654,7 +1655,7 @@ textarea {
 .management-div {
     width: 100%;
     height: auto;
-    min-width: 100%;
+    min-height: 100%;
     padding: 50px
 }
 
@@ -1694,7 +1695,8 @@ textarea {
 }
 
 .manage-table {
-    margin-top: 25px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     font-family: "Eina", "Arial" !important;
     color: black !important;
     font-size: 1rem;
@@ -1705,10 +1707,11 @@ textarea {
 }
 
 .manage-table-head, .manage-table-head th {
-    font-family: "Eina", "Arial" !important;
-    color: black !important;
-    font-size: 1em;
+    font-family: "Courier New", "Courier" !important;
+    color: rgb(77, 65, 133) !important;
+    font-size: 1rem;
     text-transform: lowercase !important;
+    border: none !important;
 }
 
 .manage-reports {
@@ -1727,4 +1730,37 @@ textarea {
 
 .manage-paginate-buttons button {
     margin-right: 10px;
+}
+
+.flag-limit-input {
+    width: 100px !important;
+    display: inline !important;
+    margin-left: 20px;
+}
+
+.flag-num-label {
+    font-family: "Courier New", "Courier" !important;
+    color: black !important;
+    font-size: 1rem;
+    text-transform: lowercase !important;
+}
+
+.flag-input-div {
+    margin-top: 50px;
+}
+
+.manage-card {
+    margin-top: 40px;
+    border-radius: 25px;
+}
+
+.text-danger {
+    font-family: "Courier New", "Courier" !important;
+    color: #e63f52 !important;
+    text-transform: lowercase !important;
+    font-weight: 600;
+}
+
+.navbar-brand {
+    margin-right: 0px !important;
 }

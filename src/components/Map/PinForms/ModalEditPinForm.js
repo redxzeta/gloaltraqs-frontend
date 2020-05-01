@@ -139,8 +139,8 @@ function ModalEditPinForm(props) {
                 config={{
                   height: 300,
                   fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-                  plugins: "autolink link image lists print preview",
-                  toolbar: "undo redo | bold italic",
+                  plugins: "autolink link image lists print preview emoticons",
+                  toolbar: "undo redo | bold italic emoticons",
                 }}
                 onChange={(e) =>
                   props.setuserForm({

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 const buttonStyle = {
   float: "right",
+  marginRight: "10px"
 };
 // const labelStyle = {
 //   marginRight: "10px",
@@ -51,15 +52,14 @@ export default ConfirmationModal;
 const LoginRegister = () => {
   return (
     <>
-      <Link to="/login">
-        <Button style={buttonStyle} className={"btn default-btn-purple"}>
-          Click Here to Login
-        </Button>
-      </Link>
-
       <Link to="/register">
         <Button style={buttonStyle} className={"btn default-btn-purple"}>
-          Click Here to Register
+          register
+        </Button>
+      </Link>
+           <Link to="/login">
+        <Button style={buttonStyle} className={"btn default-btn-purple"}>
+          login
         </Button>
       </Link>
     </>
