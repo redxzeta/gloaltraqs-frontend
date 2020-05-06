@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { LINK } from "../../link/link";
 import { Card, Input } from "reactstrap";
 
 export default function ManageComments() {
@@ -8,7 +8,7 @@ export default function ManageComments() {
   const [showReport, setshowReport] = useState("");
   useEffect(() => {
     axios
-      .get(`https://globaltraqsdev.com/api/flagcomment/`)
+      .get(`${LINK}/commentStory/`)
       .then((res) => {
         console.log(flagComments);
         setflagComments(res.data);
@@ -24,7 +24,7 @@ export default function ManageComments() {
   };
   const onDeleteComment = (id) => {
     axios
-      .delete(`https://globaltraqsdev.com/flagcomment/${id}/`)
+      .delete(`${LINK}/commentStory/${id}/`)
       .then((res) => {
         setflagComments(flagComments.filter((comment) => comment.id !== id));
       })
@@ -51,8 +51,8 @@ const DisplayComments = (props) => {
       <Card className={"manage-card"}>
         <table className="table manage-table table-responsive-sm table-responsive-md">
           <thead className="manage-table-head">
-            <th>story title</th>
-            <th>description</th>
+            <th>User </th>
+            <th>Comment</th>
             <th>number of flags</th>
             <th>action</th>
             <th>reason</th>
@@ -83,7 +83,7 @@ const DisplayComments = (props) => {
                       ? pin.flaggingComment && (
                           <CommentReports reports={pin.flaggingComment} />
                         )
-                      : null}
+                      : ""}
                   </td>
                 </tr>
               );
