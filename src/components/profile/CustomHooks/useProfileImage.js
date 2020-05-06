@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import axios from "axios";
 import getCroppedImg from "./cropImage";
+import { CLOUDINARY } from "../../../link/link";
 const useProfileImage = () => {
   const dispatch = useDispatch();
 
@@ -64,7 +65,7 @@ const useProfileImage = () => {
     //https://api.cloudinary.com/v1_1/dauntlessx/image/upload
 
     axios
-      .post("https://api.cloudinary.com/v1_1/dauntlessx/image/upload", formData)
+      .post(`${CLOUDINARY}`, formData)
       .then((response) => {
         dispatch(updateProfilePic(response.data.secure_url));
       })

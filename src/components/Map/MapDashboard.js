@@ -44,7 +44,7 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 // };
 
 import LeafletMap from "./LeafletMap";
-import {LatLng} from "leaflet/dist/leaflet-src.esm";
+import { LatLng } from "leaflet/dist/leaflet-src.esm";
 const Story = React.lazy(() => import("./Story/Story"));
 const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
@@ -178,7 +178,7 @@ export default function MapDashboard() {
     centerMarker(addPinValues);
   }
 
-   function userEditedPin() {
+  function userEditedPin() {
     mapReference.flyTo([editPinForm.latitude, editPinForm.longitude], 15);
     centerMarker(editPinForm);
   }
@@ -264,6 +264,11 @@ export default function MapDashboard() {
     };
     settoggleComment(false);
     dispatch(addComment(submit));
+    setuserComment({
+      ...userComment,
+      description: "",
+    });
+
     // dispatch(addComment(userComment));
   };
   const onDeleteComment = (commentid) => {
@@ -440,7 +445,7 @@ export default function MapDashboard() {
               setIsLeavingStoryPage={setIsLeavingStoryPage}
               history={history}
               loginToggle={loginToggle}
-             sidebarOpen={sidebarOpen}
+              sidebarOpen={sidebarOpen}
               maxPinDate={maxPinDate}
               minPinDate={minPinDate}
               setSidebarOpen={setSidebarOpen}
@@ -487,18 +492,17 @@ function StoryDisplay(props) {
 
   useEffect(() => {
     return () => {
-
       setStoryStyle({
-        top: "100%"
+        top: "100%",
       });
       props.setMapContainerStyle({
-        height: "100%"
+        height: "100%",
       });
       // setTimeout(function() { //Start the timer
       //       props.setIsLeavingStoryPage(false);
       //       props.history.push("/#");
       // }.bind(this), 500);
-    }
+    };
   }, []);
   return (
     <div id={"story-page"} style={storyStyle}>
