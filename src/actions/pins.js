@@ -54,10 +54,8 @@ export const getMinPinDate = () => (dispatch) => {
   axios
     .get(`${LINK}/minPinDate`)
     .then((res) => {
-      const dates = "1869-04-20";
-      console.log(res.data);
       const minDate = moment(res.data[0].startDate).format("YYYY/MM/DD");
-      console.log(minDate);
+
       dispatch({
         type: GET_MIN_PIN,
         payload: minDate,
@@ -76,8 +74,6 @@ export const getMaxPinDate = () => (dispatch) => {
     .get(`${LINK}/maxPinDate`)
     .then((res) => {
       // let date = res.data[0].startDate.split("-");
-
-      const dates = "2020-04-20";
 
       const maxDate = moment(res.data[0].startDate).format("YYYY/MM/DD");
 

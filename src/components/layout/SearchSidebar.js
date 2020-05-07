@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
 import Sidebar from "react-sidebar";
 import { IconButton } from "@material-ui/core";
-import { getPinsWithBounds, searchPins } from "../../actions/pins";
+import { searchPins } from "../../actions/pins";
 import DefaultProfilePic from "../images/ProfilePic-03.png";
 import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
@@ -19,7 +19,7 @@ import Slider from "@material-ui/core/Slider";
 import { Label } from "reactstrap";
 import moment from "moment";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Avatar } from "antd";
+
 import { Row, Col } from "react-bootstrap";
 import { getPins } from "../../actions/pins";
 import { searchUsers, getNextPreviousUsers } from "../../actions/users";
@@ -57,7 +57,7 @@ function SearchSidebar(props) {
   }, [minPinDate, maxPinDate]);
 
   //   dispatch(getPins());
-  const changeYear = (min, max) => {};
+
   const onSetSidebarOpen = (open) => {
     setSidebarOpen({ sidebarOpen: open });
   };
@@ -112,11 +112,11 @@ function SearchSidebar(props) {
       start: minPinDate,
       end: maxPinDate,
     });
-    let mapBounds = props.mapReference.getBounds();
-    let south = mapBounds.getSouth();
-    let west = mapBounds.getWest();
-    let north = mapBounds.getNorth();
-    let east = mapBounds.getEast();
+    // let mapBounds = props.mapReference.getBounds();
+    // let south = mapBounds.getSouth();
+    // let west = mapBounds.getWest();
+    // let north = mapBounds.getNorth();
+    // let east = mapBounds.getEast();
     //dispatch(getPinsWithBounds(north, south, east, west));
     dispatch(getPins());
     props.setIsSearch(false);
@@ -128,9 +128,9 @@ function SearchSidebar(props) {
     multiValue: (styles, { data }) => {
       const category = data.value;
       let color = "white";
-      if (category == 1) {
+      if (category === "1") {
         color = "#e01783";
-      } else if (category == 2) {
+      } else if (category === "2") {
         color = "#00ce7d";
       } else {
         color = "#248dc1";
@@ -271,9 +271,9 @@ function SearchSidebar(props) {
               >
                 <div
                   className={
-                    story.category == 1
+                    story.category === 1
                       ? "search-bar-story-card-trim-personal"
-                      : story.category == 2
+                      : story.category === 2
                       ? "search-bar-story-card-trim-resources"
                       : "search-bar-story-card-trim-historical"
                   }

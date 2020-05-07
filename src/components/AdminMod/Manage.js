@@ -11,7 +11,7 @@ import {
 import ManageFlag from "./ManageFlag";
 import ManageUsers from "./ManageUsers";
 import ManageComments from "./ManageComments";
-import ManageCategory from "./ManageCategory";
+// import ManageCategory from "./ManageCategory";
 import { NavTab } from "react-router-tabs";
 import "./styles/react-router-tabs.css";
 export default function Manage() {

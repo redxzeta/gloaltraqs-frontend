@@ -57,7 +57,7 @@ export default function FAQ() {
       })
       .catch((error) => {
         // handle error
-        console.log(error);
+        // console.log(error);
       });
   }, []);
 
@@ -78,7 +78,7 @@ export default function FAQ() {
         setbackUpFaq(backUpFaq.filter((desc) => desc.id !== id));
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
 
@@ -101,7 +101,7 @@ export default function FAQ() {
         );
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
   const revertChange = (id) => {
@@ -136,7 +136,7 @@ export default function FAQ() {
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
 

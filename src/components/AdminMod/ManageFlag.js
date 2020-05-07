@@ -162,7 +162,6 @@ function ListFlags(props) {
 }
 
 const StoryReports = (props) => {
-  console.log(props);
   return (
     <ul>
       {props.reports.length > 0

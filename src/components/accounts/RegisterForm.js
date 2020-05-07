@@ -34,9 +34,7 @@ export default function RegisterForm() {
     errors: {},
   });
   const [captcha, setcaptcha] = useState(false);
-  const reCaptchaLoaded = () => {
-    console.log("captcha successfully loaded");
-  };
+  const reCaptchaLoaded = () => {};
 
   useEffect(() => {
     if (submitted) {

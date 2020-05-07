@@ -72,7 +72,6 @@ const ListCategories = (props) => {
 };
 
 const AddCategory = (props) => {
-  console.log(props);
   return (
     <tr>
       <td>

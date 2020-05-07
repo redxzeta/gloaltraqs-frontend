@@ -61,7 +61,7 @@ const useProfileImage = () => {
 
     formData.append("upload_preset", "XzetaDev");
     formData.append("file", pic);
-    console.log("over here");
+
     //https://api.cloudinary.com/v1_1/dauntlessx/image/upload
 
     axios
@@ -72,7 +72,6 @@ const useProfileImage = () => {
 
       .catch((error) => {
         // handle error
-        console.log(error);
       });
     toggle();
   };

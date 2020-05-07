@@ -9,7 +9,7 @@ import {
   Form,
   FormGroup,
   Label,
-  Card
+  Card,
 } from "reactstrap";
 import {
   getUsers,
@@ -29,7 +29,6 @@ export default function ManageUsers() {
     dispatch(getUsers());
   }, [dispatch]);
   const onSubmit = (e) => {
-    console.log(" the user role is " + userRole);
     e.preventDefault();
     let submit = {
       id: editUser.id,
@@ -117,81 +116,76 @@ const PrevNext = (props) => {
 };
 
 const ViewUsers = (props) => {
-  const {isAuthenticated, user} = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   let loggedInUser = user;
   const dispatch = useDispatch();
   return (
     <Card className={"manage-card"}>
       <table className="table table-responsive-sm manage-table table-responsive-md">
         <thead className="manage-table-head">
-          <th>
-            username
-          </th>
-          <th>
-            role
-          </th>
-          <th>
-            change role
-          </th>
-          <th>
-            delete user
-          </th>
+          <th>username</th>
+          <th>role</th>
+          <th>change role</th>
+          <th>delete user</th>
         </thead>
-      <tbody>
-        {props.users &&
-          props.users.map((user, index) => {
-            let userRole = "";
-            let selection = 3;
-            if (user.is_administrator) {
-              userRole = <strong>administrator</strong>;
-              selection = 1;
-            } else if (user.is_moderator) {
-              userRole = <strong>moderator</strong>;
-              selection = 2;
-            }
-            // don't show currently logged in user (ie can't manage themselves)
-            if(loggedInUser && loggedInUser.id != user.id) {
-              if((loggedInUser.is_administrator) || (loggedInUser.is_moderator && !user.is_administrator)) {
-                return (
+        <tbody>
+          {props.users &&
+            props.users.map((user, index) => {
+              let userRole = "";
+              let selection = 3;
+              if (user.is_administrator) {
+                userRole = <strong>administrator</strong>;
+                selection = 1;
+              } else if (user.is_moderator) {
+                userRole = <strong>moderator</strong>;
+                selection = 2;
+              }
+              // don't show currently logged in user (ie can't manage themselves)
+              if (loggedInUser && loggedInUser.id != user.id) {
+                if (
+                  loggedInUser.is_administrator ||
+                  (loggedInUser.is_moderator && !user.is_administrator)
+                ) {
+                  return (
                     <tr key={index}>
                       <td>{user.username}</td>
                       <td>{userRole}</td>
                       <td>
                         <button
-                            onClick={() => props.setEdit(user, selection)}
-                            className="btn btn-sm default-btn-purple"
+                          onClick={() => props.setEdit(user, selection)}
+                          className="btn btn-sm default-btn-purple"
                         >
                           Edit Role
                         </button>
                       </td>
                       <td>
                         <button
-                            onClick={() => dispatch(deleteUser(user.id))}
-                            className="btn btn-sm default-btn-purple"
+                          onClick={() => dispatch(deleteUser(user.id))}
+                          className="btn btn-sm default-btn-purple"
                         >
                           Delete user
                         </button>
                       </td>
                       <td>
                         <EditUserRole
-                            loggedInUser={loggedInUser}
-                            editUser={props.editUser}
-                            onSubmit={props.onSubmit}
-                            index={index}
-                            toggle={props.toggle}
-                            modalState={props.modalState}
-                            userRole={props.userRole}
-                            setuserRole={props.setuserRole}
+                          loggedInUser={loggedInUser}
+                          editUser={props.editUser}
+                          onSubmit={props.onSubmit}
+                          index={index}
+                          toggle={props.toggle}
+                          modalState={props.modalState}
+                          userRole={props.userRole}
+                          setuserRole={props.setuserRole}
                         />
                       </td>
                     </tr>
-                );
+                  );
+                }
               }
-            }
-          })}
-      </tbody>
-    </table>
-   </Card>
+            })}
+        </tbody>
+      </table>
+    </Card>
   );
 };
 
@@ -202,69 +196,70 @@ const EditUserRole = (props) => {
   const labelStyle = {
     marginRight: "10px",
   };
-  console.log(props.userRole);
-  if(props.loggedInUser) {
+
+  if (props.loggedInUser) {
     return (
-        <>
-          <Modal
-              isOpen={props.modalState}
-              toggle={props.toggle}
-              size="lg"
-              aria-labelledby="contained-modal-title-vcenter"
-              centered
-          >
-            <ModalHeader toggle={props.toggle}>
-              {" "}
-              Changing Role for {props.editUser ? props.editUser.username : ""}{" "}
-            </ModalHeader>
-            <ModalBody>
-              <Form onSubmit={props.onSubmit}>
-                <FormGroup>
-                  <Label style={labelStyle} for="category">
-                    Select Role
-                  </Label>
-                  <select
-                      name="Role"
-                      value={props.userRole}
-                      onChange={(e) => props.setuserRole(e.target.value)}
-                      // value={props.userForm.category}
-                      // onChange={e =>
-                      //   props.setuserForm({
-                      //     ...props.userForm,
-                      //     category: e.target.value
-                      //   })
-                      // }
-                  >
-                    {props.loggedInUser.is_administrator ? (
-                            <>
-                              <option value="1">Administrator</option>
-                              <option value="2">Moderator</option>
-                              <option value="3">None</option>
-                            </>
-                        ) :
-                        (
-                            <>
-                              <option value="1">Moderator</option>
-                              <option value="2">None</option>
-                            </>
-                        )};
-                  </select>
-                </FormGroup>
-                <Button style={buttonStyle} color="success">
-                  Save
-                </Button>
-              </Form>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="secondary" onClick={props.toggle}>
-                Cancel
+      <>
+        <Modal
+          isOpen={props.modalState}
+          toggle={props.toggle}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <ModalHeader toggle={props.toggle}>
+            {" "}
+            Changing Role for {props.editUser
+              ? props.editUser.username
+              : ""}{" "}
+          </ModalHeader>
+          <ModalBody>
+            <Form onSubmit={props.onSubmit}>
+              <FormGroup>
+                <Label style={labelStyle} for="category">
+                  Select Role
+                </Label>
+                <select
+                  name="Role"
+                  value={props.userRole}
+                  onChange={(e) => props.setuserRole(e.target.value)}
+                  // value={props.userForm.category}
+                  // onChange={e =>
+                  //   props.setuserForm({
+                  //     ...props.userForm,
+                  //     category: e.target.value
+                  //   })
+                  // }
+                >
+                  {props.loggedInUser.is_administrator ? (
+                    <>
+                      <option value="1">Administrator</option>
+                      <option value="2">Moderator</option>
+                      <option value="3">None</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="1">Moderator</option>
+                      <option value="2">None</option>
+                    </>
+                  )}
+                  ;
+                </select>
+              </FormGroup>
+              <Button style={buttonStyle} color="success">
+                Save
               </Button>
-            </ModalFooter>
-          </Modal>
-        </>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onClick={props.toggle}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+      </>
     );
-  }
-  else {
+  } else {
     return null;
   }
 };

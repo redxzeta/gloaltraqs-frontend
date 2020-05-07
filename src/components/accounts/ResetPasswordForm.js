@@ -4,9 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 
 import { LINK } from "../../link/link";
-import {
-  Input,
-} from "reactstrap";
+import { Input } from "reactstrap";
 export default function ResetPasswordForm() {
   const [passwordForm, setpasswordForm] = useState({
     password: "",
@@ -51,9 +49,7 @@ export default function ResetPasswordForm() {
           //     });
           //   }
         })
-        .catch((error) => {
-          console.log(error.data);
-        });
+        .catch((error) => {});
     }
   };
   const formIsValid = () => {
@@ -93,9 +89,14 @@ export default function ResetPasswordForm() {
       <div className="col-md-6 m-auto forgot-password-col">
         <div className="card card-body mt-5 forgot-password-card accounts-form-group">
           <h2 className="text-center forgot-password-title">Reset Password</h2>
-          <form className="profile-form accounts-form-group" onSubmit={confirmPass}>
+          <form
+            className="profile-form accounts-form-group"
+            onSubmit={confirmPass}
+          >
             <div className="form-group">
-              <p className="forgot-password-text">Please input your new password:</p>
+              <p className="forgot-password-text">
+                Please input your new password:
+              </p>
               <Input
                 id="password"
                 label="New Password"
@@ -110,7 +111,9 @@ export default function ResetPasswordForm() {
               />
               <p className="text-danger">{passwordForm.errors["password"]}</p>
 
-              <p className="forgot-password-text">Please Confirm your password:</p>
+              <p className="forgot-password-text">
+                Please Confirm your password:
+              </p>
               <Input
                 id="password2"
                 label="confirm password"
@@ -126,8 +129,11 @@ export default function ResetPasswordForm() {
               />
               <p className="text-danger">{passwordForm.errors["password2"]}</p>
 
-              <button type="submit" className="btn btn-primary float-right default-btn-purple">
-              Reset Password
+              <button
+                type="submit"
+                className="btn btn-primary float-right default-btn-purple"
+              >
+                Reset Password
               </button>
             </div>
           </form>

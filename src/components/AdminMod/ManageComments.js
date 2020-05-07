@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { LINK } from "../../link/link";
-import { Card, Input } from "reactstrap";
+import { Card } from "reactstrap";
 
 export default function ManageComments() {
   const [flagComments, setflagComments] = useState("");
@@ -10,11 +10,10 @@ export default function ManageComments() {
     axios
       .get(`${LINK}/commentStory/`)
       .then((res) => {
-        console.log(flagComments);
         setflagComments(res.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [flagComments]);
 
   const toggleReports = (id) => {
     setshowReport((prevshowReport) => ({

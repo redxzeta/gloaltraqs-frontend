@@ -42,7 +42,7 @@ const useEditPinForm = (callback, pinData, setPinData) => {
   const onEditSubmit = (e) => {
     //patches the selected pin
     if (e) e.preventDefault();
-     console.log("edit submit");
+
     dispatch(editPin(editPinForm, editPinForm.id, user.id));
     callback();
     setPinData({

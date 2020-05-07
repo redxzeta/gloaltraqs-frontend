@@ -14,7 +14,15 @@ export default function Support() {
 
   return (
     <div className="main-content-div support-us-div">
-      <Row style={{ width: "100%", minHeight: "100%", height: "auto", marginRight: "0px", marginLeft: "0px" }}>
+      <Row
+        style={{
+          width: "100%",
+          minHeight: "100%",
+          height: "auto",
+          marginRight: "0px",
+          marginLeft: "0px",
+        }}
+      >
         <Col md={9} className="support-us-main-content-col">
           <div className="support-us-main-content-div">
             <h3 className="support-us-title">How you can help</h3>
@@ -116,26 +124,42 @@ export default function Support() {
           <div>
             <Col className="col-md-3 offset-md-5 col-md-2 col-8 offset-3">
               <div>
-                <a target="_blank" href={"https://www.instagram.com/the.arqive/?fbclid=IwAR3q0KyoS1eNKmXVbiAqvq31J2hlAh-PmHoRwlUU4orUGM79nP_YYueGSws"}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={
+                    "https://www.instagram.com/the.arqive/?fbclid=IwAR3q0KyoS1eNKmXVbiAqvq31J2hlAh-PmHoRwlUU4orUGM79nP_YYueGSws"
+                  }
+                >
                   <img
                     src={IG}
                     alt="instagram link"
                     className="social-media-images"
                   />
                 </a>
-                <a target="_blank" href={"https://twitter.com/thearqive"}>
-                <img
-                  src={TW}
-                  alt="twitter link"
-                  className="social-media-images"
-                />
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={"https://twitter.com/thearqive"}
+                >
+                  <img
+                    src={TW}
+                    alt="twitter link"
+                    className="social-media-images"
+                  />
                 </a>
-                <a target="_blank" href={"https://www.facebook.com/pg/thearqive/about/?ref=page_internal"}>
-                <img
-                  src={FB}
-                  alt="facebook link"
-                  className="social-media-images"
-                />
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={
+                    "https://www.facebook.com/pg/thearqive/about/?ref=page_internal"
+                  }
+                >
+                  <img
+                    src={FB}
+                    alt="facebook link"
+                    className="social-media-images"
+                  />
                 </a>
               </div>
             </Col>

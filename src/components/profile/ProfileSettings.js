@@ -56,13 +56,10 @@ export default function Settings(props) {
   };
   useEffect(() => {
     dispatch(getUserProfile(name));
-    console.log("getting user profile");
   }, [dispatch, name]);
 
   useEffect(() => {
     if (userProfile) {
-      console.log("setting it the user profile");
-      console.log(userProfile);
       setBio(userProfile.bio);
       setChecked(userProfile.accessibility_mode_active);
       setProfileVisibilityChecked(userProfile.is_profile_private);
@@ -175,14 +172,30 @@ export default function Settings(props) {
     } else {
       userCanEdit = (
         <div>
-          <h2 style={{ textTransform: "lowercase", color: "white", fontFamily: "Eina, Arial" }}>Forbidden!</h2>
+          <h2
+            style={{
+              textTransform: "lowercase",
+              color: "white",
+              fontFamily: "Eina, Arial",
+            }}
+          >
+            Forbidden!
+          </h2>
         </div>
       );
     }
   } else {
     userCanEdit = (
       <div>
-        <h2 style={{ textTransform: "lowercase", color: "white", fontFamily: "Eina, Arial" }}>Forbidden!</h2>
+        <h2
+          style={{
+            textTransform: "lowercase",
+            color: "white",
+            fontFamily: "Eina, Arial",
+          }}
+        >
+          Forbidden!
+        </h2>
       </div>
     );
   }

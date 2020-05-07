@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userEditValidate } from "../../actions/auth";
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
-import { Avatar } from "antd";
+
 import { Markup } from "interweave";
 import Switch from "react-switch";
 import { Row, Col } from "react-bootstrap";
@@ -34,9 +33,9 @@ const FavoritePostField = ({
       <Card className={"profile-story-card story-card"}>
         <div
           className={
-            category == 1
+            category === "1"
               ? "search-bar-story-card-trim-personal"
-              : category == 2
+              : category === "2"
               ? "search-bar-story-card-trim-resources"
               : "search-bar-story-card-trim-historical"
           }
@@ -84,7 +83,7 @@ const FavoritePostField = ({
                 noHtml={true}
               />
             </Typography>
-             <Typography
+            <Typography
               variant="body2"
               color="textSecondary"
               className={"sidebar-story-read-more"}
@@ -244,7 +243,9 @@ const UserProfileBio = (props) => {
             )}
           </div>
         </Col>
-        <Col className={"col-xl-8 offset-xl-0 offset-lg-0 offset-md-0 col-md-7"}>
+        <Col
+          className={"col-xl-8 offset-xl-0 offset-lg-0 offset-md-0 col-md-7"}
+        >
           {/*{isAuthenticated && user.id === props.ownerid && (*/}
           {/*  <button onClick={() => props.toggle()}>Change</button>*/}
           {/*)}*/}
@@ -269,25 +270,39 @@ const UserProfileBio = (props) => {
 
 const ProfileNotFound = () => {
   return (
-    <Typography variant="h5" component="h3" align="center" style={{ paddingTop: "80px"}}>
-       <img
-          alt="profilepic"
-          src={DefaultProfilePic}
-          style={{
-            borderRadius: "50%",
-            height: "125px",
-            width: "125px",
-            margin: "auto",
-            display: "block",
-          }}
-        />
-      <p style={{ textTransform: "lowercase", fontFamily: "Eina, Arial"}}>Profile Not Found</p>
+    <Typography
+      variant="h5"
+      component="h3"
+      align="center"
+      style={{ paddingTop: "80px" }}
+    >
+      <img
+        alt="profilepic"
+        src={DefaultProfilePic}
+        style={{
+          borderRadius: "50%",
+          height: "125px",
+          width: "125px",
+          margin: "auto",
+          display: "block",
+        }}
+      />
+      <p style={{ textTransform: "lowercase", fontFamily: "Eina, Arial" }}>
+        Profile Not Found
+      </p>
     </Typography>
   );
 };
 
 const NoStories = ({ type }) => {
-  return <div className={"offset-2"} style={{ padding: "20px", textTransform: "lowercase" }}>No {type} found</div>;
+  return (
+    <div
+      className={"offset-2"}
+      style={{ padding: "20px", textTransform: "lowercase" }}
+    >
+      No {type} found
+    </div>
+  );
 };
 
 const ListUserStories = (props) => {
@@ -346,7 +361,7 @@ const StoryField = (props) => {
                 paddingLeft: "40px",
                 paddingRight: "40px",
                 minHeight: "150px",
-                height: "auto"
+                height: "auto",
               }}
             >
               <Link to={`/story/${id}`}>

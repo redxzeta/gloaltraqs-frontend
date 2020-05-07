@@ -38,7 +38,7 @@ export default function LoginForm() {
   }, [loginFail]);
 
   const reCaptchaLoaded = () => {
-    console.log("captcha successfully loaded");
+    // console.log("captcha successfully loaded");
   };
   const verifyCallback = (response) => {
     if (response) {

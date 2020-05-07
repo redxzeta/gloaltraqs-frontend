@@ -5,7 +5,7 @@ import {
   deletePins,
   addComment,
   deleteComment,
-  getPinsWithBounds,
+  // getPinsWithBounds,
   getMinPinDate,
   getMaxPinDate,
   getPins,
@@ -44,14 +44,18 @@ import ConfirmationModal from "../profile/ConfirmationModal";
 // };
 
 import LeafletMap from "./LeafletMap";
-import { LatLng } from "leaflet/dist/leaflet-src.esm";
+// import { LatLng } from "leaflet/dist/leaflet-src.esm";
 const Story = React.lazy(() => import("./Story/Story"));
 const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
-  const [divStyle, setdivStyle] = useState({
+  // const [divStyle, setdivStyle] = useState({
+  //   height: "100%",
+  //   width: "100%",
+  // });
+  const divStyle = {
     height: "100%",
     width: "100%",
-  });
+  };
   const [divStyle1, setdivStyle1] = useState({
     height: "100%",
     width: "100%",
