@@ -56,7 +56,6 @@ function SearchSidebar(props) {
     });
   }, [minPinDate, maxPinDate]);
 
-  // useEffect(() => {
   //   dispatch(getPins());
   const changeYear = (min, max) => {};
   const onSetSidebarOpen = (open) => {
@@ -68,18 +67,9 @@ function SearchSidebar(props) {
     e.preventDefault(); //prevents refresh of page
     // console.log(startDate);
     // console.log(endDate);
-    const start =
-      dateRange.start.getFullYear() +
-      "-" +
-      (dateRange.start.getMonth() + 1) +
-      "-" +
-      dateRange.start.getDate();
-    const end =
-      dateRange.end.getFullYear() +
-      "-" +
-      (dateRange.end.getMonth() + 1) +
-      "-" +
-      dateRange.end.getDate();
+    const start = moment(dateRange.start).format("YYYY-MM-DD");
+    const end = moment(dateRange.end).format("YYYY-MM-DD");
+
     let categorySearchQuery = "";
     if (selectedCategories === null) {
       setSelectedCategories(options);
@@ -203,8 +193,8 @@ function SearchSidebar(props) {
             value={dateRange.start}
             minDate={minPinDate}
             maxDate={dateRange.end}
-            onChange={(date) => {
-              setDateRange({ ...dateRange, start: date });
+            onChange={(sdate) => {
+              setDateRange({ ...dateRange, start: sdate });
             }}
             format={"MM/dd/yyyy"}
           />
@@ -225,48 +215,19 @@ function SearchSidebar(props) {
             value={[dateRange.first, dateRange.last]}
             valueLabelDisplay="auto"
             onChange={(event, newValue) => {
-              // console.log("props.minPinDate "+ props.minPinDate.getFullYear());
-              // console.log("new value " + newValue);
               setDateRange({
                 first: newValue[0],
                 last: newValue[1],
 
                 start: new Date(
-                  moment(dateRange.startDate).set("year", newValue[0])
+                  moment(dateRange.start).set("year", newValue[0])
                 ),
-                end: new Date(
-                  moment(dateRange.endDate).set("year", newValue[1])
-                ),
+                end: new Date(moment(dateRange.end).set("year", newValue[1])),
               });
-              // setDateRange(newValue);
-              // startDate.setFullYear(newValue[0]);
-              // endDate.setFullYear(newValue[1]);
             }}
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
           />
-          {/*<Slider*/}
-          {/*  min={props.minPinYear}*/}
-          {/*  max={props.maxPinYear}*/}
-          {/*  onChange={(event, newValue) => { setDateRange(newValue);*/}
-          {/* console.log(event); */}
-          {/*    console.log(newValue);}*/}
-          {/*  }*/}
-          {/*  valueLabelDisplay="auto"*/}
-          {/*  aria-labelledby="range-slider"*/}
-          {/*  getAriaValueText={valuetext}*/}
-          {/*/>*/}
-          {/*<DatePicker*/}
-          {/*  selected={startDate}*/}
-          {/*  onChange={date => setStartDate(date)}*/}
-          {/*/>*/}
-          {/*<Label*/}
-          {/*  style={{ marginLeft: "20px", marginRight: "20px" }}*/}
-          {/*  for="startDate"*/}
-          {/*>*/}
-          {/*  to*/}
-          {/*</Label>*/}
-          {/*<DatePicker selected={endDate} onChange={date => setEndDate(date)} />*/}
         </InputGroup>
         <div className="form-group" style={{ padding: "20px 20px 20px 20px" }}>
           <button
@@ -489,7 +450,11 @@ const ListUsersSearch = (props) => {
     <>
       {props.users.map((user, index) => {
         return (
-          <Card key={user.id} className="story-card" style={{ marginTop: "10px" }}>
+          <Card
+            key={user.id}
+            className="story-card"
+            style={{ marginTop: "10px" }}
+          >
             <Link
               style={{ textDecoration: "inherit" }}
               to={`users/${user.username}`}
@@ -509,17 +474,17 @@ const ListUsersSearch = (props) => {
                           alt="SearchUserProfilePicture"
                         />
                       ) : (
-                         <img
-                            alt="profilepic"
-                            src={DefaultProfilePic}
-                            style={{
-                              borderRadius: "50%",
-                              height: "100px",
-                              width: "100px",
-                              margin: "auto",
-                              display: "block",
-                            }}
-                          />
+                        <img
+                          alt="profilepic"
+                          src={DefaultProfilePic}
+                          style={{
+                            borderRadius: "50%",
+                            height: "100px",
+                            width: "100px",
+                            margin: "auto",
+                            display: "block",
+                          }}
+                        />
                       )}
                     </Col>
                     <Col

@@ -80,7 +80,7 @@ export const getMaxPinDate = () => (dispatch) => {
       const dates = "2020-04-20";
 
       const maxDate = moment(res.data[0].startDate).format("YYYY/MM/DD");
-      console.log(maxDate);
+
       dispatch({
         type: GET_MAX_PIN,
         payload: maxDate,
