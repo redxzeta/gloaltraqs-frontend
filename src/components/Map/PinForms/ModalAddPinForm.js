@@ -21,9 +21,9 @@ import { OpenStreetMapProvider } from "leaflet-geosearch";
 // setup
 const provider = new OpenStreetMapProvider();
 
-const buttonStyle = {
-  float: "right",
-};
+// const buttonStyle = {
+//   float: "right",
+// };
 const labelStyle = {
   marginRight: "10px",
 };
@@ -223,28 +223,30 @@ function ModalAddPinForm(props) {
               />
             </FormGroup>
             {!props.addAddress ? (
-            <FormGroup>
-              <Label style={labelStyle} for="radius">
-                Anonymity radius
-              </Label>
-              <select
-                name="anonradius"
-                value={props.addPinValues.userRadius}
-                onChange={(e) =>
-                  props.setaddPinValues({
-                    ...props.addPinValues,
-                    anonradius: e.target.value,
-                  })
-                }
-                // onChange={e => props.setAnonRadius(e.target.value)}
-              >
-                <option value="1">None</option>
-                <option value="2">Minimum</option>
-                <option value="3">Moderate</option>
-                <option value="4">Maximum</option>
-              </select>
-            </FormGroup>
-            ) : ""}
+              <FormGroup>
+                <Label style={labelStyle} for="radius">
+                  Anonymity radius
+                </Label>
+                <select
+                  name="anonradius"
+                  value={props.addPinValues.userRadius}
+                  onChange={(e) =>
+                    props.setaddPinValues({
+                      ...props.addPinValues,
+                      anonradius: e.target.value,
+                    })
+                  }
+                  // onChange={e => props.setAnonRadius(e.target.value)}
+                >
+                  <option value="1">None</option>
+                  <option value="2">Minimum</option>
+                  <option value="3">Moderate</option>
+                  <option value="4">Maximum</option>
+                </select>
+              </FormGroup>
+            ) : (
+              ""
+            )}
             <InputGroup>
               <Label style={dateStyle} for="startDate">
                 Start Date
@@ -252,11 +254,13 @@ function ModalAddPinForm(props) {
               <DatePicker
                 format={"MM/dd/yyyy"}
                 name="startDate"
+                minDate={new Date("0000-01-01")}
+                maxDate={props.addPinValues.endDate}
                 value={props.addPinValues.startDate}
-                onChange={(newdate) =>
+                onChange={(date) =>
                   props.setaddPinValues({
                     ...props.addPinValues,
-                    startDate: newdate,
+                    startDate: date,
                   })
                 }
               />
@@ -265,6 +269,7 @@ function ModalAddPinForm(props) {
               </Label>
               <DatePicker
                 format={"MM/dd/yyyy"}
+                minDate={props.addPinValues.startDate}
                 name="endDate"
                 value={props.addPinValues.endDate}
                 onChange={(date) =>
