@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
+
 import axios from "axios";
 import { LINK } from "../../link/link";
-import {
-  Input,
-} from "reactstrap";
+import { Input } from "reactstrap";
 import useRemovalConfirm from "../profile/CustomHooks/useRemovalConfirm";
 import ConfirmationModal from "../profile/ConfirmationModal";
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(true);
-  const [messageFromServer, setMessageFromServer] = useState("");
+  // const [messageFromServer, setMessageFromServer] = useState("");
   const { loginregisterModalState, loginToggle } = useRemovalConfirm();
   const [message, setMessage] = useState("");
 

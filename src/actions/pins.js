@@ -33,7 +33,10 @@ export const getPins = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getPinsWithBounds = (north, south, east, west) => (dispatch) => {
@@ -47,7 +50,10 @@ export const getPinsWithBounds = (north, south, east, west) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getMinPinDate = () => (dispatch) => {
@@ -103,7 +109,10 @@ export const searchPins = (searchQuery, categories, startDate, endDate) => (
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const deletePins = (id) => (dispatch) => {
@@ -115,7 +124,10 @@ export const deletePins = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const addPin = (pin) => (dispatch) => {
@@ -134,7 +146,10 @@ export const addPin = (pin) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const editPin = (pin, id, userid) => (dispatch) => {
@@ -154,7 +169,10 @@ export const editPin = (pin, id, userid) => (dispatch) => {
         // payload: payload
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getPin = (id, userid) => (dispatch) => {
@@ -195,7 +213,10 @@ export const getPin = (id, userid) => (dispatch) => {
         payload: payload,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 export const getUpvote = (pinId, userid) => (dispatch) => {
   axios
@@ -206,7 +227,10 @@ export const getUpvote = (pinId, userid) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 export const addComment = (comment) => (dispatch) => {
   axios
@@ -217,7 +241,10 @@ export const addComment = (comment) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const deleteComment = (id) => (dispatch) => {
@@ -229,7 +256,10 @@ export const deleteComment = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getPinsByOwner = (ownerId) => (dispatch) => {
@@ -241,7 +271,10 @@ export const getPinsByOwner = (ownerId) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userFlagPin = (userFlag) => (dispatch) => {
@@ -253,7 +286,10 @@ export const userFlagPin = (userFlag) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userUnFlagPin = (id, state) => (dispatch) => {
@@ -269,7 +305,10 @@ export const userUnFlagPin = (id, state) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userFirstUpvote = (pin, user) => (dispatch) => {
@@ -287,7 +326,10 @@ export const userFirstUpvote = (pin, user) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userUpovte = (id) => (dispatch) => {
@@ -299,7 +341,10 @@ export const userUpovte = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const getFlaggedPins = () => (dispatch) => {
@@ -311,7 +356,10 @@ export const getFlaggedPins = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 export const getNextFlaggedPins = (nextLink) => (dispatch) => {
   axios
@@ -322,7 +370,10 @@ export const getNextFlaggedPins = (nextLink) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const getPinsById = (pinIdArray) => (dispatch) => {
@@ -338,7 +389,10 @@ export const getPinsById = (pinIdArray) => (dispatch) => {
         payload: favoritedPins,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const adminDeleteFlaggedPin = (id) => (dispatch) => {
@@ -350,5 +404,8 @@ export const adminDeleteFlaggedPin = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };

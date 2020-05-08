@@ -33,7 +33,10 @@ export default function ContactUs() {
           setEmail("");
           setMessage("");
         })
-        .catch((err) => console.log(err));
+        .catch
+
+        // => console.log(err)
+        ();
     } else {
       setEmail(`Anonymous@anon.com`);
 
@@ -44,7 +47,10 @@ export default function ContactUs() {
           setEmail("");
           setMessage("");
         })
-        .catch((err) => console.log(err));
+        .catch
+
+        // => console.log(err)
+        ();
     }
   };
 

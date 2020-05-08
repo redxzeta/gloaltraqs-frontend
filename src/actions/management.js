@@ -11,7 +11,10 @@ export const updateAboutUs = (aboutUs) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getAboutUs = () => (dispatch) => {
@@ -23,5 +26,8 @@ export const getAboutUs = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };

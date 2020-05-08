@@ -32,11 +32,9 @@ function About() {
 
   const handleEditorChange = (e) => {
     setEditorContent(e.target.getContent());
-    console.log("Content was updated:", e.target.getContent());
   };
 
   const submitEdit = () => {
-    console.log(editorContent);
     const about_us = editorContent;
     const aboutUsData = { about_us };
     dispatch(updateAboutUs(aboutUsData));

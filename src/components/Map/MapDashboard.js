@@ -189,12 +189,11 @@ export default function MapDashboard() {
 
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user } = auth;
-  const [darkMode, setdarkMode] = useState(true);
+
   //opens modal for adding new pins
   // const [editpinmodalState, seteditpinmodalState] = useState(false); // opens modal for editing pin
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [storySidebarOpen, setStorySidebarOpen] = useState(false);
-  const [showSidebarButton, setShowSidebarButton] = useState(false);
 
   const [addAddress, setAddAddress] = useState(false);
   const minPinDate = useSelector((state) => state.pins.pinMinDate);
@@ -345,8 +344,6 @@ export default function MapDashboard() {
               handleAddPinSubmit={handleAddPinSubmit}
               setaddPinValues={setaddPinValues}
               setAnonRadius={setAnonRadius}
-              darkMode={darkMode}
-              setdarkMode={setdarkMode}
               mapReference={mapReference}
               setMapReference={setMapReference}
               user={user}
@@ -397,8 +394,6 @@ export default function MapDashboard() {
                 handleAddPinSubmit={handleAddPinSubmit}
                 setaddPinValues={setaddPinValues}
                 setAnonRadius={setAnonRadius}
-                darkMode={darkMode}
-                setdarkMode={setdarkMode}
                 mapReference={mapReference}
                 setMapReference={setMapReference}
                 user={user}
@@ -492,9 +487,6 @@ function StoryDisplay(props) {
     props.setMapContainerStyle({
       height: "45%",
     });
-  }, []);
-
-  useEffect(() => {
     return () => {
       setStoryStyle({
         top: "100%",
@@ -502,12 +494,9 @@ function StoryDisplay(props) {
       props.setMapContainerStyle({
         height: "100%",
       });
-      // setTimeout(function() { //Start the timer
-      //       props.setIsLeavingStoryPage(false);
-      //       props.history.push("/#");
-      // }.bind(this), 500);
     };
   }, []);
+
   return (
     <div id={"story-page"} style={storyStyle}>
       <Switch>

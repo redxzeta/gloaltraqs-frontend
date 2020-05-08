@@ -12,7 +12,10 @@ export default function ManageComments() {
       .then((res) => {
         setflagComments(res.data);
       })
-      .catch((error) => console.log(error));
+      .catch
+
+      // => console.log(error)
+      ();
   }, [flagComments]);
 
   const toggleReports = (id) => {
@@ -27,7 +30,10 @@ export default function ManageComments() {
       .then((res) => {
         setflagComments(flagComments.filter((comment) => comment.id !== id));
       })
-      .catch((error) => console.log(error));
+      .catch
+
+      // => console.log(error)
+      ();
   };
   return (
     <div>

@@ -12,7 +12,10 @@ export default function ManageCategory() {
       .then((res) => {
         setcategory(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch(
+        err
+        // => console.log(err)
+      );
   }, []);
   const onSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +27,7 @@ export default function ManageCategory() {
         setcategoryForm(set);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
   const updateForm = (e) => {

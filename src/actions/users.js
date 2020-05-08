@@ -22,7 +22,10 @@ export const searchUsers = (username) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error.response.data));
+    .catch
+
+    // => console.log(error.response.data)
+    ();
 };
 
 export const getUsers = () => (dispatch) => {
@@ -34,7 +37,10 @@ export const getUsers = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const editUser = (userId, editorId, user) => (dispatch) => {
@@ -53,7 +59,10 @@ export const editUser = (userId, editorId, user) => (dispatch) => {
         });
       }
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const deleteUser = (id) => (dispatch) => {
@@ -65,7 +74,10 @@ export const deleteUser = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getUser = (id) => (dispatch) => {
@@ -102,7 +114,7 @@ export const getUserProfile = (username) => (dispatch) => {
           });
     })
     .catch(function (error) {
-      console.log(error.response);
+      // console.log(error.response);
       dispatch({
         type: USER_PROFILE_NOT_FOUND,
         payload: true,
@@ -120,7 +132,7 @@ export const editUserRole = (id, role) => (dispatch) => {
       });
     })
     .catch(function (error) {
-      console.log(error.response);
+      // console.log(error.response);
     });
 };
 
@@ -133,18 +145,23 @@ export const getNextPreviousUsers = (nextlink) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const unFavoriteProfile = (id) => (dispatch) => {
   axios
     .delete(`${LINK}/upVoteStory/${id}/`)
     .then((res) => {
-      console.log(id);
       dispatch({
         type: UNFAVORITE_PROFILE_STORY,
         payload: id,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };

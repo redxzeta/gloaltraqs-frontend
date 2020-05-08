@@ -163,7 +163,11 @@ export const userFlagComment = (userFlag) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // =>
+    // console.log(error)
+    ();
 };
 
 export const delFlagComment = (id) => (dispatch) => {
@@ -175,7 +179,11 @@ export const delFlagComment = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // =>
+    // console.log(error)
+    ();
 };
 
 export const updateProfilePic = (url) => (dispatch, getState) => {
@@ -190,7 +198,11 @@ export const updateProfilePic = (url) => (dispatch, getState) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // =>
+    // console.log(error)
+    ();
 };
 
 export const userEditValidate = (pin, id) => (dispatch) => {
@@ -203,5 +215,8 @@ export const userEditValidate = (pin, id) => (dispatch) => {
         // payload: payload
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
