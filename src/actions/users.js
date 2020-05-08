@@ -15,7 +15,7 @@ import { DELETE_USER } from "./types";
 import { LINK } from "../link/link";
 export const searchUsers = (username) => (dispatch) => {
   axios
-    .get(`${LINK}/profile/users?search=${username}`)
+    .get(`${process.env.REACT_APP_ARQIVE}/profile/users?search=${username}`)
     .then((res) => {
       dispatch({
         type: SEARCH_USERS,
@@ -30,7 +30,7 @@ export const searchUsers = (username) => (dispatch) => {
 
 export const getUsers = () => (dispatch) => {
   axios
-    .get(`${LINK}/auth/users/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/auth/users/`)
     .then((res) => {
       dispatch({
         type: GET_USERS,
@@ -45,7 +45,7 @@ export const getUsers = () => (dispatch) => {
 
 export const editUser = (userId, editorId, user) => (dispatch) => {
   axios
-    .patch(`${LINK}/auth/users/${userId}/`, user)
+    .patch(`${process.env.REACT_APP_ARQIVE}/auth/users/${userId}/`, user)
     .then((res) => {
       if (editorId === userId) {
         dispatch({
@@ -67,7 +67,7 @@ export const editUser = (userId, editorId, user) => (dispatch) => {
 
 export const deleteUser = (id) => (dispatch) => {
   axios
-    .delete(`${LINK}/auth/users/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`)
     .then((res) => {
       dispatch({
         type: DELETE_USER,
@@ -82,7 +82,7 @@ export const deleteUser = (id) => (dispatch) => {
 
 export const getUser = (id) => (dispatch) => {
   axios
-    .get(`${LINK}/auth/users/${id}/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`)
     .then((res) => {
       dispatch({
         type: GET_USER,
@@ -101,7 +101,7 @@ export const getUserProfile = (username) => (dispatch) => {
   dispatch({ type: USER_PROFILE_LOADING });
 
   axios
-    .get(`${LINK}/profile/users?username=${username}`)
+    .get(`${process.env.REACT_APP_ARQIVE}/profile/users?username=${username}`)
     .then((res) => {
       res.data.count === 0
         ? dispatch({
@@ -124,7 +124,7 @@ export const getUserProfile = (username) => (dispatch) => {
 
 export const editUserRole = (id, role) => (dispatch) => {
   axios
-    .patch(`${LINK}/auth/users/${id}/`, role)
+    .patch(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`, role)
     .then((res) => {
       dispatch({
         type: EDIT_USER_ROLE,
@@ -153,7 +153,7 @@ export const getNextPreviousUsers = (nextlink) => (dispatch) => {
 
 export const unFavoriteProfile = (id) => (dispatch) => {
   axios
-    .delete(`${LINK}/upVoteStory/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/upVoteStory/${id}/`)
     .then((res) => {
       dispatch({
         type: UNFAVORITE_PROFILE_STORY,

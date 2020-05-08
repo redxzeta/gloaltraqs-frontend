@@ -16,7 +16,7 @@ export default function ForgotPasswordForm() {
     e.preventDefault();
     if (!showError)
       axios
-        .post(`${LINK}/password_reset/`, {
+        .post(`${process.env.REACT_APP_ARQIVE}/password_reset/`, {
           email: email,
         })
         .then((response) => {

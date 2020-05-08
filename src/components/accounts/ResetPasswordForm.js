@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
+// import TextField from "@material-ui/core/TextField";
 // import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
@@ -29,7 +29,7 @@ export default function ResetPasswordForm() {
       //   });
     } else {
       axios
-        .post(`${LINK}/password_reset/confirm/`, {
+        .post(`${process.env.REACT_APP_ARQIVE}/password_reset/confirm/`, {
           token: values.token,
           password: passwordForm.password,
         })

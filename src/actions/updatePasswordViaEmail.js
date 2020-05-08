@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { LINK } from "../link/link";
 const BYCRPT_SALT_ROUNDS = 12;
 module.exports = (app) => {
-  app.put(`${LINK}/auth/users/`, (req, res, next) => {
+  app.put(`${process.env.REACT_APP_ARQIVE}/auth/users/`, (req, res, next) => {
     User.findOne({
       where: {
         username: req.body.username,

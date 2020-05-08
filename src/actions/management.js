@@ -4,7 +4,7 @@ import { GET_ABOUT_US, UPDATE_ABOUT_US } from "./types";
 import { LINK } from "../link/link";
 export const updateAboutUs = (aboutUs) => (dispatch) => {
   axios
-    .patch(`${LINK}/management/aboutUs/1/`, aboutUs)
+    .patch(`${process.env.REACT_APP_ARQIVE}/management/aboutUs/1/`, aboutUs)
     .then((res) => {
       dispatch({
         type: UPDATE_ABOUT_US,
@@ -19,7 +19,7 @@ export const updateAboutUs = (aboutUs) => (dispatch) => {
 
 export const getAboutUs = () => (dispatch) => {
   axios
-    .get(`${LINK}/management/aboutUs/1/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/management/aboutUs/1/`)
     .then((res) => {
       dispatch({
         type: GET_ABOUT_US,

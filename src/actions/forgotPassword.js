@@ -5,7 +5,7 @@ import { LINK } from "../link/link";
 const nodemailer = require("nodemailer");
 
 module.exports = (app) => {
-  app.post(`${LINK}/auth/users/`, (req, res, next) => {
+  app.post(`${process.env.REACT_APP_ARQIVE}/auth/users/`, (req, res, next) => {
     if (req.body.email === "") {
       res.json("email required");
     }

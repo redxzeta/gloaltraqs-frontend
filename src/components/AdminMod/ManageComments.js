@@ -8,7 +8,7 @@ export default function ManageComments() {
   const [showReport, setshowReport] = useState("");
   useEffect(() => {
     axios
-      .get(`${LINK}/commentStory/`)
+      .get(`${process.env.REACT_APP_ARQIVE}/commentStory/`)
       .then((res) => {
         setflagComments(res.data);
       })
@@ -26,7 +26,7 @@ export default function ManageComments() {
   };
   const onDeleteComment = (id) => {
     axios
-      .delete(`${LINK}/commentStory/${id}/`)
+      .delete(`${process.env.REACT_APP_ARQIVE}/commentStory/${id}/`)
       .then((res) => {
         setflagComments(flagComments.filter((comment) => comment.id !== id));
       })

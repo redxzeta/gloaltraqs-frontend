@@ -8,7 +8,7 @@ export default function ManageCategory() {
   const [categoryForm, setcategoryForm] = useState("");
   useEffect(() => {
     axios
-      .get(`${LINK}/category`)
+      .get(`${process.env.REACT_APP_ARQIVE}/category`)
       .then((res) => {
         setcategory(res.data);
       })
@@ -21,7 +21,7 @@ export default function ManageCategory() {
     e.preventDefault();
 
     axios
-      .post(`${LINK}/category/`, categoryForm)
+      .post(`${process.env.REACT_APP_ARQIVE}/category/`, categoryForm)
       .then((response) => {
         const set = [...category, response.data];
         setcategoryForm(set);

@@ -50,7 +50,7 @@ export default function FAQ() {
   const [showEditForm, setshowEditForm] = useState("");
   useEffect(() => {
     axios
-      .get(`${LINK}/faq/`)
+      .get(`${process.env.REACT_APP_ARQIVE}/faq/`)
       .then((response) => {
         setfaqDesc(response.data);
         setbackUpFaq(response.data);
@@ -72,7 +72,7 @@ export default function FAQ() {
   function deletefaqDesc(id) {
     //e.preventDefault() for edit function post for new data patch for editing data
     axios
-      .delete(`${LINK}/faq/${id}/`)
+      .delete(`${process.env.REACT_APP_ARQIVE}/faq/${id}/`)
       .then((response) => {
         setfaqDesc(faqDesc.filter((desc) => desc.id !== id));
         setbackUpFaq(backUpFaq.filter((desc) => desc.id !== id));
@@ -86,7 +86,7 @@ export default function FAQ() {
     const submit = faqDesc.filter((edit) => edit.id === id)[0];
 
     axios
-      .patch(`${LINK}/faq/${id}/`, submit)
+      .patch(`${process.env.REACT_APP_ARQIVE}/faq/${id}/`, submit)
       .then((response) => {
         setbackUpFaq(
           backUpFaq.map((faq) =>
@@ -124,7 +124,7 @@ export default function FAQ() {
     e.preventDefault();
 
     axios
-      .post(`${LINK}/faq/`, createNewfaq)
+      .post(`${process.env.REACT_APP_ARQIVE}/faq/`, createNewfaq)
       .then((response) => {
         const newFaq = { ...response.data, editForm: false };
         setfaqDesc([...faqDesc, newFaq]);
