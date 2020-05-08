@@ -59,7 +59,7 @@ const useProfileImage = () => {
   const onSubmitPic = (pic) => {
     let formData = new FormData();
 
-    formData.append("upload_preset", "XzetaDev");
+    formData.append("upload_preset", "theArQive");
     formData.append("file", pic);
 
     //https://api.cloudinary.com/v1_1/dauntlessx/image/upload
