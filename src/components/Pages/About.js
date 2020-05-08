@@ -131,6 +131,9 @@ function About() {
             Public Relations Team
             <br />
             Andrea Estrada, Aliyah Johnson, Laytyn MacKinnon, Nicholas Ochoa, Pamela Sanchez, Maryah Rendon, members of Zenith Experiential, Los Angeles (ZENX-LA)
+            <br />
+            <br />
+            Special thanks to all of the faculty, administrators, and staff at Cal State LA that have helped us as well: John Hurley, Dr. Elaine Kang, Sylke Rene Meyer, Dr. Maria Karafilis, Dr. Kate Kurtin, Dr. David Olsen, Dr. Emily Allen, Dr. Linda Essig, Daniel Carlos, and Cal State LA’s Office of Research, Scholarship, and Creative Activities
           </p>
 
         </Col>
