@@ -240,11 +240,10 @@ function Header() {
 
   return (
     <nav className="site-header fixed-top navbar navbar-expand-lg navbar-dark header-nav">
-      <a className="navbar-brand" href="#">
-        <Link to="/" className="navbar-brand">
-          <Image src={Logo} height={"108px"} />
-        </Link>
-      </a>
+      <Link to="/" className="navbar-brand">
+        <Image src={Logo} height={"108px"} />
+      </Link>
+
       <button
         className="navbar-toggler"
         type="button"

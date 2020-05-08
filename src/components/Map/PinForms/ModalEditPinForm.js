@@ -19,7 +19,6 @@ import "react-datepicker/dist/react-datepicker.css";
 //   float: "right",
 // };
 
-
 // import
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 
@@ -40,25 +39,16 @@ function ModalEditPinForm(props) {
   const validateEditForm = async (e) => {
     e.preventDefault();
 
-      let address = props.userForm.address;
-      let locality = props.userForm.locality;
-      let region = props.userForm.region;
-      let country = props.userForm.country;
-      let postCode = props.userForm.postCode;
+    let address = props.userForm.address;
+    let locality = props.userForm.locality;
+    let region = props.userForm.region;
+    let country = props.userForm.country;
+    let postCode = props.userForm.postCode;
 
-      let addressQuery =
-        address +
-        " " +
-        locality +
-        " " +
-        region +
-        " " +
-        postCode +
-        " " +
-        country;
-      // search
-      let results = await provider.search({ query: addressQuery });
-
+    let addressQuery =
+      address + " " + locality + " " + region + " " + postCode + " " + country;
+    // search
+    let results = await provider.search({ query: addressQuery });
 
     if (props.userForm.title && props.userForm.description) {
       if (results.length > 0) {
@@ -188,6 +178,8 @@ function ModalEditPinForm(props) {
               <DatePicker
                 format={"MM/dd/yyyy"}
                 name="startDate"
+                minDate={new Date("0100-01-01")}
+                maxDate={endDate}
                 value={startDate}
                 onChange={(date) =>
                   props.setuserForm({
@@ -202,6 +194,7 @@ function ModalEditPinForm(props) {
               <DatePicker
                 format={"MM/dd/yyyy"}
                 name="endDate"
+                minDate={startDate}
                 value={endDate}
                 onChange={(date) =>
                   props.setuserForm({

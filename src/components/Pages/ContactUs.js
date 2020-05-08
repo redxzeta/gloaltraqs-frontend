@@ -27,24 +27,33 @@ export default function ContactUs() {
       // const body = JSON.stringify({ username, email, password });
       let data = JSON.stringify({ email: email, message: message });
       axios
-        .post(`${LINK}/contactUs/`, data, config)
+        .post(`${process.env.REACT_APP_ARQIVE}/contactUs/`, data, config)
         .then((response) => {
           loginToggle();
           setEmail("");
           setMessage("");
         })
-        .catch((err) => console.log(err));
+        .catch
+
+        // => console.log(err)
+        ();
     } else {
       setEmail(`Anonymous@anon.com`);
 
       axios
-        .post(`${LINK}/contactUs/`, { email: email, message: message })
+        .post(`${process.env.REACT_APP_ARQIVE}/contactUs/`, {
+          email: email,
+          message: message,
+        })
         .then((response) => {
           loginToggle();
           setEmail("");
           setMessage("");
         })
-        .catch((err) => console.log(err));
+        .catch
+
+        // => console.log(err)
+        ();
     }
   };
 

@@ -26,20 +26,23 @@ import { LINK } from "../link/link";
 //GET PINS
 export const getPins = () => (dispatch) => {
   axios
-    .get(`${LINK}/pins/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/`)
     .then((res) => {
       dispatch({
         type: GET_PINS,
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getPinsWithBounds = (north, south, east, west) => (dispatch) => {
   axios
     .get(
-      `${LINK}/pinCoordFilter/?latitude_gte=${south}&latitude_lte=${north}&longitude_gte=${west}&longitude_lte=${east}`
+      `${process.env.REACT_APP_ARQIVE}/pinCoordFilter/?latitude_gte=${south}&latitude_lte=${north}&longitude_gte=${west}&longitude_lte=${east}`
     )
     .then((res) => {
       dispatch({
@@ -47,12 +50,15 @@ export const getPinsWithBounds = (north, south, east, west) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getMinPinDate = () => (dispatch) => {
   axios
-    .get(`${LINK}/minPinDate`)
+    .get(`${process.env.REACT_APP_ARQIVE}/minPinDate`)
     .then((res) => {
       const minDate = moment(res.data[0].startDate).format("YYYY/MM/DD");
 
@@ -71,7 +77,7 @@ export const getMinPinDate = () => (dispatch) => {
 
 export const getMaxPinDate = () => (dispatch) => {
   axios
-    .get(`${LINK}/maxPinDate`)
+    .get(`${process.env.REACT_APP_ARQIVE}/maxPinDate`)
     .then((res) => {
       // let date = res.data[0].startDate.split("-");
 
@@ -95,7 +101,7 @@ export const searchPins = (searchQuery, categories, startDate, endDate) => (
 ) => {
   axios
     .get(
-      `${LINK}/pinSearch?search=${searchQuery}&categories=${categories}&startDate_gte=${startDate}&startDate_lte=${endDate}`
+      `${process.env.REACT_APP_ARQIVE}/pinSearch?search=${searchQuery}&categories=${categories}&startDate_gte=${startDate}&startDate_lte=${endDate}`
     )
     .then((res) => {
       dispatch({
@@ -103,19 +109,25 @@ export const searchPins = (searchQuery, categories, startDate, endDate) => (
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const deletePins = (id) => (dispatch) => {
   axios
-    .delete(`${LINK}/pins/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`)
     .then((res) => {
       dispatch({
         type: DELETE_PINS,
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const addPin = (pin) => (dispatch) => {
@@ -127,14 +139,17 @@ export const addPin = (pin) => (dispatch) => {
   pin.longitude = longitude;
 
   axios
-    .post(`${LINK}/pins/`, pin)
+    .post(`${process.env.REACT_APP_ARQIVE}/pins/`, pin)
     .then((res) => {
       dispatch({
         type: ADD_PIN,
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const editPin = (pin, id, userid) => (dispatch) => {
@@ -146,7 +161,7 @@ export const editPin = (pin, id, userid) => (dispatch) => {
   pin.longitude = longitude;
 
   axios
-    .patch(`${LINK}/pins/${id}/`, pin)
+    .patch(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, pin)
     .then((res) => {
       dispatch({
         type: EDIT_PIN,
@@ -154,12 +169,15 @@ export const editPin = (pin, id, userid) => (dispatch) => {
         // payload: payload
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getPin = (id, userid) => (dispatch) => {
   axios
-    .get(`${LINK}/pins/${id}/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`)
     .then((res) => {
       let validUser = false;
       let flagstateofuser = false;
@@ -195,65 +213,85 @@ export const getPin = (id, userid) => (dispatch) => {
         payload: payload,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 export const getUpvote = (pinId, userid) => (dispatch) => {
   axios
-    .get(`${LINK}/upVoteStory?pinId=${pinId}&userid=${userid}`)
+    .get(
+      `${process.env.REACT_APP_ARQIVE}/upVoteStory?pinId=${pinId}&userid=${userid}`
+    )
     .then((res) => {
       dispatch({
         type: GET_UPVOTE,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 export const addComment = (comment) => (dispatch) => {
   axios
-    .post(`${LINK}/commentStory/`, comment)
+    .post(`${process.env.REACT_APP_ARQIVE}/commentStory/`, comment)
     .then((res) => {
       dispatch({
         type: ADD_COMMENT,
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const deleteComment = (id) => (dispatch) => {
   axios
-    .delete(`${LINK}/commentStory/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/commentStory/${id}/`)
     .then((res) => {
       dispatch({
         type: DELETE_COMMENT,
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const getPinsByOwner = (ownerId) => (dispatch) => {
   axios
-    .get(`${LINK}/pins/?owner=${ownerId}`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/?owner=${ownerId}`)
     .then((res) => {
       dispatch({
         type: GET_PINS_BY_OWNER,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userFlagPin = (userFlag) => (dispatch) => {
   axios
-    .post(`${LINK}/flagStory/`, userFlag)
+    .post(`${process.env.REACT_APP_ARQIVE}/flagStory/`, userFlag)
     .then((res) => {
       dispatch({
         type: USER_FLAG_PIN,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userUnFlagPin = (id, state) => (dispatch) => {
@@ -262,14 +300,17 @@ export const userUnFlagPin = (id, state) => (dispatch) => {
   };
 
   axios
-    .patch(`${LINK}/flagStory/${id}/`, userflagged)
+    .patch(`${process.env.REACT_APP_ARQIVE}/flagStory/${id}/`, userflagged)
     .then((res) => {
       dispatch({
         type: USER_UNFLAG,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userFirstUpvote = (pin, user) => (dispatch) => {
@@ -280,38 +321,47 @@ export const userFirstUpvote = (pin, user) => (dispatch) => {
   };
 
   axios
-    .post(`${LINK}/upVoteStory/`, submit)
+    .post(`${process.env.REACT_APP_ARQIVE}/upVoteStory/`, submit)
     .then((res) => {
       dispatch({
         type: USER_FIRST_UPVOTE,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const userUpovte = (id) => (dispatch) => {
   axios
-    .delete(`${LINK}/upVoteStory/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/upVoteStory/${id}/`)
     .then((res) => {
       dispatch({
         type: USER_UPVOTE,
         payload: id,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const getFlaggedPins = () => (dispatch) => {
   axios
-    .get(`${LINK}/pinFlagged`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pinFlagged`)
     .then((res) => {
       dispatch({
         type: GET_FLAGGED_PINS,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 export const getNextFlaggedPins = (nextLink) => (dispatch) => {
   axios
@@ -322,12 +372,15 @@ export const getNextFlaggedPins = (nextLink) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // => console.log(error)
+    ();
 };
 
 export const getPinsById = (pinIdArray) => (dispatch) => {
   axios
-    .get(`${LINK}/pins/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/`)
     .then((res) => {
       let favoritedPins = res.data.pins.filter((pin) =>
         pinIdArray.includes(pin.id)
@@ -338,17 +391,23 @@ export const getPinsById = (pinIdArray) => (dispatch) => {
         payload: favoritedPins,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };
 
 export const adminDeleteFlaggedPin = (id) => (dispatch) => {
   axios
-    .delete(`${LINK}/pinFlagged/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/pinFlagged/${id}/`)
     .then((res) => {
       dispatch({
         type: ADMIN_DELETE_FLAGGED_PIN,
         payload: id,
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };

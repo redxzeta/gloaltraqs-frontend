@@ -24,7 +24,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get(`${LINK}/auth/user`, tokenConfig(getState))
+    .get(`${process.env.REACT_APP_ARQIVE}/auth/user`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: USER_LOADED,
@@ -55,7 +55,7 @@ export const login = (username, password) => (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   axios
-    .post(`${LINK}/auth/login`, body, config)
+    .post(`${process.env.REACT_APP_ARQIVE}/auth/login`, body, config)
     .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -84,7 +84,7 @@ export const register = ({ username, password, email }) => (dispatch) => {
   const body = JSON.stringify({ username, email, password });
 
   axios
-    .post(`${LINK}/auth/register`, body, config)
+    .post(`${process.env.REACT_APP_ARQIVE}/auth/register`, body, config)
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -105,7 +105,11 @@ export const register = ({ username, password, email }) => (dispatch) => {
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
   axios
-    .post(`${LINK}/auth/logout/`, null, tokenConfig(getState))
+    .post(
+      `${process.env.REACT_APP_ARQIVE}/auth/logout/`,
+      null,
+      tokenConfig(getState)
+    )
     .then((res) => {
       dispatch({ type: "CLEAR_LEADS" });
       dispatch({
@@ -142,7 +146,7 @@ export const userSelfDelete = () => (dispatch, getState) => {
   // User Loading
 
   axios
-    .delete(`${LINK}/auth/user`, tokenConfig(getState))
+    .delete(`${process.env.REACT_APP_ARQIVE}/auth/user`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: USER_SELF_DELETE,
@@ -156,26 +160,34 @@ export const userSelfDelete = () => (dispatch, getState) => {
 
 export const userFlagComment = (userFlag) => (dispatch) => {
   axios
-    .post(`${LINK}/flagcomment/`, userFlag)
+    .post(`${process.env.REACT_APP_ARQIVE}/flagcomment/`, userFlag)
     .then((res) => {
       dispatch({
         type: FLAG_COMMENT,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // =>
+    // console.log(error)
+    ();
 };
 
 export const delFlagComment = (id) => (dispatch) => {
   axios
-    .delete(`${LINK}/flagcomment/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/flagcomment/${id}/`)
     .then((res) => {
       dispatch({
         type: REMOVE_FLAG_COMMENT,
         payload: id,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // =>
+    // console.log(error)
+    ();
 };
 
 export const updateProfilePic = (url) => (dispatch, getState) => {
@@ -183,19 +195,27 @@ export const updateProfilePic = (url) => (dispatch, getState) => {
     profileurl: url,
   };
   axios
-    .patch(`${LINK}/auth/user`, profilepic, tokenConfig(getState))
+    .patch(
+      `${process.env.REACT_APP_ARQIVE}/auth/user`,
+      profilepic,
+      tokenConfig(getState)
+    )
     .then((res) => {
       dispatch({
         type: UPDATE_PROFILE_PIC,
         payload: res.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch
+
+    // =>
+    // console.log(error)
+    ();
 };
 
 export const userEditValidate = (pin, id) => (dispatch) => {
   axios
-    .patch(`${LINK}/pins/${id}/`, pin)
+    .patch(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, pin)
     .then((res) => {
       dispatch({
         type: EDIT_PIN_PRO,
@@ -203,5 +223,8 @@ export const userEditValidate = (pin, id) => (dispatch) => {
         // payload: payload
       });
     })
-    .catch((err) => console.log(err));
+    .catch
+
+    // => console.log(err)
+    ();
 };

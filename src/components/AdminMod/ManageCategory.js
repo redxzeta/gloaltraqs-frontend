@@ -8,23 +8,26 @@ export default function ManageCategory() {
   const [categoryForm, setcategoryForm] = useState("");
   useEffect(() => {
     axios
-      .get(`${LINK}/category`)
+      .get(`${process.env.REACT_APP_ARQIVE}/category`)
       .then((res) => {
         setcategory(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch(
+        err
+        // => console.log(err)
+      );
   }, []);
   const onSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post(`${LINK}/category/`, categoryForm)
+      .post(`${process.env.REACT_APP_ARQIVE}/category/`, categoryForm)
       .then((response) => {
         const set = [...category, response.data];
         setcategoryForm(set);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
   const updateForm = (e) => {

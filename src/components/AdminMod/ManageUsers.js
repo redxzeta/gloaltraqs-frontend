@@ -116,7 +116,7 @@ const PrevNext = (props) => {
 };
 
 const ViewUsers = (props) => {
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   let loggedInUser = user;
   const dispatch = useDispatch();
   return (

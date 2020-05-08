@@ -16,15 +16,12 @@ function ManageFlag() {
   useEffect(() => {
     //similar to component did mount
     dispatch(getFlaggedPins());
-  }, []);
+  }, [dispatch]);
   const toggleReports = (id) => {
     setshowReport((prevshowReport) => ({
       ...showReport,
       [id]: !prevshowReport[id],
     }));
-  };
-  const adminDelete = (id) => {
-    dispatch(adminDeleteFlaggedPin(id));
   };
 
   return (
@@ -153,6 +150,8 @@ function ListFlags(props) {
                   </td>
                 </tr>
               );
+            } else {
+              return "";
             }
           })}
         </tbody>

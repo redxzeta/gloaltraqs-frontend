@@ -65,7 +65,7 @@ const useProfileImage = () => {
     //https://api.cloudinary.com/v1_1/dauntlessx/image/upload
 
     axios
-      .post(`${CLOUDINARY}`, formData)
+      .post(`${process.env.REACT_APP_CLOUDINARY}`, formData)
       .then((response) => {
         dispatch(updateProfilePic(response.data.secure_url));
       })
