@@ -7,6 +7,14 @@
     width: 100%;
 }
 
+
+.marker-cluster-small{background-color:rgba(245,220,109,.6) !important;}
+.marker-cluster-small div{background-color:rgba(245,220,109,.3) !important;}
+.marker-cluster-medium{background-color:rgba(240,160,85,.6) !important;}
+.marker-cluster-medium div{background-color:rgba(240,160,85,.3) !important;}
+.marker-cluster-large{background-color:rgba(230,63,82,.6) !important;}
+.marker-cluster-large div{background-color:rgba(230,63,82,.3) !important;}
+
 .top-bar {
     padding: 18px 0px 10px 30px;
     background-color: black;
@@ -1373,7 +1381,7 @@ react-date-picker--enabled {
     padding-top: 30px;
     width: 100%;
     font-size: 0.75rem;
-    color: #98999b;
+    color: white;
 }
 
 .faq-plus-btn {
@@ -1602,6 +1610,19 @@ textarea {
 
     #story-page {
         margin-top: 100px;
+    }
+    .support-us-main-content-div {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .support-us-image-main-text {
+        font-size: 2rem;
+    }
+
+    .support-us-image-sub-text{
+        font-size: 1.5rem;
     }
 }
 

@@ -106,7 +106,7 @@ export default function Resources() {
               if you'd like to add to our ever-growing list of LGBTQ+ resources.
               Or just{" "}
               <span class="resources-sub-text text-underline">
-                <a href="mailto:arqive@gmail.com">send</a>
+                <a href="mailto:thearqive@gmail.com">send</a>
               </span>{" "}
               us an email directly.{" "}
             </p>

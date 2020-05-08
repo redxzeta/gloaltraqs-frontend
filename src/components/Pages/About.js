@@ -106,7 +106,33 @@ function About() {
             physical locations of queer stories. It also seeks to make visible
             historically marginalized voices and stories and connect queer
             people globally.
+            <br />
           </p>
+          <p className="copyright">
+            <br />
+            <br />
+            This website was redeveloped, redesigned, and relaunched in 2020
+            due to an amazing and diverse team of Cal State LA students.
+            Without them, none of this would have been possible. Thanks to:
+            <br/>
+            <br/>
+            Development Team
+            <br />
+            Fadi Haddad, Klaudia Hernandez, Nathaniel Suarez, Tony Truong, and Justine West
+            <br />
+            <br />
+            Art Team
+            <br />
+            Art Director: Liz Sweeney
+            <br />
+            Designers: Angie Strong and Laura Torres
+            <br />
+            <br />
+            Public Relations Team
+            <br />
+            Andrea Estrada, Aliyah Johnson, Laytyn MacKinnon, Nicholas Ochoa, Pamela Sanchez, Maryah Rendon, members of Zenith Experiential, Los Angeles (ZENX-LA)
+          </p>
+
         </Col>
         <Col
           md={5}
