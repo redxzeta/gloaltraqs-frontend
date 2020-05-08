@@ -178,7 +178,7 @@ function ModalEditPinForm(props) {
               <DatePicker
                 format={"MM/dd/yyyy"}
                 name="startDate"
-                minDate={new Date("0000-01-01")}
+                minDate={new Date("0100-01-01")}
                 maxDate={endDate}
                 value={startDate}
                 onChange={(date) =>
