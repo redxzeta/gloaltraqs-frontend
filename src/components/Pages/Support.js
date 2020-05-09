@@ -77,43 +77,44 @@ export default function Support() {
                 </p>
               </Col>
             </Row>
-            <Row style={{ paddingBottom: "50px" }}>
-              <div className="col-md-6 m-auto">
-                <div
-                  className="card card-body mt-5"
-                  style={{ borderRadius: "8px" }}
-                >
-                  {/*<h2 className="text-center">Support Us</h2>*/}
-                  <label className="support-us-image-sub-text text-center">
-                    donation{" "}
-                  </label>
-                  <input
-                    type="value"
-                    className="form-control"
-                    name="amount"
-                    onChange={(e) => setAmount(e.target.value)}
-                    value={amount}
-                  />
-                  <br></br>
-                  <PayPalButton
-                    amount={amount}
-                    onSuccess={(details, data) => {
-                      alert(
-                        "Transaction completed by " +
-                          details.payer.name.given_name
-                      );
-                    }}
-                    onCancel={(data) => {
-                      alert("Transaction was cancelled...");
-                    }}
-                    style={{
-                      layout: "vertical",
-                      shape: "rect",
-                    }}
-                  />
-                </div>
-              </div>
-            </Row>
+            {/* disable paypal for now - need to get account keys */}
+            {/*<Row style={{ paddingBottom: "50px" }}>*/}
+            {/*  <div className="col-md-6 m-auto">*/}
+            {/*    <div*/}
+            {/*      className="card card-body mt-5"*/}
+            {/*      style={{ borderRadius: "8px" }}*/}
+            {/*    >*/}
+            {/*      /!*<h2 className="text-center">Support Us</h2>*!/*/}
+            {/*      <label className="support-us-image-sub-text text-center">*/}
+            {/*        donation{" "}*/}
+            {/*      </label>*/}
+            {/*      <input*/}
+            {/*        type="value"*/}
+            {/*        className="form-control"*/}
+            {/*        name="amount"*/}
+            {/*        onChange={(e) => setAmount(e.target.value)}*/}
+            {/*        value={amount}*/}
+            {/*      />*/}
+            {/*      <br></br>*/}
+            {/*      <PayPalButton*/}
+            {/*        amount={amount}*/}
+            {/*        onSuccess={(details, data) => {*/}
+            {/*          alert(*/}
+            {/*            "Transaction completed by " +*/}
+            {/*              details.payer.name.given_name*/}
+            {/*          );*/}
+            {/*        }}*/}
+            {/*        onCancel={(data) => {*/}
+            {/*          alert("Transaction was cancelled...");*/}
+            {/*        }}*/}
+            {/*        style={{*/}
+            {/*          layout: "vertical",*/}
+            {/*          shape: "rect",*/}
+            {/*        }}*/}
+            {/*      />*/}
+            {/*    </div>*/}
+            {/*  </div>*/}
+            {/*</Row>*/}
           </div>
         </Col>
         <Col md={3} className="support-us-side-content-col">
