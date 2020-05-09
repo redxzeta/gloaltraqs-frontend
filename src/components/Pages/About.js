@@ -134,7 +134,6 @@ function About() {
         <Col
           md={5}
           className="offset-md-1"
-          style={{ marginTop: "auto", marginBottom: "auto" }}
         >
           <img className="moveimage" src={Logo} alt="About Us" />
           <p className="copyright">
