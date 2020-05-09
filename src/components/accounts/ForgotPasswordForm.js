@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
 import axios from "axios";
-import { LINK } from "../../link/link";
 import { Input } from "reactstrap";
 import useRemovalConfirm from "../profile/CustomHooks/useRemovalConfirm";
 import ConfirmationModal from "../profile/ConfirmationModal";
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(true);
-  // const [messageFromServer, setMessageFromServer] = useState("");
   const { loginregisterModalState, loginToggle } = useRemovalConfirm();
   const [message, setMessage] = useState("");
 
@@ -66,24 +64,6 @@ export default function ForgotPasswordForm() {
               Forgot Password
             </button>
           </form>
-          {/* {showNullError && (
-          <div>
-            <p className="text-danger">*You must input a email address </p>
-          </div>
-        )}
-        {showError && (
-          <div>
-            <p className="text-danger">
-              *That email address doesn't exist, please try again or register
-              for a new account
-            </p>
-          </div>
-        )}
-        {messageFromServer === "recovery email sent" && (
-          <div>
-            <h3>Password Reset Email Sent Successfully!</h3>
-          </div>
-        )} */}
         </div>
       </div>
       <ConfirmationModal

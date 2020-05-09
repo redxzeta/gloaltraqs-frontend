@@ -15,9 +15,6 @@ import TinyMCE from "react-tinymce";
 
 import DatePicker from "react-date-picker";
 import "react-datepicker/dist/react-datepicker.css";
-// const buttonStyle = {
-//   float: "right",
-// };
 
 // import
 import { OpenStreetMapProvider } from "leaflet-geosearch";

@@ -24,34 +24,15 @@ import {
   useRouteMatch,
   useHistory,
 } from "react-router-dom";
-//import LeafletMap from "./LeafletMap";
-//import SearchSidebar from "../layout/SearchSidebar";
 import StorySidebar from "../layout/StorySidebar";
 import ConfirmationModal from "../profile/ConfirmationModal";
-// const sidebarStyle = {
-//   position: "absolute",
-//   top: "0",
-//   height: "100%",
-//   zIndex: "1000",
-//   overflow: "hidden",
-//   right: "0px",
-//   z-index: 1000;
-//   position: absolute;
-//   height: 100%;
-//   overflow: hidden;
-//   width: 100%;
-//   top: 0;
-// };
+
 
 import LeafletMap from "./LeafletMap";
-// import { LatLng } from "leaflet/dist/leaflet-src.esm";
 const Story = React.lazy(() => import("./Story/Story"));
 const SearchSidebar = React.lazy(() => import("../layout/SearchSidebar"));
 export default function MapDashboard() {
-  // const [divStyle, setdivStyle] = useState({
-  //   height: "100%",
-  //   width: "100%",
-  // });
+
   const divStyle = {
     height: "100%",
     width: "100%",
@@ -89,7 +70,7 @@ export default function MapDashboard() {
   }, [dispatch]);
 
   // I changed the below two useEffects in order to make the getPinsWithBounds work
-  // pretty much get pins that are within the view and if the map moves refetch pins in new coord bounds
+  // pretty much get pins that are within the view and if the map moves re-fetch pins in new coord bounds
   // useEffect(() => {
   //   if (mapReference !== undefined) {
   //     let mapBounds = mapReference.getBounds();
@@ -190,8 +171,6 @@ export default function MapDashboard() {
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, user } = auth;
 
-  //opens modal for adding new pins
-  // const [editpinmodalState, seteditpinmodalState] = useState(false); // opens modal for editing pin
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [storySidebarOpen, setStorySidebarOpen] = useState(false);
 
@@ -231,15 +210,16 @@ export default function MapDashboard() {
       navigator.geolocation.getCurrentPosition(
         (succes) => {
           if (mapReference !== undefined) {
-            mapReference.panTo([
+            mapReference.setView([
               succes.coords.latitude,
               succes.coords.longitude,
-            ]);
+            ], 15);
           }
           setplacement({
             ...placement,
             userlat: succes.coords.latitude,
             userlng: succes.coords.longitude,
+            zoom: 15
           });
         },
         (error) => {
@@ -271,8 +251,6 @@ export default function MapDashboard() {
       ...userComment,
       description: "",
     });
-
-    // dispatch(addComment(userComment));
   };
   const onDeleteComment = (commentid) => {
     dispatch(deleteComment(commentid));

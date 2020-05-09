@@ -17,7 +17,6 @@ export default function ContactUs() {
     e.preventDefault();
 
     if (email !== "") {
-      // var data = JSON.stringify({ "name": name.value, "email": email.value });
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -83,20 +82,7 @@ export default function ContactUs() {
               >
                 {message}
               </textarea>
-              {/* <input
-              type="message"
-              className="form-text"
-              name="message"
-              onChange={e =>
-                setcontactForm({
-                  ...contactForm,
-                  message: e.target.value
-                })
-              }
-              value={contactForm.message}
-            /> */}
               <div />
-              {/* <p className="text-danger">{contactForm.errors["email"]}</p> */}
             </div>
             <div className="contact-us-btn-div">
               <button type="submit" className="btn btn-primary contact-us-btn">
@@ -109,8 +95,8 @@ export default function ContactUs() {
       <ConfirmationModal
         modalState={loginregisterModalState}
         toggle={loginToggle}
-        title="Thank you for Contacting Us"
-        buttonTitle={"Confirm"}
+        title="Thank you for contacting us!"
+        buttonTitle={"dismiss"}
         onSubmit={loginToggle}
       />
     </div>

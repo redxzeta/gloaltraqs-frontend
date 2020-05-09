@@ -9,7 +9,6 @@ import IG from "../images/instagram_icon.JPG";
 import TW from "../images/twitter_icon.JPG";
 import FB from "../images/facebook_icon.JPG";
 export default function Support() {
-  // const [isEnabled, setIsEnabled] = useState(false);
   const [amount, setAmount] = useState("0.00");
 
   return (
@@ -78,43 +77,44 @@ export default function Support() {
                 </p>
               </Col>
             </Row>
-            <Row style={{ paddingBottom: "50px" }}>
-              <div className="col-md-6 m-auto">
-                <div
-                  className="card card-body mt-5"
-                  style={{ borderRadius: "8px" }}
-                >
-                  {/*<h2 className="text-center">Support Us</h2>*/}
-                  <label className="support-us-image-sub-text text-center">
-                    donation{" "}
-                  </label>
-                  <input
-                    type="value"
-                    className="form-control"
-                    name="amount"
-                    onChange={(e) => setAmount(e.target.value)}
-                    value={amount}
-                  />
-                  <br></br>
-                  <PayPalButton
-                    amount={amount}
-                    onSuccess={(details, data) => {
-                      alert(
-                        "Transaction completed by " +
-                          details.payer.name.given_name
-                      );
-                    }}
-                    onCancel={(data) => {
-                      alert("Transaction was cancelled...");
-                    }}
-                    style={{
-                      layout: "vertical",
-                      shape: "rect",
-                    }}
-                  />
-                </div>
-              </div>
-            </Row>
+            {/* disable paypal for now - need to get account keys */}
+            {/*<Row style={{ paddingBottom: "50px" }}>*/}
+            {/*  <div className="col-md-6 m-auto">*/}
+            {/*    <div*/}
+            {/*      className="card card-body mt-5"*/}
+            {/*      style={{ borderRadius: "8px" }}*/}
+            {/*    >*/}
+            {/*      /!*<h2 className="text-center">Support Us</h2>*!/*/}
+            {/*      <label className="support-us-image-sub-text text-center">*/}
+            {/*        donation{" "}*/}
+            {/*      </label>*/}
+            {/*      <input*/}
+            {/*        type="value"*/}
+            {/*        className="form-control"*/}
+            {/*        name="amount"*/}
+            {/*        onChange={(e) => setAmount(e.target.value)}*/}
+            {/*        value={amount}*/}
+            {/*      />*/}
+            {/*      <br></br>*/}
+            {/*      <PayPalButton*/}
+            {/*        amount={amount}*/}
+            {/*        onSuccess={(details, data) => {*/}
+            {/*          alert(*/}
+            {/*            "Transaction completed by " +*/}
+            {/*              details.payer.name.given_name*/}
+            {/*          );*/}
+            {/*        }}*/}
+            {/*        onCancel={(data) => {*/}
+            {/*          alert("Transaction was cancelled...");*/}
+            {/*        }}*/}
+            {/*        style={{*/}
+            {/*          layout: "vertical",*/}
+            {/*          shape: "rect",*/}
+            {/*        }}*/}
+            {/*      />*/}
+            {/*    </div>*/}
+            {/*  </div>*/}
+            {/*</Row>*/}
           </div>
         </Col>
         <Col md={3} className="support-us-side-content-col">
@@ -167,36 +167,5 @@ export default function Support() {
         </Col>
       </Row>
     </div>
-    // below is the paypal popup
-    /*<div className="col-md-6 m-auto">
-        <div className="card card-body mt-5">
-          <h2 className="text-center">Support Us</h2>
-          <label>Donation Amount: </label>
-          <input
-            type="value"
-            className="form-control"
-            name="amount"
-            onChange={e => setAmount(e.target.value)}
-            value={amount}
-          />
-          <br></br>
-          <PayPalButton
-            amount={amount}
-            onSuccess={(details, data) => {
-              alert(
-                "Transaction completed by " + details.payer.name.given_name
-              );
-            }}
-            onCancel={data => {
-              alert("Transaction was cancelled...");
-            }}
-            style={{
-              layout: "vertical",
-              shape: "rect"
-            }}
-          />
-        </div>
-      </div>
-    </div>*/
   );
 }

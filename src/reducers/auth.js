@@ -145,7 +145,6 @@ export default function (state = initialState, action) {
         ...state.users.results.filter((p) => p.id !== action.payload.id),
         action.payload,
       ];
-      console.log(usersRole);
       const listUsers = {
         ...state.users,
         results: usersRole,
@@ -209,7 +208,6 @@ export default function (state = initialState, action) {
       };
     case REGISTER_FAIL:
       localStorage.removeItem("token");
-      console.log("setting register fail to true");
       return {
         ...state,
         registerFail: true,
@@ -317,13 +315,7 @@ export default function (state = initialState, action) {
           (x) => x.id !== action.payload
         ),
       };
-      console.log(favoritedUserStories);
-      // const profileDel = {
-      //   ...state.userProfile,
-      //   user_upvoted_stories: state.userProfile.user_upvoted_stories.filter(
-      //     (x) => x.id !== action.payload.id
-      //   ),
-      // };
+
       return {
         ...state,
         favoritedPin: false,

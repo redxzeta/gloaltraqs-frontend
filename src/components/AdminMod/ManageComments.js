@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { LINK } from "../../link/link";
 import { Card } from "reactstrap";
 
 export default function ManageComments() {

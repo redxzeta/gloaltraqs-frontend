@@ -23,20 +23,6 @@ export const FlagReportModal = (props) => {
       <ModalHeader toggle={props.toggle}> {props.title} </ModalHeader>
       <Form onSubmit={props.onSubmit}>
         <ModalBody>
-          {/* <FormGroup>
-            <Label style={labelStyle} for="category">
-              Type of Report
-            </Label>
-            <select
-              name="reportType"
-              value={props.flagForm}
-              onChange={props.handleChange}
-            >
-              <option value="1">Spam</option>
-              <option value="2">Harassment</option>
-              <option value="3">Other</option>
-            </select>
-          </FormGroup> */}
           <FormGroup check>
             <Label check>
               <Input

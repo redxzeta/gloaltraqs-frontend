@@ -1,7 +1,6 @@
 import User from "../sequelize";
 import crypto from "crypto";
 require("dotenv").config();
-import { LINK } from "../link/link";
 const nodemailer = require("nodemailer");
 
 module.exports = (app) => {
@@ -9,18 +8,15 @@ module.exports = (app) => {
     if (req.body.email === "") {
       res.json("email required");
     }
-    // console.log(req.body.email);
     User.findOne({
       where: {
         email: req.body.email,
       },
     }).then((user) => {
       if (user === null) {
-        // console.log('email not in database');
         res.json("email not in db");
       } else {
         const token = crypto.randomBytes(20).toString("hex");
-        // console.log(token);
         user.update({
           resetPasswordToken: token,
           resetPasswordExpires: Date.now() + 360000,
@@ -28,7 +24,7 @@ module.exports = (app) => {
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
-            user: "resetglobaltraqs@gmail.com",
+            user: "thearqive@gmail.com",
             pass: "gl0b4ltr4qs",
           },
         });

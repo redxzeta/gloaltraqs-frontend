@@ -21,11 +21,6 @@ function Flag(props) {
         </button>
       ) : (
         <button
-          // onClick={() => {
-          //   dispatch(
-          //     userFlagPin(props.pin.id, props.user.id, props.pin.flagstate)
-          //   );
-          // }}
           onClick={() => props.flagToggle(props.pin.id)}
           type="submit"
           className="btn btn-sm btn-primary flag-story-btn"
