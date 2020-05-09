@@ -15,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 2),
   },
 }));
+
+const config = {
+  headers: {
+    "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
+
 export default function FAQ() {
   const [faqDesc, setfaqDesc] = useState();
   const [shownComments, setShownComments] = useState({});
@@ -49,7 +56,7 @@ export default function FAQ() {
   const [showEditForm, setshowEditForm] = useState("");
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_ARQIVE}/faq/`)
+      .get(`${process.env.REACT_APP_ARQIVE}/faq/`, config)
       .then((response) => {
         setfaqDesc(response.data);
         setbackUpFaq(response.data);
@@ -71,7 +78,7 @@ export default function FAQ() {
   function deletefaqDesc(id) {
     //e.preventDefault() for edit function post for new data patch for editing data
     axios
-      .delete(`${process.env.REACT_APP_ARQIVE}/faq/${id}/`)
+      .delete(`${process.env.REACT_APP_ARQIVE}/faq/${id}/`, config)
       .then((response) => {
         setfaqDesc(faqDesc.filter((desc) => desc.id !== id));
         setbackUpFaq(backUpFaq.filter((desc) => desc.id !== id));
@@ -85,7 +92,7 @@ export default function FAQ() {
     const submit = faqDesc.filter((edit) => edit.id === id)[0];
 
     axios
-      .patch(`${process.env.REACT_APP_ARQIVE}/faq/${id}/`, submit)
+      .patch(`${process.env.REACT_APP_ARQIVE}/faq/${id}/`, submit, config)
       .then((response) => {
         setbackUpFaq(
           backUpFaq.map((faq) =>
@@ -123,7 +130,7 @@ export default function FAQ() {
     e.preventDefault();
 
     axios
-      .post(`${process.env.REACT_APP_ARQIVE}/faq/`, createNewfaq)
+      .post(`${process.env.REACT_APP_ARQIVE}/faq/`, createNewfaq, config)
       .then((response) => {
         const newFaq = { ...response.data, editForm: false };
         setfaqDesc([...faqDesc, newFaq]);

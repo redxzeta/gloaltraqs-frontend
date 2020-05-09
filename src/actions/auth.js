@@ -197,7 +197,8 @@ export const updateProfilePic = (url) => (dispatch, getState) => {
     .patch(
       `${process.env.REACT_APP_ARQIVE}/auth/user`,
       profilepic,
-      tokenConfig(getState)
+      tokenConfig(getState),
+      apiKey
     )
     .then((res) => {
       dispatch({

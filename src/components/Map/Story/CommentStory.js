@@ -2,6 +2,7 @@ import React from "react";
 import { deleteComment } from "../../../actions/pins";
 import { delFlagComment } from "../../../actions/auth";
 import { useDispatch } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 
 function CommentStory(props) {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ function CommentStory(props) {
                 posted by:{" "}
                 <span className="sidebar-story-username">
                   {userComment.is_anonymous_comment
-                    ? "Anonymous"
-                    : userComment.username}
+                      ? <span className={"sidebar-story-anon-username"}>Anonymous</span>
+                      : (<Link to={`/users/${userComment.username}`}> {userComment.username} </Link>)}
                 </span>
               </p>
               {props.isAuthenticated ? (
@@ -102,6 +103,7 @@ const AddCommentForm = (props) => {
               className="form-control"
               id="exampleTextarea"
               rows="3"
+              value={props.userComment.description}
               onChange={(e) =>
                 props.setuserComment({
                   ...props.userComment,

@@ -349,12 +349,13 @@ function SearchSidebar(props) {
                   // going to comment out for now - kinda buggy
                   // previous={users.previous}
                   // next={users.next}
-                  count={users.count}
+                  count={users.length}
                   onSubmit={submitUserSearch}
                   setUserSearchText={setUserSearchText}
                   userSearchText={userSearchText}
                 />
-                {users.results && <ListUsersSearch users={users.results} />}
+                <ListUsersSearch users={users} />
+                {/*{users.results && <ListUsersSearch users={users.results} />}*/}
               </Tab>
             </Tabs>
           </div>
@@ -449,6 +450,7 @@ const ListUsersSearch = (props) => {
   return (
     <>
       {props.users.map((user, index) => {
+        console.log("user"  + user);
         return (
           <Card
             key={user.id}

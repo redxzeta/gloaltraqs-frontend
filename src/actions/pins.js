@@ -109,8 +109,7 @@ export const searchPins = (searchQuery, categories, startDate, endDate) => (
 ) => {
   axios
     .get(
-      `${process.env.REACT_APP_ARQIVE}/pinSearch?search=${searchQuery}&categories=${categories}&startDate_gte=${startDate}&startDate_lte=${endDate}`
-    )
+      `${process.env.REACT_APP_ARQIVE}/pinSearch?search=${searchQuery}&categories=${categories}&startDate_gte=${startDate}&startDate_lte=${endDate}`, config)
     .then((res) => {
       dispatch({
         type: SEARCH_PINS,
@@ -229,7 +228,7 @@ export const getPin = (id, userid) => (dispatch) => {
 export const getUpvote = (pinId, userid) => (dispatch) => {
   axios
     .get(
-      `${process.env.REACT_APP_ARQIVE}/upVoteStory?pinId=${pinId}&userid=${userid}`
+      `${process.env.REACT_APP_ARQIVE}/upVoteStory?pinId=${pinId}&userid=${userid}`, config
     )
     .then((res) => {
       dispatch({
@@ -244,7 +243,7 @@ export const getUpvote = (pinId, userid) => (dispatch) => {
 };
 export const addComment = (comment) => (dispatch) => {
   axios
-    .post(`${process.env.REACT_APP_ARQIVE}/commentStory/`, comment)
+    .post(`${process.env.REACT_APP_ARQIVE}/commentStory/`, comment, config)
     .then((res) => {
       dispatch({
         type: ADD_COMMENT,
@@ -289,7 +288,7 @@ export const getPinsByOwner = (ownerId) => (dispatch) => {
 
 export const userFlagPin = (userFlag) => (dispatch) => {
   axios
-    .post(`${process.env.REACT_APP_ARQIVE}/flagStory/`, userFlag)
+    .post(`${process.env.REACT_APP_ARQIVE}/flagStory/`, userFlag, config)
     .then((res) => {
       dispatch({
         type: USER_FLAG_PIN,
@@ -308,7 +307,7 @@ export const userUnFlagPin = (id, state) => (dispatch) => {
   };
 
   axios
-    .patch(`${process.env.REACT_APP_ARQIVE}/flagStory/${id}/`, userflagged)
+    .patch(`${process.env.REACT_APP_ARQIVE}/flagStory/${id}/`, userflagged, config)
     .then((res) => {
       dispatch({
         type: USER_UNFLAG,
@@ -329,7 +328,7 @@ export const userFirstUpvote = (pin, user) => (dispatch) => {
   };
 
   axios
-    .post(`${process.env.REACT_APP_ARQIVE}/upVoteStory/`, submit)
+    .post(`${process.env.REACT_APP_ARQIVE}/upVoteStory/`, submit, config)
     .then((res) => {
       dispatch({
         type: USER_FIRST_UPVOTE,

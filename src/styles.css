@@ -829,6 +829,15 @@ button {
     text-transform: none !important;
 }
 
+.sidebar-story-username a {
+    font-weight: 600 !important;
+    font-family: "Courier New", "Courier" !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    color: rgb(77, 65, 133) !important;
+    text-transform: none !important;
+}
+
 .sidebar-text {
     font-family: "Eina", "Arial" !important;
     font-size: 1rem !important;

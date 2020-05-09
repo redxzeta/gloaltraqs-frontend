@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card } from "reactstrap";
+const config = {
+  headers: {
+    "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
 
 export default function ManageComments() {
   const [flagComments, setflagComments] = useState("");
   const [showReport, setshowReport] = useState("");
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_ARQIVE}/commentStory/`)
+      .get(`${process.env.REACT_APP_ARQIVE}/commentStory/`, config)
       .then((res) => {
         setflagComments(res.data);
       })
@@ -25,7 +30,7 @@ export default function ManageComments() {
   };
   const onDeleteComment = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_ARQIVE}/commentStory/${id}/`)
+      .delete(`${process.env.REACT_APP_ARQIVE}/commentStory/${id}/`, config)
       .then((res) => {
         setflagComments(flagComments.filter((comment) => comment.id !== id));
       })

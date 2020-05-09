@@ -20,6 +20,7 @@ export default function ContactUs() {
       const config = {
         headers: {
           "Content-Type": "application/json",
+          "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
         },
       };
       // Request Body
@@ -37,13 +38,18 @@ export default function ContactUs() {
         // => console.log(err)
         ();
     } else {
+       const config = {
+        headers: {
+          "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+        },
+      };
       setEmail(`Anonymous@anon.com`);
 
       axios
         .post(`${process.env.REACT_APP_ARQIVE}/contactUs/`, {
           email: email,
           message: message,
-        })
+        }, config)
         .then((response) => {
           loginToggle();
           setEmail("");

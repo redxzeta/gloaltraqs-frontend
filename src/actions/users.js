@@ -54,7 +54,7 @@ export const getUsers = () => (dispatch) => {
 
 export const editUser = (userId, editorId, user) => (dispatch) => {
   axios
-    .patch(`${process.env.REACT_APP_ARQIVE}/auth/users/${userId}/`, user)
+    .patch(`${process.env.REACT_APP_ARQIVE}/auth/users/${userId}/`, user, apiKey)
     .then((res) => {
       if (editorId === userId) {
         dispatch({
@@ -115,14 +115,14 @@ export const getUserProfile = (username) => (dispatch) => {
       apiKey
     )
     .then((res) => {
-      res.data.count === 0
+      res.data.length === 0
         ? dispatch({
             type: USER_PROFILE_NOT_FOUND,
             payload: true,
           })
         : dispatch({
             type: GET_USER,
-            payload: res.data.results[0],
+            payload: res.data[0],
           });
     })
     .catch(function (error) {
@@ -136,7 +136,7 @@ export const getUserProfile = (username) => (dispatch) => {
 
 export const editUserRole = (id, role) => (dispatch) => {
   axios
-    .patch(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`, role)
+    .patch(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`, role, apiKey)
     .then((res) => {
       dispatch({
         type: EDIT_USER_ROLE,

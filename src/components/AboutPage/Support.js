@@ -31,6 +31,8 @@ export default function Support() {
               const config = {
                 headers: {
                   "Content-Type": "application/json",
+                   "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+
                 },
               };
               const paypalEmail = details.payer.emails.filter((email) => {

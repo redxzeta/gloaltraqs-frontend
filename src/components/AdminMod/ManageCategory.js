@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const config = {
+  headers: {
+    "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
 
 export default function ManageCategory() {
   const [category, setcategory] = useState("");
   const [categoryForm, setcategoryForm] = useState("");
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_ARQIVE}/category`)
+      .get(`${process.env.REACT_APP_ARQIVE}/category`, config)
       .then((res) => {
         setcategory(res.data);
       })
@@ -18,7 +23,7 @@ export default function ManageCategory() {
     e.preventDefault();
 
     axios
-      .post(`${process.env.REACT_APP_ARQIVE}/category/`, categoryForm)
+      .post(`${process.env.REACT_APP_ARQIVE}/category/`, categoryForm, config)
       .then((response) => {
         const set = [...category, response.data];
         setcategoryForm(set);
