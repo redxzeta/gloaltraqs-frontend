@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-// import TextField from "@material-ui/core/TextField";
-// import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import { LINK } from "../../link/link";
 import { Input } from "reactstrap";
 export default function ResetPasswordForm() {
   const [passwordForm, setpasswordForm] = useState({
@@ -23,10 +20,6 @@ export default function ResetPasswordForm() {
         showError: false,
         messageFromServer: "",
       });
-      //   this.setState({
-      //     showError: false,
-      //     messageFromServer: ""
-      //   });
     } else {
       axios
         .post(`${process.env.REACT_APP_ARQIVE}/password_reset/confirm/`, {
@@ -37,17 +30,6 @@ export default function ResetPasswordForm() {
           if (response.data.toString().includes("object")) {
             window.alert("your password has been reset");
           }
-          //   if (response.data === "email not in db") {
-          //     this.setState({
-          //       showError: true,
-          //       messageFromServer: ""
-          //     });
-          //   } else if (response.data === "recovery email sent") {
-          //     this.setState({
-          //       showError: false,
-          //       messageFromServer: "recovery email sent"
-          //     });
-          //   }
         })
         .catch((error) => {});
     }

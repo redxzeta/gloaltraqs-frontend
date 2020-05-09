@@ -21,9 +21,6 @@ import { OpenStreetMapProvider } from "leaflet-geosearch";
 // setup
 const provider = new OpenStreetMapProvider();
 
-// const buttonStyle = {
-//   float: "right",
-// };
 const labelStyle = {
   marginRight: "10px",
 };

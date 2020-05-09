@@ -7,7 +7,6 @@ import { TextField, Divider } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { UncontrolledCollapse } from "reactstrap";
 import Markup from "interweave";
-import { LINK } from "../../link/link";
 
 import Plus from "../images/plus.svg";
 import Minus from "../images/minus.svg";

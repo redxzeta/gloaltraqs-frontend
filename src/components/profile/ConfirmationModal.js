@@ -5,9 +5,7 @@ const buttonStyle = {
   float: "right",
   marginRight: "10px"
 };
-// const labelStyle = {
-//   marginRight: "10px",
-// };
+
 const ConfirmationModal = ({
   modalState,
   toggle,

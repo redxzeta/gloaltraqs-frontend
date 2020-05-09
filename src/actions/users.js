@@ -12,7 +12,6 @@ import {
 } from "./types";
 
 import { DELETE_USER } from "./types";
-import { LINK } from "../link/link";
 export const searchUsers = (username) => (dispatch) => {
   axios
     .get(`${process.env.REACT_APP_ARQIVE}/profile/users?search=${username}`)

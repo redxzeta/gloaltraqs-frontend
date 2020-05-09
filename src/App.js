@@ -7,8 +7,6 @@ import Resources from "./components/Pages/Resources";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterForm from "./components/accounts/RegisterForm";
 // if deployed to apache, mess with congig htt file
-// import { Provider as AlertProvider } from "react-alert";
-// import AlertTemplate from "react-alert-template-basic";
 import { Provider } from "react-redux";
 import store from "./store";
 import LoginForm from "./components/accounts/LoginForm";
@@ -36,7 +34,6 @@ export default function App() {
         <>
           <Header />
           <div style={{ height: "100%" }}>
-            {/*<div className="container-fluid" style={divStyle}>*/}
             <Switch>
               <Route exact path="/" component={MapDashboard} />
               <Route exact path="/story" component={MapDashboard} />
@@ -61,7 +58,6 @@ export default function App() {
               <Route path="*">
                 <NotFoundPage />
               </Route>
-              {/* <MapDashboard /> */}
             </Switch>
           </div>
         </>

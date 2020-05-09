@@ -17,7 +17,7 @@ import {
   EDIT_PIN_PRO,
   GUEST_USER,
 } from "./types";
-import { LINK } from "../link/link";
+
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
   // User Loading
@@ -63,7 +63,6 @@ export const login = (username, password) => (dispatch) => {
       });
     })
     .catch((err) => {
-      // dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: LOGIN_FAIL,
         payload: err.response.data,
@@ -92,13 +91,11 @@ export const register = ({ username, password, email }) => (dispatch) => {
       });
     })
     .catch((err) => {
-      //dispatch(returnErrors(err.data, err.status));
       dispatch({
         type: REGISTER_FAIL,
         payload: err.response.data,
       });
 
-      //alert("Username/Email already exists");
     });
 };
 
@@ -167,11 +164,7 @@ export const userFlagComment = (userFlag) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch
-
-    // =>
-    // console.log(error)
-    ();
+    .catch();
 };
 
 export const delFlagComment = (id) => (dispatch) => {
@@ -183,11 +176,7 @@ export const delFlagComment = (id) => (dispatch) => {
         payload: id,
       });
     })
-    .catch
-
-    // =>
-    // console.log(error)
-    ();
+    .catch();
 };
 
 export const updateProfilePic = (url) => (dispatch, getState) => {
@@ -206,11 +195,7 @@ export const updateProfilePic = (url) => (dispatch, getState) => {
         payload: res.data,
       });
     })
-    .catch
-
-    // =>
-    // console.log(error)
-    ();
+    .catch();
 };
 
 export const userEditValidate = (pin, id) => (dispatch) => {
@@ -223,8 +208,5 @@ export const userEditValidate = (pin, id) => (dispatch) => {
         // payload: payload
       });
     })
-    .catch
-
-    // => console.log(err)
-    ();
+    .catch();
 };

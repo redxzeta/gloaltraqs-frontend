@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { GET_ABOUT_US, UPDATE_ABOUT_US } from "./types";
-import { LINK } from "../link/link";
 export const updateAboutUs = (aboutUs) => (dispatch) => {
   axios
     .patch(`${process.env.REACT_APP_ARQIVE}/management/aboutUs/1/`, aboutUs)
@@ -11,10 +10,7 @@ export const updateAboutUs = (aboutUs) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch
-
-    // => console.log(err)
-    ();
+    .catch();
 };
 
 export const getAboutUs = () => (dispatch) => {
@@ -26,8 +22,5 @@ export const getAboutUs = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch
-
-    // => console.log(err)
-    ();
+    .catch();
 };

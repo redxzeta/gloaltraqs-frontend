@@ -16,6 +16,7 @@ import AddCommentIcon from "@material-ui/icons/AddComment";
 import { GeoSearchControl } from "leaflet-geosearch";
 import { EsriProvider } from "leaflet-geosearch";
 import { useSelector } from "react-redux";
+
 export const defaultPointerIcon = new L.Icon({
   iconUrl: default_marker,
   iconRetinaUrl: default_marker,
@@ -56,7 +57,6 @@ export const personalIcon = new L.Icon({
   shadowAnchor: [20, 92],
 });
 const LeafletMap = (props) => {
-  // let { path, url } = useRouteMatch();
   const history = useHistory();
   // need to enter props.placement directly - if not used directly, when placement is updated the marker does not center on proper coordinates
   // EsriProvider allows for zip code search - nominatum (OSM) does not
@@ -155,7 +155,6 @@ const LeafletMap = (props) => {
     // props.toggle();
   };
 
-  // used for adding the map reference for fly to and address search
 
   const guest = useSelector((state) => state.auth.guest_user);
 

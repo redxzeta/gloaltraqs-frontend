@@ -6,7 +6,6 @@ import { Switch, Route, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import { getUserProfile } from "../../actions/users";
 import CircularIndeterminate from "./CircularIndeterminate";
-//import ProfileSetting from "./ProfileSettings";
 import useProfileImage from "./CustomHooks/useProfileImage";
 import ProfileImageModal from "./ProfileImageModal";
 import useRemovalConfirm from "./CustomHooks/useRemovalConfirm";

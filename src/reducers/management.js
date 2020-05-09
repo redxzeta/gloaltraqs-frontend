@@ -12,8 +12,6 @@ export default function(state = initialState, action) {
                 about_us: action.payload.about_us,
             };
         case GET_ABOUT_US:
-            console.log(action.payload.about_us);
-            console.log("was the data");
             return {
                 ...state,
                 about_us: action.payload.about_us,

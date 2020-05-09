@@ -1,6 +1,5 @@
 import User from "../sequelize";
 import bcrypt from "bcrypt";
-import { LINK } from "../link/link";
 const BYCRPT_SALT_ROUNDS = 12;
 module.exports = (app) => {
   app.put(`${process.env.REACT_APP_ARQIVE}/auth/users/`, (req, res, next) => {
@@ -10,7 +9,6 @@ module.exports = (app) => {
       },
     }).then((user) => {
       if (user != null) {
-        // console.log('user exists in db');
         bcrypt
           .hash(req.body.password, BYCRPT_SALT_ROUNDS)
           .then((hashedPassword) => {
@@ -21,11 +19,9 @@ module.exports = (app) => {
             });
           })
           .then(() => {
-            // console.log('password updated');
             res.status(200).send({ message: "password updated" });
           });
       } else {
-        // console.log('no user exists in db to update');
         res.status(404).json("no user exists in db to update");
       }
     });

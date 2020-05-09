@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import CommentStory from "./CommentStory";
-//import { getPin } from "../../../actions/pins";
 import { Link, Redirect } from "react-router-dom";
 import Upvote from "./Upvote";
 import Flag from "./Flag";

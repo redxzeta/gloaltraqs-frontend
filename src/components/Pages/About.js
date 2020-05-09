@@ -5,13 +5,10 @@ import { Row, Col } from "react-bootstrap";
 import { updateAboutUs, getAboutUs } from "../../actions/management";
 import { useEffect, useState } from "react";
 import TinyMCE from "react-tinymce";
-//import { Markup } from "interweave";
 import Logo from "../images/aboutUs_03.png";
 function About() {
-  //const [aboutUs, setAboutUs] = useState("");
   const [editButtonValue, setEditButtonValue] = useState("Edit");
   const dispatch = useDispatch();
-  //  const aboutUsData = useSelector((state) => state.management.about_us);
   const auth = useSelector((state) => state.auth);
   const [editMode, setEditMode] = useState(false);
   const { user } = auth;
@@ -27,7 +24,6 @@ function About() {
 
   useEffect(() => {
     dispatch(getAboutUs());
-    // setAboutUs(aboutUsData);
   }, [dispatch]);
 
   const handleEditorChange = (e) => {

@@ -23,7 +23,6 @@ export default function Settings(props) {
   const [profileVisibilityChecked, setProfileVisibilityChecked] = useState(
     false
   );
-  // const history = useHistory();
 
   const updateAccessibility = () => {
     setChecked(!checked);
@@ -103,11 +102,7 @@ export default function Settings(props) {
                   {bio}
                 </textarea>
               </div>
-              {/*<div className="form-group">*/}
-              {/*  <button type="submit" className="btn btn-primary">*/}
-              {/*    Submit*/}
-              {/*  </button>*/}
-              {/*</div>*/}
+             
               <div>
                 <br />
 
