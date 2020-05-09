@@ -95,8 +95,8 @@ export default function ContactUs() {
       <ConfirmationModal
         modalState={loginregisterModalState}
         toggle={loginToggle}
-        title="Thank you for Contacting Us"
-        buttonTitle={"Confirm"}
+        title="Thank you for contacting us!"
+        buttonTitle={"dismiss"}
         onSubmit={loginToggle}
       />
     </div>
