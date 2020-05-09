@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { useLocation } from "react-router-dom";
 import { Input } from "reactstrap";
 export default function ResetPasswordForm() {
   const [passwordForm, setpasswordForm] = useState({
@@ -11,6 +11,9 @@ export default function ResetPasswordForm() {
     showError: false,
     messageFromServer: "",
   });
+  const [show, setshow] = useState(false);
+  let query = useQuery();
+
   const confirmPass = (e) => {
     e.preventDefault();
     const values = "test"; // queryString.parse(location.search);
@@ -19,16 +22,25 @@ export default function ResetPasswordForm() {
         ...setpasswordForm,
         showError: false,
         messageFromServer: "",
+        password: "",
+        password2: "",
       });
+      setshow(true);
     } else {
       axios
         .post(`${process.env.REACT_APP_ARQIVE}/password_reset/confirm/`, {
-          token: values.token,
+          token: query.get("token"),
           password: passwordForm.password,
         })
         .then((response) => {
           if (response.data.toString().includes("object")) {
             window.alert("your password has been reset");
+            setpasswordForm({
+              ...setpasswordForm,
+
+              password: "",
+              password2: "",
+            });
           }
         })
         .catch((error) => {});
@@ -63,7 +75,7 @@ export default function ResetPasswordForm() {
       formIsValid = false;
       errors["password"] = "*Password must contain a Letter";
     }
-    this.setState({ errors: errors });
+
     return formIsValid;
   };
   return (
@@ -71,10 +83,17 @@ export default function ResetPasswordForm() {
       <div className="col-md-6 m-auto forgot-password-col">
         <div className="card card-body mt-5 forgot-password-card accounts-form-group">
           <h2 className="text-center forgot-password-title">Reset Password</h2>
+
           <form
             className="profile-form accounts-form-group"
             onSubmit={confirmPass}
           >
+            <div className="form-group">
+              <p className="forgot-password-text">
+                *Passwords must contain at least eight characters, including at
+                least 1 letter and 1 number
+              </p>
+            </div>
             <div className="form-group">
               <p className="forgot-password-text">
                 Please input your new password:
@@ -91,7 +110,6 @@ export default function ResetPasswordForm() {
                   })
                 }
               />
-              <p className="text-danger">{passwordForm.errors["password"]}</p>
 
               <p className="forgot-password-text">
                 Please Confirm your password:
@@ -100,7 +118,7 @@ export default function ResetPasswordForm() {
                 id="password2"
                 label="confirm password"
                 type="password"
-                value={passwordForm.password2}
+                value={passwordForm.password2 || ""}
                 onChange={(e) =>
                   setpasswordForm({
                     ...passwordForm,
@@ -109,8 +127,11 @@ export default function ResetPasswordForm() {
                 }
                 // this.handleChange("password2")}
               />
-              <p className="text-danger">{passwordForm.errors["password2"]}</p>
-
+              {show && (
+                <p className="text-danger">
+                  Password Error. Please enter a valid password
+                </p>
+              )}
               <button
                 type="submit"
                 className="btn btn-primary float-right default-btn-purple"
@@ -123,4 +144,7 @@ export default function ResetPasswordForm() {
       </div>
     </div>
   );
+}
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
 }
