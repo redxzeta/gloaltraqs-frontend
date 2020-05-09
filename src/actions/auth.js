@@ -17,8 +17,13 @@ import {
   EDIT_PIN_PRO,
   GUEST_USER,
 } from "./types";
-import { LINK } from "../link/link";
+
 // CHECK TOKEN & LOAD USER
+const apiKey = {
+  headers: {
+    "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
 export const loadUser = () => (dispatch, getState) => {
   // User Loading
   dispatch({ type: USER_LOADING });
@@ -45,9 +50,11 @@ export const loadUser = () => (dispatch, getState) => {
 // LOGIN USER
 export const login = (username, password) => (dispatch) => {
   // Headers
+
   const config = {
     headers: {
       "Content-Type": "application/json",
+      "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
     },
   };
 
@@ -74,9 +81,11 @@ export const login = (username, password) => (dispatch) => {
 // REGISTER USER
 export const register = ({ username, password, email }) => (dispatch) => {
   // Headers
+
   const config = {
     headers: {
       "Content-Type": "application/json",
+      "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
     },
   };
 
@@ -130,6 +139,7 @@ export const tokenConfig = (getState) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
+      "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
     },
   };
 
@@ -160,7 +170,7 @@ export const userSelfDelete = () => (dispatch, getState) => {
 
 export const userFlagComment = (userFlag) => (dispatch) => {
   axios
-    .post(`${process.env.REACT_APP_ARQIVE}/flagcomment/`, userFlag)
+    .post(`${process.env.REACT_APP_ARQIVE}/flagcomment/`, apiKey, userFlag)
     .then((res) => {
       dispatch({
         type: FLAG_COMMENT,
@@ -176,7 +186,7 @@ export const userFlagComment = (userFlag) => (dispatch) => {
 
 export const delFlagComment = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_ARQIVE}/flagcomment/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/flagcomment/${id}/`, apiKey)
     .then((res) => {
       dispatch({
         type: REMOVE_FLAG_COMMENT,
@@ -215,7 +225,7 @@ export const updateProfilePic = (url) => (dispatch, getState) => {
 
 export const userEditValidate = (pin, id) => (dispatch) => {
   axios
-    .patch(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, pin)
+    .patch(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, apiKey, pin)
     .then((res) => {
       dispatch({
         type: EDIT_PIN_PRO,

@@ -24,25 +24,33 @@ import {
 
 import { LINK } from "../link/link";
 //GET PINS
+const config = {
+  headers: {
+    "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
+
 export const getPins = () => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/pins/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/`, config)
     .then((res) => {
+      console.log(res.data);
       dispatch({
         type: GET_PINS,
         payload: res.data,
       });
     })
-    .catch
-
-    // => console.log(err)
-    ();
+    .catch(
+      // => console.log(err)
+      (err) => console.log(err)
+    );
 };
 
 export const getPinsWithBounds = (north, south, east, west) => (dispatch) => {
   axios
     .get(
-      `${process.env.REACT_APP_ARQIVE}/pinCoordFilter/?latitude_gte=${south}&latitude_lte=${north}&longitude_gte=${west}&longitude_lte=${east}`
+      `${process.env.REACT_APP_ARQIVE}/pinCoordFilter/?latitude_gte=${south}&latitude_lte=${north}&longitude_gte=${west}&longitude_lte=${east}`,
+      config
     )
     .then((res) => {
       dispatch({
@@ -58,7 +66,7 @@ export const getPinsWithBounds = (north, south, east, west) => (dispatch) => {
 
 export const getMinPinDate = () => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/minPinDate`)
+    .get(`${process.env.REACT_APP_ARQIVE}/minPinDate`, config)
     .then((res) => {
       const minDate = moment(res.data[0].startDate).format("YYYY/MM/DD");
 
@@ -77,7 +85,7 @@ export const getMinPinDate = () => (dispatch) => {
 
 export const getMaxPinDate = () => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/maxPinDate`)
+    .get(`${process.env.REACT_APP_ARQIVE}/maxPinDate`, config)
     .then((res) => {
       // let date = res.data[0].startDate.split("-");
 
@@ -117,7 +125,7 @@ export const searchPins = (searchQuery, categories, startDate, endDate) => (
 
 export const deletePins = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, config)
     .then((res) => {
       dispatch({
         type: DELETE_PINS,
@@ -177,7 +185,7 @@ export const editPin = (pin, id, userid) => (dispatch) => {
 
 export const getPin = (id, userid) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, config)
     .then((res) => {
       let validUser = false;
       let flagstateofuser = false;
@@ -251,7 +259,7 @@ export const addComment = (comment) => (dispatch) => {
 
 export const deleteComment = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_ARQIVE}/commentStory/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/commentStory/${id}/`, config)
     .then((res) => {
       dispatch({
         type: DELETE_COMMENT,
@@ -266,7 +274,7 @@ export const deleteComment = (id) => (dispatch) => {
 
 export const getPinsByOwner = (ownerId) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/pins/?owner=${ownerId}`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/?owner=${ownerId}`, config)
     .then((res) => {
       dispatch({
         type: GET_PINS_BY_OWNER,
@@ -336,7 +344,7 @@ export const userFirstUpvote = (pin, user) => (dispatch) => {
 
 export const userUpovte = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_ARQIVE}/upVoteStory/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/upVoteStory/${id}/`, config)
     .then((res) => {
       dispatch({
         type: USER_UPVOTE,
@@ -351,7 +359,7 @@ export const userUpovte = (id) => (dispatch) => {
 
 export const getFlaggedPins = () => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/pinFlagged`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pinFlagged`, config)
     .then((res) => {
       dispatch({
         type: GET_FLAGGED_PINS,
@@ -365,7 +373,7 @@ export const getFlaggedPins = () => (dispatch) => {
 };
 export const getNextFlaggedPins = (nextLink) => (dispatch) => {
   axios
-    .get(`${nextLink}`)
+    .get(`${nextLink}`, config)
     .then((res) => {
       dispatch({
         type: GET_NEXT_FLAGGED_PINS,
@@ -380,7 +388,7 @@ export const getNextFlaggedPins = (nextLink) => (dispatch) => {
 
 export const getPinsById = (pinIdArray) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/pins/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/pins/`, config)
     .then((res) => {
       let favoritedPins = res.data.pins.filter((pin) =>
         pinIdArray.includes(pin.id)
@@ -399,7 +407,7 @@ export const getPinsById = (pinIdArray) => (dispatch) => {
 
 export const adminDeleteFlaggedPin = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_ARQIVE}/pinFlagged/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/pinFlagged/${id}/`, config)
     .then((res) => {
       dispatch({
         type: ADMIN_DELETE_FLAGGED_PIN,

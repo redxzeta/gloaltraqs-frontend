@@ -12,10 +12,19 @@ import {
 } from "./types";
 
 import { DELETE_USER } from "./types";
-import { LINK } from "../link/link";
+const apiKey = {
+  headers: {
+    "Content-Type": "application/json",
+    "X-Arqive-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
+
 export const searchUsers = (username) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/profile/users?search=${username}`)
+    .get(
+      `${process.env.REACT_APP_ARQIVE}/profile/users?search=${username}`,
+      apiKey
+    )
     .then((res) => {
       dispatch({
         type: SEARCH_USERS,
@@ -30,7 +39,7 @@ export const searchUsers = (username) => (dispatch) => {
 
 export const getUsers = () => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/auth/users/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/auth/users/`, apiKey)
     .then((res) => {
       dispatch({
         type: GET_USERS,
@@ -67,7 +76,7 @@ export const editUser = (userId, editorId, user) => (dispatch) => {
 
 export const deleteUser = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`, apiKey)
     .then((res) => {
       dispatch({
         type: DELETE_USER,
@@ -82,7 +91,7 @@ export const deleteUser = (id) => (dispatch) => {
 
 export const getUser = (id) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`)
+    .get(`${process.env.REACT_APP_ARQIVE}/auth/users/${id}/`, apiKey)
     .then((res) => {
       dispatch({
         type: GET_USER,
@@ -101,7 +110,10 @@ export const getUserProfile = (username) => (dispatch) => {
   dispatch({ type: USER_PROFILE_LOADING });
 
   axios
-    .get(`${process.env.REACT_APP_ARQIVE}/profile/users?username=${username}`)
+    .get(
+      `${process.env.REACT_APP_ARQIVE}/profile/users?username=${username}`,
+      apiKey
+    )
     .then((res) => {
       res.data.count === 0
         ? dispatch({
@@ -138,7 +150,7 @@ export const editUserRole = (id, role) => (dispatch) => {
 
 export const getNextPreviousUsers = (nextlink) => (dispatch) => {
   axios
-    .get(`${nextlink}`)
+    .get(`${nextlink}`, apiKey)
     .then((res) => {
       dispatch({
         type: GET_NEXT_PREVIOUS_USERS,
@@ -153,7 +165,7 @@ export const getNextPreviousUsers = (nextlink) => (dispatch) => {
 
 export const unFavoriteProfile = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_ARQIVE}/upVoteStory/${id}/`)
+    .delete(`${process.env.REACT_APP_ARQIVE}/upVoteStory/${id}/`, apiKey)
     .then((res) => {
       dispatch({
         type: UNFAVORITE_PROFILE_STORY,
