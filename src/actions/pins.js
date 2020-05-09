@@ -89,7 +89,7 @@ export const getMaxPinDate = () => (dispatch) => {
     .then((res) => {
       // let date = res.data[0].startDate.split("-");
 
-      const maxDate = moment(res.data[0].startDate).format("YYYY/MM/DD");
+      const maxDate = moment(res.data[0].endDate).format("YYYY/MM/DD");
 
       dispatch({
         type: GET_MAX_PIN,
