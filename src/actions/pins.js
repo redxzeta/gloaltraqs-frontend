@@ -147,7 +147,7 @@ export const addPin = (pin) => (dispatch) => {
   pin.longitude = longitude;
 
   axios
-    .post(`${process.env.REACT_APP_ARQIVE}/pins/`, pin)
+    .post(`${process.env.REACT_APP_ARQIVE}/pins/`, pin, config)
     .then((res) => {
       dispatch({
         type: ADD_PIN,
@@ -169,7 +169,7 @@ export const editPin = (pin, id, userid) => (dispatch) => {
   pin.longitude = longitude;
 
   axios
-    .patch(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, pin)
+    .patch(`${process.env.REACT_APP_ARQIVE}/pins/${id}/`, pin, config)
     .then((res) => {
       dispatch({
         type: EDIT_PIN,
