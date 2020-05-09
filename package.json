@@ -72,5 +72,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-macros": "^2.8.0",
+    "dev-console.macro": "^0.1.0"
   }
 }
