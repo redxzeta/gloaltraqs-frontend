@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 import { Input } from "reactstrap";
 export default function ResetPasswordForm() {
   const [passwordForm, setpasswordForm] = useState({
@@ -78,6 +78,8 @@ export default function ResetPasswordForm() {
 
     return formIsValid;
   };
+  if (!query.get("token")) return <Redirect to="/" />;
+
   return (
     <div className={"main-content-div forgot-password-div"}>
       <div className="col-md-6 m-auto forgot-password-col">
@@ -91,7 +93,7 @@ export default function ResetPasswordForm() {
             <div className="form-group">
               <p className="forgot-password-text">
                 *Passwords must contain at least eight characters, including at
-                least 1 letter and 1 number
+                least 1 letter, 1 special character and 1 number
               </p>
             </div>
             <div className="form-group">
