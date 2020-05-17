@@ -223,7 +223,7 @@ export default function MapDashboard() {
           });
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         },
         {
           enableHighAccuracy: true,

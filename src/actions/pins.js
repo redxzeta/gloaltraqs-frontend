@@ -34,7 +34,7 @@ export const getPins = () => (dispatch) => {
   axios
     .get(`${process.env.REACT_APP_ARQIVE}/pins/`, config)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       dispatch({
         type: GET_PINS,
         payload: res.data,
@@ -42,7 +42,7 @@ export const getPins = () => (dispatch) => {
     })
     .catch(
       // => console.log(err)
-      (err) => console.log(err)
+      // (err) => console.log(err)
     );
 };
 
