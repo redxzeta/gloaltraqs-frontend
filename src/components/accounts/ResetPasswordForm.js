@@ -91,7 +91,7 @@ export default function ResetPasswordForm() {
             onSubmit={confirmPass}
           >
             <div className="form-group">
-              <p className="forgot-password-text">
+              <p className="forgot-password-text-error">
                 *Passwords must contain at least eight characters, including at
                 least 1 letter, 1 special character and 1 number
               </p>
@@ -136,6 +136,7 @@ export default function ResetPasswordForm() {
               )}
               <button
                 type="submit"
+                style={{ marginTop: "20px" }}
                 className="btn btn-primary float-right default-btn-purple"
               >
                 Reset Password

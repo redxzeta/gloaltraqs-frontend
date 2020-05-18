@@ -1794,3 +1794,11 @@ textarea {
 .navbar-brand {
     margin-right: 20px !important;
 }
+
+.forgot-password-text-error {
+    font-family: "Courier New", "Courier" !important;
+    text-transform: lowercase !important;
+    font-weight: 600 !important;
+    color: #e63f52 !important;
+    font-size: 1rem;
+}
