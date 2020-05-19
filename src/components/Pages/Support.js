@@ -8,6 +8,8 @@ import RedBubble from "../images/Red_Chat_Bubble.png";
 import IG from "../images/instagram_icon.JPG";
 import TW from "../images/twitter_icon.JPG";
 import FB from "../images/facebook_icon.JPG";
+import PayPalDonate from "../images/paypal-donate-img.png";
+
 export default function Support() {
   const [amount, setAmount] = useState("0.00");
 
@@ -76,6 +78,19 @@ export default function Support() {
                   someone who feels alone in the world.
                 </p>
               </Col>
+            </Row>
+            <Row style={{ paddingBottom: "50px", paddingTop: "20px" }}>
+              <div className="col-md-6 m-auto">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={
+                    "https://www.paypal.me/thearqive"
+                  }
+                >
+                <img src={PayPalDonate} className="paypal-btn" alt={"PayPal donate button img"} />
+                </a>
+              </div>
             </Row>
             {/* disable paypal for now - need to get account keys */}
             {/*<Row style={{ paddingBottom: "50px" }}>*/}

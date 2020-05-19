@@ -1802,3 +1802,8 @@ textarea {
     color: #e63f52 !important;
     font-size: 1rem;
 }
+
+.paypal-btn {
+    width: 100%;
+    height: auto;
+}
