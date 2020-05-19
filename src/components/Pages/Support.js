@@ -80,7 +80,7 @@ export default function Support() {
               </Col>
             </Row>
             <Row style={{ paddingBottom: "50px", paddingTop: "20px" }}>
-              <div className="col-md-6 m-auto">
+              <div className="col-md-5 m-auto">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
