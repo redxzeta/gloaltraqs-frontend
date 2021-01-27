@@ -1,3 +1,30 @@
+# What is theArqive 
+
+![the arqive](https://github.com/redxzeta/gloaltraqs-frontend/blob/master/screenshots/arqive_1.png)
+
+The ArQive, formerly known as GlobaltraQs, is an LGBTQ+ web application that allows anyone to post fun and interesting stories, events, and other information that they find meaningful. Founded in 2014 by Dr. Cynthia Wang and Zachary Vernon, The ArQive gives users a safe platform where they can share personal, historical, and/or community stories, as well as have access to information about safe spaces, which all serve as valuable resources to members of the LGBTQ+ community. By providing users with the ability to place pins on the map indicating where they have been and the experiences they have lived, The ArQive gives people the ability to mark their place in the world and in history.
+
+![sidebar](https://github.com/redxzeta/gloaltraqs-frontend/blob/master/screenshots/arqive_2.png)
+
+Originally built in PHP, the previous website required updating and improved features. We decided to use Django and React to make a more dynamic website. We used Django Rest to handle requests faster while using BootStrap to make the website more visually appealing for the user. We are changing the previous website by making the new one more scalable, responsive, and secure. By giving a select group of students the ability to stress test our new website, we can fine tune our website’s user learnability by receiving feedback from regular users. While there are many features pending completion, there will be more improvements coming to the website in the near future.
+
+# What we Learned
+
+![about](https://github.com/redxzeta/gloaltraqs-frontend/blob/master/screenshots/arqive_5.png)
+
+This was our first time using new technologies and learned how to use them more effectively now. We learned how to communicate with our client and discuss the features that we would need to implement and the design team to implement their wire farmes. We were able to learn React Hooks and simplify our code much better. Django Rest was an interesting experience as were able to create a backend rest api
+
+# Progression
+
+![faw](https://github.com/redxzeta/gloaltraqs-frontend/blob/master/screenshots/arqive_4.png)
+
+Project started on August 2019 - May 2020. We were able to deploy our application on May 25, 2020. This project has been continued on for the seniors 2021 where they are working on the mobile app and implementing necessary changes on our web application. 
+
+[Presentation](https://youtu.be/-8GSkp6SwJY)
+
+[Backend](https://github.com/jwest115/GlobaltraQs)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
