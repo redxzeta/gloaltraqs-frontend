@@ -18,7 +18,7 @@ This was our first time using new technologies and learned how to use them more 
 
 ![faw](https://github.com/redxzeta/gloaltraqs-frontend/blob/master/screenshots/arqive_4.png)
 
-Project started on August 2019 - May 2020. We were able to deploy our application on May 25, 2020. This project has been continued on for the seniors 2021 where they are working on the mobile app and implementing necessary changes on our web application. 
+Project started on August 2019 - May 2020. Due to the Pandemic of March 2020, development was halted and pick up again once everybody was used to remote work and classes. We were able to deploy our application on May 25, 2020. This project has been continued on for the seniors 2021 where they are working on the mobile app and implementing necessary changes on our web application. 
 
 [Presentation](https://youtu.be/-8GSkp6SwJY)
 
