@@ -93,59 +93,90 @@
     padding: 20px;
 }
 
-/*.root {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    bottom: 0;*/
-/*    overflow: hidden;*/
+@import url("~react-leaflet-markercluster/dist/styles.min.css");
+
+.top-bar {
+    padding: 18px 0px 10px 30px;
+    background-color: black;
+    min-height: 85px;
+    width: 100%;
+}
+
+.top-bar a {
+    text-decoration: none;
+    color: white;
+    padding-right: 40px;
+}
+
+.navigation-links {
+    float:  right;
+    font-size: 25px;
+    padding-top: 4px;
+}
+
+.top-bar a:hover {
+    color: gray;
+    text-decoration: none;
+}
+
+.leaflet-container {
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    z-index: 1;
+}
+
+
+.add-story-button {
+    position: absolute;
+    z-index: 1000;
+    float: right;
+    right: 20px;
+    top: 20px;
+}
+
+/*.map {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
 /*}*/
 
-/*.sidebar {*/
-/*    zIndex: 1000;*/
+/*#world-map {*/
 /*    position: absolute;*/
-/*    top: 0;*/
-/*    bottom: 0;*/
-/*    transition: transform .3s ease-out;*/
-/*    WebkitTransition: -webkit-transform .3s ease-out;*/
-/*    willChange: transform;*/
-/*    overflowY: auto;*/
-/*    width: 30%;*/
 /*}*/
 
-/*.content {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    bottom: 0;*/
-/*    overflowY: auto;*/
-/*    WebkitOverflowScrolling: touch;*/
-/*    transition: left .3s ease-out, right .3s ease-out;*/
-/*    z-index: 1000;*/
-/*    width: 35%;*/
-/*  }*/
 
-/*.overlay {*/
-/*    zIndex: 0;*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    bottom: 0;*/
-/*    opacity: 0;*/
-/*    visibility: hidden;*/
-/*    !*transition: opacity .3s ease-out, visibility .3s ease-out;*!*/
-/*    backgroundColor: rgba(0,0,0,.3);*/
-/*}*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+.nav-tab {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    display: inline-block;
+    padding: 10px 25px;
+    color: #bbb;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
+}
 
-/*.dragHandle {*/
-/*    zIndex: 1;*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    bottom: 0;*/
-/*}*/
+.nav-tab:hover {
+    background-color: oldlace;
+}
+
+.nav-tab.active {
+    background-color: #fff;
+    color: #555;
+    border: 1px solid #ddd;
+    border-top: 2px solid orange;
+    border-bottom: 1px solid #fff;
+    cursor: default;
+}
+.admin-moderator-edit {
+    float: right;
+}
+
+#world-map {
+    width: 100%;
+    height: 100%;
+}
 
 #map-dashboard {
     /*height: 100%;*/
