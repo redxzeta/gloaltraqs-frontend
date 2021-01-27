@@ -12,7 +12,7 @@ Originally built in PHP, the previous website required updating and improved fea
 
 ![about](https://github.com/redxzeta/gloaltraqs-frontend/blob/master/screenshots/arqive_5.png)
 
-This was our first time using new technologies and learned how to use them more effectively now. We learned how to communicate with our client and discuss the features that we would need to implement and the design team to implement their wire farmes. We were able to learn React Hooks and simplify our code much better. Django Rest was an interesting experience as were able to create a backend rest api
+This was our first time using new technologies and learned how to use them more effectively now. We learned how to communicate with our client and discuss the features that we would need to implement and the design team to implement their wire farmes. We were able to learn React Hooks and Redux and simplify our code much better. Django Rest was an interesting experience as were able to create a backend rest api using Python. 
 
 # Progression
 
