@@ -1,5 +1,7 @@
 # What is theArqive 
 
+### Project is Discontinuted and has been handed off to future seniors 
+
 ![the arqive](https://github.com/redxzeta/gloaltraqs-frontend/blob/master/screenshots/arqive_1.png)
 
 The ArQive, formerly known as GlobaltraQs, is an LGBTQ+ web application that allows anyone to post fun and interesting stories, events, and other information that they find meaningful. Founded in 2014 by Dr. Cynthia Wang and Zachary Vernon, The ArQive gives users a safe platform where they can share personal, historical, and/or community stories, as well as have access to information about safe spaces, which all serve as valuable resources to members of the LGBTQ+ community. By providing users with the ability to place pins on the map indicating where they have been and the experiences they have lived, The ArQive gives people the ability to mark their place in the world and in history.
